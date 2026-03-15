@@ -1,0 +1,68 @@
+﻿@model _2FA.Data.Entities.CompanyEntity
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div style="text-align: center;">
+    <h2>Nueva Compañía</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <form asp-action="Create">
+                            <!-- Alerta de errores de validación -->
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    <strong>¡Atención!</strong> Se encontraron errores de validación. Por favor, revise el listado de errores que aparece al final del formulario.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                                <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                            </div>
+                            <br>
+
+                            <partial name="_Companies"  />
+                            
+                            <!-- Listado de errores de validación -->
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="mt-3">
+                                    <div class="card border-danger">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5 class="mb-0">
+                                                <i class="bi bi-exclamation-circle"></i>
+                                                Errores de Validación Detectados
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Por favor, corrija los siguientes errores antes de guardar:</p>
+                                            <div asp-validation-summary="All" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

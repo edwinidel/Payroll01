@@ -1,0 +1,305 @@
+/* Definición de la paleta de colores con variables CSS */
+:root {
+  --primary-color: #0D234B; /* Azul Marino */
+  --accent-color: #FFC107;  /* Dorado / Amarillo Ocre */
+  --text-color: #424242;     /* Gris Oscuro para texto principal */
+  --background-color: #F5F5F5; /* Gris Claro para el fondo */
+  --white-color: #FFFFFF;    /* Blanco */
+}
+
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Estilo de los títulos (h1, h2, h3) */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-color);
+  font-weight: 600; 
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700; 
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 60px;
+    background-color: var(--background-color);
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+.view-background-effect {
+    background-color: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    padding: 20px;
+    border-radius: 8px; 
+    width: 90%;
+    margin: 40px auto;
+  }
+  .view-background-effect h1, .view-background-effect h2, .view-background-effect h3 {
+    color: #333; 
+  }
+
+/* Estilos opcionales para el segundo nivel de dropdown */
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 95%; 
+    top: -7px; 
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 0.25rem;
+    background-color: var(--bs-dropdown-bg);
+    z-index: 1060; 
+}
+
+/* Regla para mostrar el sub-menú al pasar el cursor */
+.dropdown-item:hover .dropdown-submenu {
+    display: block;
+}
+
+/* Importante: Mantenemos el sub-menú visible si el cursor está sobre él */
+.dropdown-submenu:hover {
+    display: block;
+}
+
+.dropdown-item {
+    position: relative;
+}
+
+/* Estilo para que el enlace del sub-menú se vea como un item normal */
+.dropdown-toggle-submenu::after {
+    content: " \25B6"; /* Código Unicode para un triángulo derecho */
+    float: right;
+}
+
+  /* Estilo adicional para mejorar la apariencia de los Tabs*/
+  .tab-content {
+    border: 1px solid #dee2e6;
+    border-top: none;
+    padding: 1.5rem;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+  .nav-tabs .nav-link {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    margin-right: 0.2rem;
+  }
+  .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #0d6efd; 
+    border-color: #0d6efd #0d6efd #fff;
+  }
+
+/* Estilos para los botones de acción (Create, Edit, Save) */
+.btn-action {
+  /* Tamaño y forma */
+  padding: 10px 20px;
+  border-radius: 8px; /* Esquinas redondeadas */
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 16px; 
+  width: 65px; 
+  height: 38px; 
+  margin-top:1px; 
+  display: inline-block;
+
+  /* Degradado azul */
+  background: linear-gradient(45deg, #007bff, #0D234B);
+
+  /* Sombra hacia la parte inferior derecha */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+  /* Transición para un efecto suave al pasar el mouse */
+  transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre los botones de acción */
+.btn-action:hover {
+  transform: translateY(-2px); /* Mueve el botón ligeramente hacia arriba */
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+}
+
+
+/* Estilos para los botones del índice (Edit, Details, Delete) */
+.btn-index {
+  /* Tamaño y forma pequeños y cuadrados */
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Degradado gris */
+  background: linear-gradient(45deg, #6c757d, #424242);
+
+  /* Sombra hacia la parte inferior derecha */
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+
+  /* Transición para un efecto suave */
+  transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre los botones del índice */
+.btn-index:hover {
+  transform: translateY(-1px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+/*Botones para la barra de navegación en PayrollTmpHeader.Details*/
+.btn-ctmnav {
+  flex: 1; /* hace que todos ocupen el mismo ancho dentro del contenedor flex */
+  min-width: 120px; /* tamaño mínimo uniforme */
+  max-width: 150px; /* tamaño máximo opcional */
+  padding: 10px 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+
+  /* Fondo verde olivo degradado */
+  background: linear-gradient(135deg, #6b8e23, #556b2f);
+
+  /* Sombra inferior derecha */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efecto hover */
+.btn-ctmnav:hover {
+  background: linear-gradient(135deg, #556b2f, #3d4d1e);
+  transform: translateY(-2px); /* pequeño levantamiento */
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Tarjetas Giratorias */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
+    color: #333;
+}
+
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.flip-card-back .btn {
+    margin-bottom: 10px;
+}

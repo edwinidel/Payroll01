@@ -1,0 +1,41 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="home-flip-cards">
+    <div class="flip-cards-row">
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Cuentas Contables</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Accounts" asp-action="Index" class="btn btn-primary">Ingresar</a>
+                            <p>Maestro de Cuentas Contables</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Cuentas por Centros de Costo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="CostCenterPaymentConceptAccounts" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Asignar los Conceptos y Cuentas Contables a los Centros de Costo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

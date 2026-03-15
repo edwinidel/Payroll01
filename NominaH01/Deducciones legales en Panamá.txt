@@ -1,0 +1,30 @@
+Deducciones legales en Panamá
+ódigo	Concepto	Trabajador: Seguro Social	Trabajador: Seguro Educativo	Trabajador: ISR	Empleador: Seguro Social	Empleador: Seguro Educativo	Empleador: Riesgos Profesionales	Empleador: Otros
+CNPT0001	Salario Regular	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	Cesantía: 2.25 % + Indemnización: 5 %
+CNPT0002	Horas Extras / SobreTiempo	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0003	Ajuste B/.	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0004	Comisión	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0005	Prima de Producción	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0006	Bonificaciones	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0007	Gratificaciones	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0008	Vacaciones	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	Prestación legal
+CNPT0009	XIII Mes	7.25 %	Exento	Sí	10.75 %	—	—	—
+CNPT0010	Mejora al XIII Mes	7.25 %	Exento	Sí	10.75 %	—	—	—
+CNPT0011	Participación de Utilidades	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0012	Gasto de Transporte	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0013	Viáticos	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0014	Gastos de Representación	9.75 %	1.25 %	10–15 % ISR	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0015	Gasto de Representación XIII Mes	7.25 %	Exento	10–15 % ISR	10.75 %	—	—	—
+CNPT0016	Gasto de Representación Vacaciones	9.75 %	1.25 %	10–15 % ISR	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0017	Preaviso	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	Cesantía/Indemnización
+CNPT0018	Prima de Antigüedad	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	Cesantía
+CNPT0019	Indemnización	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	Cesantía
+CNPT0020	Ingreso del 6 %	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0021	Bono de Asistencia	9.75 %	1.25 %	Sí	12.25 %	1.50 %	0.42 %–7 %	—
+CNPT0022	Lluvia	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0023	Altura hasta 125 ms	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0024	Altura mayor a 125 ms	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0025	Profundidad	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0026	Túnel	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0027	Martillo	Depende	Depende	Depende	Depende	Depende	Depende	—
+CNPT0028	Rastrilleo	Depende	Depende	Depende	Depende	Depende	Depende	—

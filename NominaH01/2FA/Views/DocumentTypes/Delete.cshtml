@@ -1,0 +1,19 @@
+@model _2FA.Data.Entities.DocumentTypeEntity
+
+@{
+    ViewData["Title"] = "Borrar Tipo de Documento";
+}
+
+<h2>¿Borrar este tipo de documento?</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p>@Model.Description</p>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Borrar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

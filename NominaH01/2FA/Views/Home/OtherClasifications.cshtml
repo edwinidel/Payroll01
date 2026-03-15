@@ -1,0 +1,152 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <!-- Tipos de Observación -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Tipos de Observación</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="ObservationTypes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Tipos de Observación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Códigos de Sobretiempo-->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Códigos de Sobretiempo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="OvertimeCodes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Códigos de Sobretiempo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Factores de Sobretiempo -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Factores de Sobretiempo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="OvertimeFactors" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Factores de Sobretiempo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conceptos de Pago -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Conceptos de Pago</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="PaymentConcepts" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Conceptos de Pago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tipos de Día -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Tipos de Día</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="TypeOfDays" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Tipos de Día</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de Trabajador -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Tipos de Trabajador</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="TypeOfWorkers" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Tipos de Trabajador</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de Horario -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Tipos de Horario</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="TypeOfWorkSchedules" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Tipos de Horario</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unidades para pago por Destajo -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Unidades para pago por Destajo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="PieceworkUnitTypes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Unidades para pago por Destajo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

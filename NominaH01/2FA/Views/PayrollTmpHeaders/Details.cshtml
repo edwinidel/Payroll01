@@ -1,0 +1,404 @@
+﻿@model _2FA.Data.Entities.PayrollTmpHeaderEntity
+
+<div style="text-align: center;">
+    <h2>Detalle de Nómina en Proceso</h2>
+</div>
+
+<div class="container-fluid">
+    @Html.AntiForgeryToken()
+    <div class="d-flex justify-content-start mb-2">
+        <form asp-controller="PayrollTmpHeaders" asp-action="CalculatePayroll" method="get" style="display: inline;">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn-ctmnav"><i class="fa-regular fa-file"></i>&nbsp;&nbsp;Borrador</button>
+        </form> &nbsp;
+        <form id="achForm" asp-controller="BankDepositStructures" asp-action="GenerateFile" method="post" style="display: inline;">
+            <input type="hidden" name="id" value="1" /> <!-- Replace with actual structure ID or make dynamic -->
+            <input type="hidden" name="companyId" value="@Model.CompanyId" />
+            <button type="button" id="achButton" class="btn-ctmnav"><i class="fa-solid fa-building-columns"></i>&nbsp;&nbsp;ACH</button>
+        </form> &nbsp;
+        <a class="btn-ctmnav" asp-action="" asp-route-id=""><i class="fa-solid fa-money-bill-1-wave"></i>&nbsp;&nbsp;Cheques</a> &nbsp;
+        <a class="btn-ctmnav" asp-action="" asp-route-id=""><i class="fa-regular fa-folder-closed"></i>&nbsp;&nbsp;Postear</a> &nbsp;
+    </div>
+    <div class="row mb-3 border-bottom pb-2">
+        <div class="col-12">
+            <dl class="row">
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.PaymentGroupId)</dt>
+                <dd class="col-sm-4">@(Model?.PaymentGroup?.Name)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.StartDate)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.StartDate)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.EndDate)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.EndDate)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Status)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.Status)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Notes)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(m => m.Notes)</dd>
+            </dl>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-7 border-end" style="height:70vh; overflow-y:auto;">
+            <h4>Empleados</h4>
+            <br />
+            <table class="table table-striped table-hover" id="employeesTable">
+                <thead>
+                    <tr>
+                        <th width="23%">Empleado</th>
+                        <th width="7%">Cédula</th>
+                        <th width="10%">Horas Regulares</th>
+                        <th width="10%">Horas Extras</th>
+                        <th width="10%">Salario Bruto</th>
+                        <th width="10%">Descuentos Legales</th>
+                        <th width="10%">Otros Descuentos</th>
+                        <th width="10%">Salario Neto</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model.Employees)
+                    {
+                        <tr data-employee-id="@emp.Id" style="cursor:pointer;">
+                            <td>@emp.Employee?.FullName</td>
+                            <td>@emp.Employee?.IdDocument</td>
+                            <td>@emp.RegularHours</td>
+                            <td>@emp.OverTimeSalary</td>
+                            <td>@emp.TotalEarnings</td>
+                            <td>@emp.TotalLegalDiscount</td>
+                            <td>@emp.TotalOtherDiscount</td>
+                            <td>@emp.NetPay</td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-5" style="height:70vh; overflow-y:auto;">
+            <h4>Conceptos de Pago</h4>
+            <div id="conceptsContainer" data-header-id="@Model.Id">
+                <p class="text-muted">Seleccione un empleado para ver sus conceptos...</p>
+            </div>
+            
+            @* Formulario de horas extras (inicialmente oculto) *@
+            <div id="overtimeFormContainer" style="display: none;">
+                @await Html.PartialAsync("_OvertimeForm")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Función global para mostrar el formulario de horas extras
+        function showOvertimeForm(employeeId, headerId) {
+            document.getElementById('PayrollTmpEmployeeId').value = employeeId;
+            document.getElementById('PayrollTmpHeaderId').value = headerId;
+            document.getElementById('conceptsContainer').style.display = 'none';
+            document.getElementById('overtimeFormContainer').style.display = 'block';
+        }
+
+        // Función global para mostrar la vista de conceptos
+        function showConceptsView() {
+            document.getElementById('overtimeFormContainer').style.display = 'none';
+            document.getElementById('conceptsContainer').style.display = 'block';
+        }
+
+        // Función global para recargar conceptos del empleado
+        function loadEmployeeConcepts() {
+            var employeeId = document.getElementById('PayrollTmpEmployeeId').value;
+            if (employeeId) {
+                fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${employeeId}&partial=true`, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('conceptsContainer').innerHTML = html;
+                })
+                .catch(err => console.error('Error loading concepts:', err));
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lógica para cargar conceptos al hacer clic en una fila de la tabla
+            const rows = document.querySelectorAll("#employeesTable tbody tr");
+            rows.forEach(row => {
+                row.addEventListener("click", function () {
+                    // Remove active class from all rows
+                    rows.forEach(r => r.classList.remove("active"));
+
+                    // Add active class to clicked row
+                    this.classList.add("active");
+
+                    const empId = this.getAttribute("data-employee-id");
+
+                    fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${empId}&partial=true`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById("conceptsContainer").innerHTML = html;
+                        })
+                        .catch(err => console.error('Error al cargar conceptos:', err));
+                });
+            });
+
+            // Lógica para pasar el ID del empleado al modal antes de que se muestre
+            const conceptModal = document.getElementById('conceptModal');
+            if (conceptModal) {
+                conceptModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget;
+                    const empId = button.getAttribute('data-employee-id');
+                    const payrollTmpEmployeeIdInput = conceptModal.querySelector('#PayrollTmpEmployeeId');
+                    const payrollTmpHeaderIdInput = conceptModal.querySelector('#payrollTmpHeaderId');
+                    if (payrollTmpEmployeeIdInput) payrollTmpEmployeeIdInput.value = empId;
+                    if (payrollTmpHeaderIdInput) payrollTmpHeaderIdInput.value = @Model.Id;
+                });
+            }
+
+            // Lógica para pasar el ID del empleado al modal de horas extras
+            const overtimeModal = document.getElementById('overtimeModal');
+            if (overtimeModal) {
+                overtimeModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget;
+                    // Cuando abrimos el modal manualmente no hay relatedTarget
+                    const empId = button ? button.getAttribute('data-employee-id') : null;
+                    const payrollTmpEmployeeIdInput = overtimeModal.querySelector('#PayrollTmpEmployeeId');
+                    const payrollTmpHeaderIdInput = overtimeModal.querySelector('#PayrollTmpHeaderId');
+                    if (empId && payrollTmpEmployeeIdInput) payrollTmpEmployeeIdInput.value = empId;
+                    if (payrollTmpHeaderIdInput) payrollTmpHeaderIdInput.value = @Model.Id;
+                });
+            }
+
+            // Asegura que el modal se abra (y se rellenen IDs) igual que "Agregar Concepto",
+            // incluso cuando el botón proviene de un parcial recargado por AJAX.
+            document.addEventListener('click', function (e) {
+                const btn = e.target.closest('#btnAddOvertime');
+                if (!btn) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                const empId = btn.getAttribute('data-employee-id');
+                const conceptsContainer = document.getElementById('conceptsContainer');
+                const headerId = conceptsContainer ? conceptsContainer.getAttribute('data-header-id') : null;
+                
+                // Mostrar el formulario de horas extras en lugar del modal
+                showOvertimeForm(empId, headerId);
+            }, true);
+
+            // Lógica para el cálculo del monto total
+            const updateTotal = () => {
+                const hours = parseFloat(document.getElementById("Hours").value) || 0;
+                const unit = parseFloat(document.getElementById("UnitAmount").value) || 0;
+                const factor = parseFloat(document.getElementById("PayFactor").value) || 1;
+                document.getElementById("TotalAmount").value = (hours * unit * factor).toFixed(2);
+            };
+
+            document.addEventListener("input", function (e) {
+                if (["Hours", "UnitAmount", "PayFactor"].includes(e.target.id)) {
+                    updateTotal();
+                }
+            });
+
+            // Lógica para guardar el concepto con AJAX
+            document.getElementById("saveConceptBtn").addEventListener("click", function () {
+                const form = document.getElementById("conceptForm");
+                const data = new FormData(form);
+
+                debugger;
+
+                // Obtener el valor del ID de algún lugar (por ejemplo, de un data attribute)
+                const payrollHeaderId = document.getElementById("payrollTmpHeaderId").value;
+                
+                // Agregar el valor manualmente al FormData
+                data.append('PayrollTmpHeaderId', payrollHeaderId);
+
+                fetch('/PayrollTmpHeaders/AddConcept', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: data
+                })
+                .then(r => r.text())
+                .then(html => {
+                    document.getElementById("conceptsContainer").innerHTML = html;
+                    const modalElement = document.getElementById("conceptModal");
+                    const myModalInstance = bootstrap.Modal.getInstance(modalElement);
+                    myModalInstance.hide();
+                    form.reset();
+                    updateTotal();
+                })
+                .catch(err => {
+                    alert("Error al guardar concepto: " + err);
+                    console.error(err);
+                });
+            });
+
+            // Función para eliminar concepto con confirmación
+            window.deleteConcept = function(conceptId, conceptName) {
+                if (confirm(`¿Está seguro de que desea eliminar el concepto "${conceptName}"?`)) {
+                    // Create form data to send the conceptId as a form parameter
+                    const formData = new FormData();
+                    formData.append('conceptId', conceptId);
+
+                    fetch('/PayrollTmpHeaders/DeleteConcept', {
+                        method: 'POST',
+                        headers: {
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            // Recargar los conceptos del empleado actual
+                            const currentEmployeeRow = document.querySelector("#employeesTable tbody tr.active");
+                            if (currentEmployeeRow) {
+                                const empId = currentEmployeeRow.getAttribute("data-employee-id");
+                                console.log('Recargando conceptos para empleado:', empId);
+                                fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${empId}&partial=true`, {
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    }
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error en la respuesta del servidor');
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(html => {
+                                        document.getElementById("conceptsContainer").innerHTML = html;
+                                        console.log('Vista parcial recargada exitosamente');
+                                    })
+                                    .catch(err => {
+                                        console.error('Error al recargar conceptos:', err);
+                                        // Fallback: recargar la página completa
+                                        location.reload();
+                                    });
+                            } else {
+                                console.warn('No se encontró fila activa, recargando página completa');
+                                location.reload();
+                            }
+                        } else {
+                            alert("Error: " + data.message);
+                        }
+                    })
+                    .catch(err => {
+                        alert("Error al eliminar concepto: " + err);
+                        console.error(err);
+                    });
+                }
+            };
+
+            // Función para eliminar horas extras con confirmación
+            window.deleteOvertime = function(overtimeId, overtimeDate) {
+                if (confirm(`¿Está seguro de que desea eliminar las horas extras del ${overtimeDate}?`)) {
+                    // Create form data to send the overtimeId as a form parameter
+                    const formData = new FormData();
+                    formData.append('overtimeId', overtimeId);
+
+                    fetch('/PayrollTmpHeaders/DeleteOvertime', {
+                        method: 'POST',
+                        headers: {
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            // Recargar los conceptos del empleado actual
+                            const currentEmployeeRow = document.querySelector("#employeesTable tbody tr.active");
+                            if (currentEmployeeRow) {
+                                const empId = currentEmployeeRow.getAttribute("data-employee-id");
+                                console.log('Recargando conceptos para empleado:', empId);
+                                fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${empId}&partial=true`, {
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    }
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Error en la respuesta del servidor');
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(html => {
+                                        document.getElementById("conceptsContainer").innerHTML = html;
+                                        console.log('Vista parcial recargada exitosamente');
+                                    })
+                                    .catch(err => {
+                                        console.error('Error al recargar conceptos:', err);
+                                        // Fallback: recargar la página completa
+                                        location.reload();
+                                    });
+                            } else {
+                                console.warn('No se encontró fila activa, recargando página completa');
+                                location.reload();
+                            }
+                        } else {
+                            alert("Error: " + data.message);
+                        }
+                    })
+                    .catch(err => {
+                        alert("Error al eliminar horas extras: " + err);
+                        console.error(err);
+                    });
+                }
+            };
+
+            // Lógica para el botón ACH - descarga archivo y muestra mensaje de éxito
+            document.getElementById("achButton").addEventListener("click", function () {
+                const form = document.getElementById("achForm");
+                const formData = new FormData(form);
+                
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al generar el archivo');
+                    }
+                    return response.blob().then(blob => ({
+                        blob: blob,
+                        filename: response.headers.get('Content-Disposition')?.split('filename=')[1]?.replace(/"/g, '') || 'archivo_ach.txt'
+                    }));
+                })
+                .then(({ blob, filename }) => {
+                    // Crear enlace de descarga
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    a.remove();
+                    
+                    // Mostrar mensaje de éxito
+                    alert('¡Archivo ACH generado satisfactoriamente!');
+                })
+                .catch(err => {
+                    alert("Error al generar archivo ACH: " + err.message);
+                    console.error(err);
+                });
+            });
+        });
+    </script>
+}

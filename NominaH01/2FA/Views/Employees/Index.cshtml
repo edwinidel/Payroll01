@@ -1,0 +1,95 @@
+﻿@model IEnumerable<_2FA.Data.Entities.EmployeeEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="text-align: center;">
+    <h2>Listado de Empleados</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Nuevo Empleado" class="btn-action" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th width="5%">
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th width="15%">
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th width="15%">
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th width="10%">
+                                @Html.DisplayNameFor(model => model.IdDocument)
+                            </th>
+                            <th width="5%">
+                                @Html.DisplayNameFor(model => model.Dv)
+                            </th>
+                            <th width="5%">
+                                @Html.DisplayNameFor(model => model.Genere)
+                            </th>
+                            <th width="5%">
+                                @Html.DisplayNameFor(model => model.BloodType)
+                            </th>
+                            <th width="10%">
+                                @Html.DisplayNameFor(model => model.CellPhone)
+                            </th>
+                            <th width="5%">
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th width="15%">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdDocument)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dv)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genere)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BloodType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CellPhone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    <a title="Editar registro" class="btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a title="Detalle del registro" class="btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                    <a title="Borrar registro" class="btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

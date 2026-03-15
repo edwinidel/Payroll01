@@ -1,0 +1,79 @@
+﻿@model _2FA.Data.Entities.LiabilityEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="text-align: center;">
+    <h2>Nueva Deuda</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-5">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Created" />
+                            <input type="hidden" asp-for="CreatedBy" />
+
+                            <div class="form-group">
+                                <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                                <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label asp-for="Code" class="control-label"></label>
+                                        <input asp-for="Code" class="form-control" />
+                                        <span asp-validation-for="Code" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label asp-for="EmployeeId" class="control-label"></label>
+                                        <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label asp-for="CreditorId" class="control-label"></label>
+                                        <select asp-for="CreditorId" class ="form-control" asp-items="ViewBag.CreditorId"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label asp-for="InitialAmount" class="control-label"></label>
+                                        <input asp-for="InitialAmount" class="form-control" />
+                                        <span asp-validation-for="InitialAmount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label asp-for="Dicsount" class="control-label"></label>
+                                        <input asp-for="Dicsount" class="form-control" />
+                                        <span asp-validation-for="Dicsount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

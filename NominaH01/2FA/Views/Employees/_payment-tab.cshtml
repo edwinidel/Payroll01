@@ -1,0 +1,180 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="SalaryType" class="control-label"></label>
+                <select asp-for="SalaryType" class="form-control" id="salaryTypeSelect">
+                    <option value="Mensual">Mensual</option>
+                    <option value="Hora">Por Hora</option>
+                    <option value="Destajo">Destajo</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="RegularHours" class="control-label"></label>
+                <input asp-for="RegularHours" class="form-control" />
+                <span asp-validation-for="RegularHours" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2" id="agreeSalaryGroup">
+            <div class="form-group">
+                <label asp-for="AgreeSalary" class="control-label"></label>
+                <input asp-for="AgreeSalary" class="form-control" />
+                <span asp-validation-for="AgreeSalary" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2" id="hourSalaryGroup">
+            <div class="form-group">
+                <label asp-for="HourSalary" class="control-label"></label>
+                <input asp-for="HourSalary" class="form-control" />
+                <span asp-validation-for="HourSalary" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div style="text-align: center;">
+                <label asp-for="RetainISR" class="control-label"></label>
+            </div>
+            <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+                <input class="form-check-input" asp-for="RetainISR" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="TypeOfWorkerId" class="control-label"></label>
+                <select asp-for="TypeOfWorkerId" class ="form-control" asp-items="ViewBag.TypeOfWorkerId"></select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label asp-for="PaymentGroupId" class="control-label"></label>
+            <select asp-for="PaymentGroupId" class ="form-control" asp-items="ViewBag.PaymentGroupId"></select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2" id="unitValueGroup" style="display:none;">
+            <div class="form-group">
+                <label asp-for="UnitValue" class="control-label"></label>
+                <input asp-for="UnitValue" class="form-control" />
+                <span asp-validation-for="UnitValue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2" id="unitTypeGroup" style="display:none;">
+            <div class="form-group">
+                <label asp-for="PieceworkUnitTypeId" class="control-label"></label>
+                <select asp-for="PieceworkUnitTypeId" class="form-control" asp-items="ViewBag.PieceworkUnitTypeId">
+                    <option value="">Seleccione una unidad</option>
+                </select>
+                <span asp-validation-for="PieceworkUnitTypeId" class="text-danger"></span>
+            </div>
+        </div>
+        <input type="hidden" asp-for="UnitType" />
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="IsrMethod" class="control-label"></label>
+                <select asp-for="IsrMethod" class="form-control" name="myDropdown" id="dropdown">
+                    <option value="P" selected>Promedio</option>
+                    <option value="T">Tabla</option>
+                    <option value="F">Fijo</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div style="text-align: center;">
+                <label asp-for="IsrFixed" class="control-label"></label>
+            </div>
+            <input asp-for="IsrFixed" class="form-control" />
+            <span asp-validation-for="IsrFixed" class="text-danger"></span>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="AdditionalIsr" class="control-label"></label>
+                <input asp-for="AdditionalIsr" class="form-control" />
+                <span asp-validation-for="AdditionalIsr" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const salaryType = document.getElementById('salaryTypeSelect') || document.getElementById('SalaryType');
+            if (!salaryType) {
+                return; // safety: if markup changes, avoid JS errors
+            }
+
+            const agreeGroup = document.getElementById('agreeSalaryGroup');
+            const hourGroup = document.getElementById('hourSalaryGroup');
+            const unitValueGroup = document.getElementById('unitValueGroup');
+            const unitTypeGroup = document.getElementById('unitTypeGroup');
+            const pieceworkUnitSelect = document.getElementById('PieceworkUnitTypeId');
+
+            function toggleFields() {
+                const value = salaryType.value;
+                const isDestajo = value === 'Destajo';
+
+                agreeGroup.style.display = isDestajo ? 'none' : '';
+                hourGroup.style.display = isDestajo ? 'none' : '';
+                unitValueGroup.style.display = isDestajo ? '' : 'none';
+                unitTypeGroup.style.display = isDestajo ? '' : 'none';
+
+                if (isDestajo) {
+                    // clear salary fields when destajo
+                    const agree = document.getElementById('AgreeSalary');
+                    const hour = document.getElementById('HourSalary');
+                    if (agree) agree.value = '';
+                    if (hour) hour.value = '';
+                } else {
+                    const unitValue = document.getElementById('UnitValue');
+                    if (unitValue) unitValue.value = '';
+                    if (pieceworkUnitSelect) pieceworkUnitSelect.value = '';
+                }
+                if (pieceworkUnitSelect && isDestajo && pieceworkUnitSelect.selectedIndex === -1) {
+                    pieceworkUnitSelect.selectedIndex = 0;
+                }
+            }
+
+            salaryType.addEventListener('change', toggleFields);
+            toggleFields();
+        });
+    </script>
+
+    <label class="form-label mt-3">Datos del Banco</label>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="PayingBankId" class="control-label"></label>
+                <select asp-for="PayingBankId" class ="form-control" asp-items="ViewBag.PayingBankId"></select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="BankId" class="control-label"></label>
+                <select asp-for="BankId" class ="form-control" asp-items="ViewBag.BankId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="PayAccount" class="control-label"></label>
+                <input asp-for="PayAccount" class="form-control" />
+                <span asp-validation-for="PayAccount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="PayAccountType" class="control-label"></label>
+                <select asp-for="PayAccountType" class="form-control" name="myDropdown" id="dropdown">
+                    <option value="Ahorro" selected>Ahorro</option>
+                    <option value="Corriente">Corriente</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+
+    </div>
+
+</div>

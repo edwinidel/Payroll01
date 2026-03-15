@@ -1,0 +1,36 @@
+@model _2FA.Data.Entities.CountryEntity
+
+@{
+    ViewData["Title"] = "Countries";
+}
+
+<div style="text-align: center;">
+    <h2>Editar País</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+            </card-header>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Created" />
+                    <input type="hidden" asp-for="CreatedBy" />
+                    <div class="p-3">
+                        <div class="form-group">
+                            <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                            <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                        </div>
+                        <br>
+                    </div>
+
+                    <partial name="_Country"  />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

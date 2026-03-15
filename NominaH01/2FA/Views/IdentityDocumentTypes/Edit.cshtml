@@ -1,0 +1,62 @@
+﻿@model _2FA.Data.Entities.IdentityDocumentTypeEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="text-align: center;">
+    <h2>Editar Tipo de Documento de Identidad</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Created" />
+                            <input type="hidden" asp-for="CreatedBy" />
+
+                            <div class="form-group">
+                                <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                                <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div style="text-align: center;">
+                                        <label asp-for="IsActive" class="control-label"></label>
+                                    </div>
+                                    <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+                                        <input class="form-check-input" asp-for="IsActive" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

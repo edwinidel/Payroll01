@@ -1,0 +1,103 @@
+﻿@model _2FA.Data.Entities.EmployeeEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle del Banco</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" onclick="history.back();" ><i class="bi bi-arrow-left"></i></a>
+                    &nbsp;
+                    <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="mt-10">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button 
+                                class="nav-link active" 
+                                id="home-tab" 
+                                data-bs-toggle="tab" 
+                                data-bs-target="#home-tab-pane" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="home-tab-pane" 
+                                aria-selected="true">
+                                    Datos Generales
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button 
+                                class="nav-link" 
+                                id="profile-tab" 
+                                data-bs-toggle="tab" 
+                                data-bs-target="#profile-tab-pane" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="profile-tab-pane" 
+                                aria-selected="false">
+                                    Datos Personales
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button 
+                                class="nav-link" 
+                                id="contact-tab" 
+                                data-bs-toggle="tab" 
+                                data-bs-target="#contact-tab-pane" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="contact-tab-pane" 
+                                aria-selected="false">
+                                    Datos de Contacto
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button 
+                                class="nav-link" 
+                                id="new-tab" 
+                                data-bs-toggle="tab" 
+                                data-bs-target="#new-tab-pane" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="new-tab-pane" 
+                                aria-selected="false">
+                                    Datos de Pago
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent">
+                        
+                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                            <partial name="_Deta_Home" />
+                        </div>
+
+                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                            <partial name="_Deta_Profile" />
+                        </div>
+                        
+                        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                            <partial name="_Deta_Contact" />
+                        </div>
+                        
+                        <div class="tab-pane fade" id="new-tab-pane" role="tabpanel" aria-labelledby="new-tab" tabindex="0">
+                            <partial name="_Deta_Payment" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_ObservationModal" model="Model" />
+

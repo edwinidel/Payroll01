@@ -1,0 +1,81 @@
+@model IEnumerable<_2FA.Data.Entities.CompanyEntity>
+
+@{
+    ViewData["Title"] = "Cambiar Compañía";
+    ViewData["Breadcrumb"] = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Text = "Inicio", Url = Url.Action("Index", "Home") },
+        new BreadcrumbItem { Text = "Cambiar Compañía", Url = null }
+    };
+}
+
+<div class="view-background-effect">
+    <h1>@ViewData["Title"]</h1>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Seleccione la compañía con la que desea trabajar</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <form asp-action="SwitchCompany" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                <label for="selectedCompanyId" class="form-label">Compañía</label>
+                                <select class="form-select" id="selectedCompanyId" name="selectedCompanyId" required>
+                                    <option value="">Seleccione una compañía...</option>
+                                    @foreach (var company in Model)
+                                    {
+                                        <option value="@company.Id">@company.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="@Url.Action("Index")" class="btn btn-secondary me-md-2">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Cambiar Compañía</button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <h5>No tiene compañías asignadas</h5>
+                            <p>Contacte al administrador del sistema para que le asigne compañías.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional: Auto-submit on company selection for better UX
+        document.getElementById('selectedCompanyId').addEventListener('change', function() {
+            if (this.value) {
+                // Optional: Show loading indicator
+                this.form.submit();
+            }
+        });
+    </script>
+}

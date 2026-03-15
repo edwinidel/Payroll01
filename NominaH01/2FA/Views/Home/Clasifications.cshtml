@@ -1,0 +1,116 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <!-- Sucursal -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Sucursal</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Branches" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Sucursales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departamento -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Departamento</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Departments" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Departamentos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Sección</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Sections" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Secciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Centro de Costo -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Centro de Costo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="CostCenters" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Centros de Costo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proyecto -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Proyecto</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Proyects" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Proyectos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fase -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Fase</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Phases" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Fases</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

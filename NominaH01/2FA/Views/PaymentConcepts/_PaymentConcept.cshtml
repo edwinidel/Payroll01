@@ -1,0 +1,67 @@
+@model _2FA.Data.Entities.PaymentConceptEntity
+
+
+<div class="form-group">
+    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+    <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="form-group">
+            <label asp-for="CountryId" class="control-label"></label>
+            <input asp-for="CountryId" class="form-control" />
+            <span asp-validation-for="CountryId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div style="text-align: center;">
+            <label asp-for="IsActive" class="control-label"></label>
+        </div>
+        <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+            <input class="form-check-input" asp-for="IsActive" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+    </div>
+</div>>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="RegularHours" /> @Html.DisplayNameFor(model => model.RegularHours)
+            </label>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="ExtraHours" /> @Html.DisplayNameFor(model => model.ExtraHours)
+            </label>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="PayFactor" class="control-label"></label>
+            <input asp-for="PayFactor" class="form-control" />
+            <span asp-validation-for="PayFactor" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div style="text-align: center;">
+            <label asp-for="RecurrentPayment" class="control-label"></label>
+        </div>
+        <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+            <input class="form-check-input" asp-for="RecurrentPayment" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+    </div>
+</div>

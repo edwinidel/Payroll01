@@ -1,0 +1,100 @@
+@model _2FA.Data.Entities.BankDepositStructureEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle de Estructura de Depósito Bancario</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Gestionar Campos" class="btn-action" asp-action="ManageFields" asp-route-id="@Model?.Id"><i class="fa-solid fa-cogs"></i></a>
+                    &nbsp;
+                    <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    &nbsp;
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.StructureName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.StructureName)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.BankDepositType)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.BankDepositType)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.FileType)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.FileType)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Created)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Created)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <hr />
+                <h4>Campos Configurados</h4>
+                @if (Model.Fields != null && Model.Fields.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Compañía</th>
+                                <th>Nombre del Campo</th>
+                                <th>Contenido del Campo</th>
+                                <th>Orden</th>
+                                <th>Ignorar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var field in Model.Fields.OrderBy(f => f.Order))
+                            {
+                                <tr>
+                                    <td>@field.Company?.Name</td>
+                                    <td>@field.FieldName</td>
+                                    <td>@field.FieldContent</td>
+                                    <td>@field.Order</td>
+                                    <td>@(field.Ignore ? "Sí" : "No")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No hay campos configurados para esta estructura.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

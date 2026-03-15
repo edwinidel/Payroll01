@@ -1,0 +1,438 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <partial name="_HomeCard" />
+}
+else
+{
+    <!-- Welcome Page for Non-Logged-In Users -->
+    <div class="text-center my-3">
+        <h1 class="display-3 fw-bold text-primary mb-3">Bienvenido a Nomina Hub</h1>
+        <p class="lead text-muted">Sistema integral de gestión de nóminas diseñado para empresas panameñas</p>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="hero-section bg-light mb-5">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-8">
+                    <h2 class="display-6 fw-bold text-dark mb-4">Automatiza y simplifica la gestión de nóminas</h2>
+                    <p class="lead text-muted mb-4">
+                        Administra empleados, calcula salarios, genera reportes y mucho más de manera eficiente y segura.
+                        Diseñado específicamente para cumplir con las regulaciones laborales de Panamá.
+                    </p>
+                    
+                    <!-- Key Benefits -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-speedometer2 text-primary fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Ahorra tiempo valioso</h6>
+                                    <small class="text-muted">Reduce el tiempo de procesamiento hasta en un 80%</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-check text-primary fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">100% Conforme con la Ley</h6>
+                                    <small class="text-muted">Cálculos automáticos de deducciones legales</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-graph-up text-primary fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Reportes detallados</h6>
+                                    <small class="text-muted">Análisis y reportes en tiempo real</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-cloud-upload text-primary fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Acceso desde cualquier lugar</h6>
+                                    <small class="text-muted">Interfaz web completamente responsive</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="/Identity/Account/Login" class="btn btn-primary btn-lg px-5">Comenzar Ahora</a>
+                        <a href="#features" class="btn btn-outline-primary btn-lg px-5">Conocer Más</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <img src="~/img/logo1.png" alt="2FA Logo" class="img-fluid" style="max-width: 400px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-6 fw-bold mb-3">¿Qué puedes hacer con Nomina Hub?</h2>
+                    <p class="lead text-muted">
+                        Descubre todas las funcionalidades que harán de la gestión de nóminas una tarea simple y eficiente
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-people-fill text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Gestión Completa de Empleados</h5>
+                        <p class="text-muted">
+                            Administra la información completa de tus empleados, incluyendo datos personales,
+                            contractuales y de contacto en un solo lugar.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Registro de datos personales</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Historial de empleados</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Gestión de departamentos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-calculator text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Cálculos Automáticos</h5>
+                        <p class="text-muted">
+                            Calcula automáticamente salarios, horas extras, bonificaciones y deducciones
+                            según la legislación laboral panameña.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Cálculo de salarios base</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Horas extras y bonificaciones</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Deducciones legales automáticas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-file-earmark-text text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Reportes Profesionales</h5>
+                        <p class="text-muted">
+                            Genera reportes detallados en PDF para gestión interna, declaraciones
+                            gubernamentales y cumplimiento legal.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Recibos de pago digitales</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Reportes de nómina</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Exportación a Excel</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-building text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Gestión Multi-Empresa</h5>
+                        <p class="text-muted">
+                            Perfecto para organizaciones con múltiples empresas o sucursales.
+                            Cambia entre empresas de forma instantánea.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Múltiples empresas</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Centros de costo</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Departamentos y divisiones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-clock-history text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Control de Horarios</h5>
+                        <p class="text-muted">
+                            Administra turnos, horarios de trabajo, horas extras y planes de descanso
+                            para optimizar la productividad.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Programación de turnos</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Cálculo automático de horas</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Calendario integrado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card h-100 p-4 bg-white rounded-3 shadow-sm border">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-patch-check-fill text-primary fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Cumplimiento Legal</h5>
+                        <p class="text-muted">
+                            Mantén tu empresa conforme con todas las regulaciones laborales
+                            y fiscales de Panamá.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Ley de trabajo panameña</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Deducciones automáticas</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Reportes gubernamentales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <!--
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <i class="bi bi-people fs-1 mb-3"></i>
+                        <h3 class="fw-bold mb-2">1000+</h3>
+                        <p class="mb-0">Empleados Gestionados</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <i class="bi bi-building fs-1 mb-3"></i>
+                        <h3 class="fw-bold mb-2">50+</h3>
+                        <p class="mb-0">Empresas Activas</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <i class="bi bi-clock fs-1 mb-3"></i>
+                        <h3 class="fw-bold mb-2">80%</h3>
+                        <p class="mb-0">Reducción en Tiempo</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <i class="bi bi-shield-check fs-1 mb-3"></i>
+                        <h3 class="fw-bold mb-2">100%</h3>
+                        <p class="mb-0">Cumplimiento Legal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!-- Why Choose Us Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-6 fw-bold mb-3">¿Por qué elegir Nomina Hub?</h2>
+                    <p class="lead text-muted">
+                        Somos la solución más completa y confiable para la gestión de nóminas en Panamá
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div class="why-icon mb-3">
+                            <i class="bi bi-lightning-fill text-warning fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Fácil de Usar</h5>
+                        <p class="text-muted">
+                            Interfaz intuitiva diseñada para que cualquier usuario pueda comenzar
+                            a gestionar nóminas sin capacitación técnica.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div class="why-icon mb-3">
+                            <i class="bi bi-headset text-info fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Soporte Especializado</h5>
+                        <p class="text-muted">
+                            Equipo de soporte especializado en nóminas y legislación laboral
+                            panameña disponible para ayudarte.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div class="why-icon mb-3">
+                            <i class="bi bi-safe text-success fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Datos Seguros</h5>
+                        <p class="text-muted">
+                            Tu información está protegida con los más altos estándares de seguridad
+                            y respaldos automáticos diarios.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-6 fw-bold mb-3">¿Listo para simplificar la gestión de nóminas?</h2>
+                    <p class="lead text-muted mb-4">
+                        Únete a cientos de empresas panameñas que ya confían en Nomina Hub
+                        para gestionar sus nóminas de manera eficiente y segura.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                        <a href="/Identity/Account/Login" class="btn btn-primary btn-lg px-5">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            Comenzar Ahora
+                        </a>
+                        <button type="button" class="btn btn-outline-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="bi bi-envelope me-2"></i>
+                            Solicitar Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+        .hero-section .display-6 {
+            color: #2c3e50;
+        }
+        .hero-section .lead {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .hero-section .btn {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .hero-section .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .hero-section .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e9ecef !important;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
+        .feature-icon {
+            text-align: center;
+        }
+
+        /* Statistics Section */
+        .bg-primary {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+        }
+        .stat-item {
+            padding: 20px;
+        }
+        .stat-item i {
+            opacity: 0.8;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Why Choose Us Section */
+        .why-icon {
+            text-align: center;
+            padding: 20px;
+        }
+        .why-icon i {
+            opacity: 0.8;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .hero-section .display-6 {
+                font-size: 2rem;
+            }
+            .hero-section .row {
+                text-align: center;
+            }
+            .stat-item h3 {
+                font-size: 2rem;
+            }
+            .feature-card {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for elements coming into view */
+        .feature-card, .stat-item, .why-icon {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

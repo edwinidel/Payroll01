@@ -1,0 +1,56 @@
+@model IEnumerable<_2FA.Data.Entities.DocumentTypeSignaturesEntity>
+
+@{
+    ViewData["Title"] = "Firmas del Tipo de Documento";
+    var documentType = ViewBag.DocumentType as _2FA.Data.Entities.DocumentTypeEntity;
+}
+
+<h1>Firmas para @documentType?.Name</h1>
+
+<p>
+    <a asp-action="CreateSignature" asp-route-documentTypeId="@documentType?.Id" class="btn btn-primary">Agregar Firma</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver a Tipos de Documento</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre del Firmante</th>
+            <th>Cargo</th>
+            <th>Archivo</th>
+            <th>Orden</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.SignerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.SignerTitle)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.FileName))
+                    {
+                        <a asp-action="GetSignature" asp-route-id="@item.Id" target="_blank">@item.FileName</a>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.SignatureOrder)</td>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactivo</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="GetSignature" asp-route-id="@item.Id" class="btn btn-sm btn-info">Ver</a>
+                    <!-- Add Edit/Delete actions if needed -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

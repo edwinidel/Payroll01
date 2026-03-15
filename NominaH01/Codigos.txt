@@ -1,0 +1,29 @@
+Código	Concepto
+SALR-0001	Salario Regular
+SBTM-0001	Sobretiempo
+AJUS-0001	Ajuste B/.
+COMI-0001	Comisión
+PRPD-0001	Prima de Producción
+BONO-0001	Bonificaciones
+GRAT-0001	Gratificaciones
+VACA-0001	Vacaciones
+13ME-0001	XIII Mes
+13MJ-0001	Mejora al XIII Mes
+PART-0001	Participación de Utilidades
+TRNS-0001	Gasto de Transporte
+VIAT-0001	Viáticos
+GREP-0001	Gastos de Representación
+GR13-0001	Gasto de Representación del XIII Mes
+GRVA-0001	Gasto de Representación de Vacaciones
+PRAV-0001	Preaviso
+PRAN-0001	Prima de Antigüedad
+INDE-0001	Indemnización
+ING6-0001	Ingreso del 6%
+BOAS-0001	Bono de Asistencia
+LLUV-0001	Lluvia
+ALT1-0001	Altura hasta 125ms
+ALT2-0001	Altura mayor a 125ms
+PROF-0001	Profundidad
+TUNE-0001	Túnel
+MART-0001	Martillo
+RAST-0001	Rastrilleo

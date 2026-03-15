@@ -1,0 +1,120 @@
+@model _2FA.Models.DestajoDocumentFormViewModel
+
+<div class="row g-4">   
+    <div class="col-md-3">
+        <h5 class="mt-4">Empleados destajo</h5>
+        <div >
+            <div class="card h-100">
+                <div class="card-body">
+                    <label for="employeeSearch" class="form-label">Buscar empleado</label>
+                    <input id="employeeSearch" type="text" class="form-control form-control-sm mb-3" placeholder="Cédula, nombre o código" autocomplete="off" />
+                    <div id="employeeList" class="list-group small border rounded" style="max-height: 420px; overflow-y: auto;">
+                    @for (int i = 0; i < Model.Lines.Count; i++)
+                    {
+                        var searchText = $"{Model.Lines[i].DocumentId} {Model.Lines[i].FirstName} {Model.Lines[i].LastName} {Model.Lines[i].Code}".ToLowerInvariant();
+                        <label class="list-group-item list-group-item-action d-flex align-items-start justify-content-between gap-2" data-employee-index="@i" data-searchable="@searchText">
+                            <span>
+                                <div class="fw-semibold">@Model.Lines[i].EmployeeName</div>
+                                <div class="text-muted">Cédula: @Model.Lines[i].DocumentId · Código: @Model.Lines[i].Code</div>
+                            </span>
+                            <input asp-for="Lines[i].Selected" class="form-check-input mt-1 employee-checkbox" data-index="@i" />
+                        </label>
+                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-6">
+                <label asp-for="DocumentDate" class="form-label"></label>
+                <input asp-for="DocumentDate" class="form-control" type="datetime-local" value="@Model.DocumentDate.ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="DocumentDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ReferenceNumber" class="form-label"></label>
+                <input asp-for="ReferenceNumber" class="form-control" />
+                <span asp-validation-for="ReferenceNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="ClientResponsible" class="form-label"></label>
+                <input asp-for="ClientResponsible" class="form-control" />
+                <span asp-validation-for="ClientResponsible" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CompanyResponsible" class="form-label"></label>
+                <input asp-for="CompanyResponsible" class="form-control" />
+                <span asp-validation-for="CompanyResponsible" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UnitsProduced" class="form-label"></label>
+                <input asp-for="UnitsProduced" class="form-control" type="number" step="0.01" min="0" />
+                <span asp-validation-for="UnitsProduced" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+                <label asp-for="DocumentPath" class="form-label"></label>
+                <input asp-for="DocumentPath" class="form-control" />
+                <span asp-validation-for="DocumentPath" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Notes" class="form-label"></label>
+            <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <h6>Empleados seleccionados</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Cédula</th>
+                                <th>Código</th>
+                                <th class="text-end">Unidades</th>
+                                <th class="text-end">Valor Unitario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @for (int i = 0; i < Model.Lines.Count; i++)
+                        {
+                            <tr class="selected-row @(Model.Lines[i].Selected ? string.Empty : "d-none")" data-selected-row="@i">
+                                <td>
+                                    <input type="hidden" asp-for="Lines[i].EmployeeId" />
+                                    <input type="hidden" asp-for="Lines[i].EmployeeName" />
+                                    <input type="hidden" asp-for="Lines[i].FirstName" />
+                                    <input type="hidden" asp-for="Lines[i].LastName" />
+                                    <input type="hidden" asp-for="Lines[i].Code" />
+                                    <input type="hidden" asp-for="Lines[i].DocumentId" />
+                                    @Model.Lines[i].EmployeeName
+                                </td>
+                                <td>
+                                    @Model.Lines[i].DocumentId
+                                </td>
+                                <td>
+                                    @Model.Lines[i].Code
+                                </td>
+                                <td class="text-end">
+                                    <span>@Model.UnitsProduced</span>
+                                </td>
+                                <td>
+                                    <input asp-for="Lines[i].UnitValue" class="form-control form-control-sm text-end" readonly />
+                                    <span asp-validation-for="Lines[i].UnitValue" class="text-danger"></span>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

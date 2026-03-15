@@ -1,0 +1,25 @@
+@model _2FA.Data.Entities.DestajoDocumentEntity
+@{
+    ViewData["Title"] = "Eliminar Documento Destajo";
+}
+
+<h1>Eliminar Documento Destajo</h1>
+
+<h3>¿Está seguro de eliminar este documento?</h3>
+<div>
+    <h4>@Model.ReferenceNumber</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Fecha</dt>
+        <dd class="col-sm-9">@Model.DocumentDate.ToString("dd/MM/yyyy HH:mm")</dd>
+        <dt class="col-sm-3">Resp. Cliente</dt>
+        <dd class="col-sm-9">@Model.ClientResponsible</dd>
+        <dt class="col-sm-3">Resp. Empresa</dt>
+        <dd class="col-sm-9">@Model.CompanyResponsible</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Cancelar</a>
+</form>

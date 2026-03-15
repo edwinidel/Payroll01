@@ -1,0 +1,21 @@
+@model _2FA.Data.Entities.PieceworkUnitTypeEntity
+
+@{
+    ViewData["Title"] = "Eliminar Unidad de Destajo";
+}
+
+<h1>Eliminar Unidad de Destajo</h1>
+
+<h3>¿Confirma que desea eliminar esta unidad?</h3>
+<div class="mb-3">
+    <strong>Unidad:</strong> @Model.Name
+</div>
+<div class="mb-3">
+    <strong>Descripción:</strong> @Model.Description
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

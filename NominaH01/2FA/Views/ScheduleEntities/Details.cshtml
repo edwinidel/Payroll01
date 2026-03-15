@@ -1,0 +1,105 @@
+﻿@model _2FA.Data.Entities.ScheduleEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle del Banco</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    &nbsp;
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @if(Model.IsActive)
+                                {
+                                    <span class="badge bg-success">Sí</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">No</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Created)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Created)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Modified)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Modified)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.ModifiedBy)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.ModifiedBy)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Deleted)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Deleted)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.DeletedBy)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.DeletedBy)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.IsDeleted)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @if(Model.IsDeleted)
+                                {
+                                    <span class="badge bg-danger">Sí</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">No</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

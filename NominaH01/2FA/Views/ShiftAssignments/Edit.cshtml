@@ -1,0 +1,77 @@
+@model _2FA.Data.Entities.ShiftAssignmentEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="text-align: center;">
+    <h2>Editar Asignación de Turno</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Created" />
+                            <input type="hidden" asp-for="CreatedBy" />
+                            <input type="hidden" asp-for="Modified" />
+                            <input type="hidden" asp-for="ModifiedBy" />
+
+                            <div class="form-group">
+                                <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                                <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="EmployeeId" class="control-label"></label>
+                                        <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                                        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ShiftId" class="control-label"></label>
+                                        <select asp-for="ShiftId" class="form-control" asp-items="ViewBag.ShiftId"></select>
+                                        <span asp-validation-for="ShiftId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Date" class="control-label"></label>
+                                        <input asp-for="Date" class="form-control" type="date" />
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ScheduleId" class="control-label"></label>
+                                        <select asp-for="ScheduleId" class="form-control" asp-items="ViewBag.ScheduleId"></select>
+                                        <span asp-validation-for="ScheduleId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

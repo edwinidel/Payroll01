@@ -1,0 +1,25 @@
+@model _2FA.Data.Entities.DocumentTypeEntity
+
+@{
+    ViewData["Title"] = "Detalle Tipo de Documento";
+}
+
+<h2>Detalle</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <p><strong>Firmante:</strong> @Model.SignerName</p>
+        <p><strong>Cargo:</strong> @Model.SignerTitle</p>
+        <p><strong>Activo:</strong> @(Model.IsActive ? "Sí" : "No")</p>
+        @if (!string.IsNullOrEmpty(Model.SignaturePath))
+        {
+            <div>
+                <img src="@Model.SignaturePath" alt="Firma" style="max-height:120px;" />
+            </div>
+        }
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mt-2">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary mt-2">Volver</a>
+    </div>
+</div>

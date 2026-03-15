@@ -1,0 +1,89 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Empleados</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Home" asp-action="Employees" class="btn btn-primary">Acceder</a>
+                            <p>Administración de Empleados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Nóminas</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Home" asp-action="Payrolls" class="btn btn-primary">Acceder</a>
+                            <p>Generación de Nóminas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Cargos</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Positions" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Administración de Cargos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Clasificaciones</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Home" asp-action="Clasifications" class="btn btn-primary">Acceder</a>
+                            <p>Clasificaciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-cash-stack"></i>
+                            <h5>Cuentas</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Accounts" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Administración de Cuentas Contables</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

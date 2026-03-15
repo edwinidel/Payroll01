@@ -1,0 +1,106 @@
+@model _2FA.Models.DestajoDocumentDetailsViewModel
+@{
+    ViewData["Title"] = "Detalle Documento Destajo";
+}
+
+<h1>Detalle Documento Destajo</h1>
+
+<div class="mb-3">
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Volver</a>
+    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Document.Id })">Editar</a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Fecha</dt>
+            <dd class="col-sm-9">@Model.Document.DocumentDate.ToString("dd/MM/yyyy HH:mm")</dd>
+
+            <dt class="col-sm-3">Referencia</dt>
+            <dd class="col-sm-9">@Model.Document.ReferenceNumber</dd>
+
+            <dt class="col-sm-3">Resp. Cliente</dt>
+            <dd class="col-sm-9">@Model.Document.ClientResponsible</dd>
+
+            <dt class="col-sm-3">Resp. Empresa</dt>
+            <dd class="col-sm-9">@Model.Document.CompanyResponsible</dd>
+
+            <dt class="col-sm-3">Ruta Archivo</dt>
+            <dd class="col-sm-9">@Model.Document.DocumentPath</dd>
+
+            <dt class="col-sm-3">Notas</dt>
+            <dd class="col-sm-9">@Model.Document.Notes</dd>
+        </dl>
+    </div>
+</div>
+
+<h4>Líneas de Producción</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Empleado</th>
+            <th>Unidades</th>
+            <th>Valor Unidad</th>
+            <th>Total</th>
+            <th>Notas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var line in Model.ExistingProductions)
+    {
+        <tr>
+            <td>@line.ProductionDate.ToString("dd/MM/yyyy")</td>
+            <td>@line.Employee?.FullNameWithCode</td>
+            <td>@line.UnitsProduced</td>
+            <td>@line.UnitValue.ToString("C")</td>
+            <td>@line.TotalAmount.ToString("C")</td>
+            <td>@line.Notes</td>
+            <td>
+                <form asp-action="DeleteProduction" method="post" onsubmit="return confirm('¿Eliminar esta línea?');">
+                    <input type="hidden" name="id" value="@line.Id" />
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h4>Agregar Línea</h4>
+<form asp-action="AddProduction" method="post" class="row g-3">
+    <input type="hidden" asp-for="NewProduction.DocumentId" />
+    <div class="col-md-3">
+        <label asp-for="NewProduction.ProductionDate" class="form-label"></label>
+        <input asp-for="NewProduction.ProductionDate" class="form-control" type="date" />
+        <span asp-validation-for="NewProduction.ProductionDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="NewProduction.EmployeeId" class="form-label"></label>
+        <select asp-for="NewProduction.EmployeeId" class="form-select" asp-items="ViewBag.EmployeeId"></select>
+        <span asp-validation-for="NewProduction.EmployeeId" class="text-danger"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="NewProduction.UnitsProduced" class="form-label"></label>
+        <input asp-for="NewProduction.UnitsProduced" class="form-control" />
+        <span asp-validation-for="NewProduction.UnitsProduced" class="text-danger"></span>
+    </div>
+    <div class="col-md-2">
+        <label asp-for="NewProduction.UnitValue" class="form-label"></label>
+        <input asp-for="NewProduction.UnitValue" class="form-control" />
+        <span asp-validation-for="NewProduction.UnitValue" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="NewProduction.Notes" class="form-label"></label>
+        <input asp-for="NewProduction.Notes" class="form-control" />
+        <span asp-validation-for="NewProduction.Notes" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Agregar</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

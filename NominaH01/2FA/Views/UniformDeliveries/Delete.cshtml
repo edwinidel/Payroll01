@@ -1,0 +1,42 @@
+@model _2FA.Data.Entities.UniformDeliveryEntity
+@{
+    ViewData["Title"] = "Eliminar Uniforme";
+}
+
+<div style="text-align: center;">
+    <h2>Eliminar Entrega de Uniforme</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="alert alert-danger" role="alert">
+                    ¿Confirma que desea eliminar este registro? Esta acción marcará el uniforme como inactivo.
+                </div>
+                <dl class="row">
+                    <dt class="col-sm-4">Empleado</dt>
+                    <dd class="col-sm-8">@Model?.Employee?.FullNameWithCode</dd>
+
+                    <dt class="col-sm-4">Prenda/Artículo</dt>
+                    <dd class="col-sm-8">@Model?.ItemName</dd>
+
+                    <dt class="col-sm-4">Fecha de Entrega</dt>
+                    <dd class="col-sm-8">@Model?.DeliveryDate.ToShortDateString()</dd>
+
+                    <dt class="col-sm-4">Vence el</dt>
+                    <dd class="col-sm-8">@Model?.ExpirationDate.ToShortDateString()</dd>
+                </dl>
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn-action"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+# Replace each exact string on the left with the right-hand replacement when using git-filter-repo --replace-text
+# Format: <oldstring>==><replacement>
+
+Yanaris1624*==>[REDACTED_PASSWORD]
+Server=192.168.0.12==>[REDACTED_SERVER]
+Server=192.168.0.20==>[REDACTED_SERVER]
+Server=192.168.0.71==>[REDACTED_SERVER]
+
+# Add any other sensitive tokens found in the repo here.

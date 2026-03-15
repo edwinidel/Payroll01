@@ -1,0 +1,33 @@
+@model _2FA.Data.Entities.CountryEntity
+
+@{
+    var firstState = Model.States?.FirstOrDefault();
+}
+
+<table id="table3" class="table table-striped">
+    <thead>
+        <tr>
+            <th>City Name</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (firstState?.Cities?.Any() != true)
+        {
+            <tr>
+                <td colspan="2">No hay ciudades para mostrar</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var city in firstState.Cities)
+            {
+                <tr>
+                    <td>@city.Name</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </tbody >
+
+</table>

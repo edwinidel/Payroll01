@@ -1,0 +1,153 @@
+@model _2FA.Data.Entities.DocumentTypeSignaturesEntity
+
+@{
+    ViewData["Title"] = "Crear Firma";
+    var documentType = ViewBag.DocumentType as _2FA.Data.Entities.DocumentTypeEntity;
+}
+
+<h1>Agregar Firma para @documentType?.Name</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CreateSignature" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DocumentTypeId" />
+
+            <div class="form-group mb-3">
+                <label asp-for="SignerName" class="control-label"></label>
+                <input asp-for="SignerName" class="form-control" />
+                <span asp-validation-for="SignerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="SignerTitle" class="control-label"></label>
+                <input asp-for="SignerTitle" class="form-control" />
+                <span asp-validation-for="SignerTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="SignatureOrder" class="control-label"></label>
+                <input asp-for="SignatureOrder" class="form-control" type="number" />
+                <span asp-validation-for="SignatureOrder" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Firma</label>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="signatureType" id="uploadSignature" value="upload" checked>
+                        <label class="form-check-label" for="uploadSignature">
+                            Subir archivo de firma
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="signatureType" id="drawSignature" value="draw">
+                        <label class="form-check-label" for="drawSignature">
+                            Dibujar firma digital
+                        </label>
+                    </div>
+                </div>
+
+                <div id="uploadSection">
+                    <input type="file" name="signatureFile" id="signatureFile" class="form-control" accept="image/*,.pdf" />
+                </div>
+
+                <div id="drawSection" style="display: none;">
+                    <div class="border rounded p-3 mb-3">
+                        <canvas id="signaturePad" width="400" height="200" class="border" style="cursor: crosshair;"></canvas>
+                        <div class="mt-2">
+                            <button type="button" id="clearSignature" class="btn btn-sm btn-secondary">Limpiar</button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="signatureData" id="signatureData" />
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="form-check">
+                    <input asp-for="IsActive" class="form-check-input" />
+                    <label asp-for="IsActive" class="form-check-label"></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Signatures" asp-route-id="@Model.DocumentTypeId" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadRadio = document.getElementById('uploadSignature');
+    const drawRadio = document.getElementById('drawSignature');
+    const uploadSection = document.getElementById('uploadSection');
+    const drawSection = document.getElementById('drawSection');
+    const signatureFile = document.getElementById('signatureFile');
+    const canvas = document.getElementById('signaturePad');
+    const clearBtn = document.getElementById('clearSignature');
+    const signatureDataInput = document.getElementById('signatureData');
+
+    let signaturePad = new SignaturePad(canvas);
+
+    // Toggle sections based on radio selection
+    function toggleSignatureType() {
+        if (uploadRadio.checked) {
+            uploadSection.style.display = 'block';
+            drawSection.style.display = 'none';
+            signatureFile.required = true;
+            signatureDataInput.required = false;
+        } else {
+            uploadSection.style.display = 'none';
+            drawSection.style.display = 'block';
+            signatureFile.required = false;
+            signatureDataInput.required = true;
+        }
+    }
+
+    uploadRadio.addEventListener('change', toggleSignatureType);
+    drawRadio.addEventListener('change', toggleSignatureType);
+
+    // Clear signature
+    clearBtn.addEventListener('click', function() {
+        signaturePad.clear();
+        signatureDataInput.value = '';
+    });
+
+    // Update hidden input when signature changes
+    canvas.addEventListener('mouseup', updateSignatureData);
+    canvas.addEventListener('touchend', updateSignatureData);
+
+    function updateSignatureData() {
+        if (!signaturePad.isEmpty()) {
+            const dataURL = signaturePad.toDataURL('image/png');
+            signatureDataInput.value = dataURL;
+        } else {
+            signatureDataInput.value = '';
+        }
+    }
+
+    // Form validation
+    document.querySelector('form').addEventListener('submit', function(e) {
+        if (drawRadio.checked) {
+            if (signaturePad.isEmpty()) {
+                alert('Por favor, dibuje su firma.');
+                e.preventDefault();
+                return false;
+            }
+            updateSignatureData();
+        } else {
+            if (!signatureFile.files[0]) {
+                alert('Por favor, seleccione un archivo de firma.');
+                e.preventDefault();
+                return false;
+            }
+        }
+    });
+});
+</script>

@@ -1,0 +1,103 @@
+﻿@model _2FA.Models.PayrollHeaderViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-10">
+        <div class="card-header">
+            <h1>@(ViewBag.IsContractor == true ? "Nueva Planilla de Contratistas" : "Nueva Nómina")</h1>
+        </div>
+        <div class="card-body">
+            <form asp-action="GeneratePayRoll" asp-route-isContractor="@ViewBag.IsContractor">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <button title="Regresar al registro anterior" class="btn-action" onclick="window.history.back()"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button title="Generar Númina" type="submit" class="btn-action">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </button>
+                    <!--
+                    <button title="Generar Númina" type="button" class="btn-action" asp-action="GeneratePayRoll">
+                        <i class="fa-solid fa-money-bill-1-wave"></i>
+                    </button>
+                    -->
+                </div>
+                <br />
+                <partial name="_PaymentHeader" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add form submission logging
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('[CLIENT] Form submission started');
+
+            // Log form data
+            var formData = new FormData(this);
+            console.log('[CLIENT] Form data:');
+            for (var pair of formData.entries()) {
+                console.log('[CLIENT] ' + pair[0] + ': ' + pair[1]);
+            }
+
+            // Log selected employees
+            var selectedEmployees = document.querySelectorAll('input[name="SelectedEmployeeIds"]:checked');
+            console.log('[CLIENT] Selected employees count: ' + selectedEmployees.length);
+            selectedEmployees.forEach(function(checkbox, index) {
+                console.log('[CLIENT] Selected employee ' + index + ': ' + checkbox.value);
+            });
+        });
+
+        document.getElementById('paymentGroupSelect').addEventListener('change', function () {
+            var groupId = this.value;
+            var isContractor = '@ViewBag.IsContractor' === 'True';
+            fetch('/PayrollTmpHeaders/GetEmployeesByGroupId?groupId=' + groupId + '&isContractor=' + isContractor)
+                .then(response => response.json())
+                .then(data => {
+                    var tbody = document.querySelector('#employeesTable tbody');
+                    tbody.innerHTML = '';
+                    data.employees.forEach(emp => {
+                        var row = `<tr>
+                            <td><input type="checkbox" name="SelectedEmployeeIds" value="${emp.id}" checked /></td>
+                            <td>${emp.code}</td>
+                            <td>${emp.fullName}</td>
+                            <td>${emp.idDocument}</td>
+                            <td>${emp.branchName}</td>
+                            <td>${emp.departmentName}</td>
+                        </tr>`;
+                        tbody.innerHTML += row;
+                    });
+
+                    // Ahora sí existe data.paymentGroup
+                    var pg = data.paymentGroup;
+                    if (pg) {
+                        function addDays(dateStr, days) {
+                            var date = new Date(dateStr);
+                            date.setDate(date.getDate() + days);
+                            return date.toISOString().slice(0, 10);
+                        }
+
+                        document.getElementById('StartDate').value = addDays(pg.lastPayDate, 1);
+                        var startDate = document.getElementById('StartDate').value;
+                        document.getElementById('EndDate').value = addDays(startDate, pg.quantityOfDays);
+
+                        document.getElementById('AbsensestDateStart').value = addDays(pg.lastAbsensestDate, 1);
+                        var absStart = document.getElementById('AbsensestDateStart').value;
+                        document.getElementById('AbsensestDateEnd').value = addDays(absStart, pg.quantityOfDays);
+
+                        document.getElementById('ExtraTimeDateStart').value = addDays(pg.extraTimeDate, 1);
+                        var extraStart = document.getElementById('ExtraTimeDateStart').value;
+                        document.getElementById('ExtraTimeDateEnd').value = addDays(extraStart, pg.quantityOfDays);
+                    }
+                });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

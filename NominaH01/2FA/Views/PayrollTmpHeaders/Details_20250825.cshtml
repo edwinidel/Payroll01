@@ -1,0 +1,213 @@
+﻿@model _2FA.Data.Entities.PayrollTmpHeaderEntity
+
+<div class="container-fluid">
+    <!-- Encabezado (100% ancho) -->
+    <div class="row mb-3 border-bottom pb-2">
+        <div class="col-12">
+            <h4>Detalle de Planilla</h4>
+            <dl class="row">
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.PaymentGroupId)</dt>
+                <dd class="col-sm-4">
+                    @(Model?.PaymentGroup?.Name ?? "")
+                </dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.StartDate)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.StartDate)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.EndDate)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.EndDate)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Status)</dt>
+                <dd class="col-sm-4">@Html.DisplayFor(m => m.Status)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Notes)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(m => m.Notes)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Sección inferior (Empleados + Conceptos) -->
+    <div class="row">
+        <!-- Empleados (60%) -->
+        <div class="col-md-7 border-end" style="height:70vh; overflow-y:auto;">
+            <h4>Empleados</h4>
+            <table class="table table-striped table-hover" id="employeesTable">
+                <thead>
+                    <tr>
+                        <th width="23%">Empleado</th>
+                        <th width="7%">Cédula</th>
+                        <th width="10%">Horas Regulares</th>
+                        <th width="10%">Horas Extras</th>
+                        <th width="10%">Salario Bruto</th>
+                        <th width="10%">Descuentos Legales</th>
+                        <th width="10%">Otros Descuentos</th>
+                        <th width="10%">Salario Neto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model.Employees)
+                    {
+                        <tr data-employee-id="@emp.Id" style="cursor:pointer;">
+                            <td>@emp.Employee?.FullName</td>
+                            <td>@emp.Employee?.IdDocument</td>
+                            <td>@emp.RegularHours</td>
+                            <td>@emp.OverTimeSalary</td>
+                            <td>@emp.TotalEarnings</td>
+                            <td>@emp.TotalLegalDiscount</td>
+                            <td>@emp.TotalDeductions</td>
+                            <td>@emp.NetPay</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Conceptos (40%) -->
+        <div class="col-md-5" style="height:70vh; overflow-y:auto;">
+            <h4>Conceptos de Pago</h4>
+            <div id="conceptsContainer">
+                <p class="text-muted">Seleccione un empleado para ver sus conceptos...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll("#employeesTable tbody tr");
+
+            rows.forEach(row => {
+
+                debugger;
+                row.addEventListener("click", function () {
+                    const empId = this.getAttribute("data-employee-id");
+
+                    fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${empId}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById("conceptsContainer").innerHTML = html;
+                        });
+                });
+            });
+        });
+    </script>
+
+    <script>
+//        // Abrir modal y setear EmployeeId
+//        document.getElementById("btnAddConcept").addEventListener("click", function () {
+//            let employeeId = this.getAttribute("data-employee-id");
+//            document.getElementById("PayrollTmpEmployeeId").value = employeeId;
+//
+//            let modal = new bootstrap.Modal(document.getElementById("conceptModal"));
+//            modal.show();
+//        });
+
+        document.addEventListener("click", function(e) {
+            if (e.target && e.target.id === "btnAddConcept") {
+                const empId = e.target.getAttribute("data-employee-id");
+                document.getElementById("PayrollTmpEmployeeId").value = empId;
+
+                // mover modal al body si está incrustado en un partial
+                const modalEl = document.getElementById("conceptModal");
+                document.body.appendChild(modalEl);
+
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+
+        // Calcular Total en tiempo real
+        function calcularTotal() {
+            const horas = parseFloat(document.getElementById("Hours").value) || 0;
+            const monto = parseFloat(document.getElementById("UnitAmount").value) || 0;
+            const factor = parseFloat(document.getElementById("PayFactor").value) || 1;
+            document.getElementById("TotalAmount").value = (horas * monto * factor).toFixed(2);
+        }
+
+        document.getElementById("Hours").addEventListener("input", calcularTotal);
+        document.getElementById("UnitAmount").addEventListener("input", calcularTotal);
+        document.getElementById("PayFactor").addEventListener("input", calcularTotal);
+
+        // Guardar Concepto vía AJAX
+        document.getElementById("saveConceptBtn").addEventListener("click", function () {
+            const form = document.getElementById("conceptForm");
+            const data = new FormData(form);
+
+            fetch('/PayrollTmpHeaders/AddConcept', {
+                method: 'POST',
+                body: data
+            })
+            .then(r => r.text())
+            .then(html => {
+                // recargar lista de conceptos
+                document.getElementById("conceptsContainer").innerHTML = html;
+                bootstrap.Modal.getInstance(document.getElementById("conceptModal")).hide();
+                form.reset(); // limpiar formulario
+            })
+            .catch(err => alert("Error al guardar concepto: " + err));
+        });
+    </script>
+
+
+//    <script>
+//        // Calcular monto total automáticamente
+//        function updateTotal() {
+//            const hours = parseFloat(document.getElementById("Hours").value) || 0;
+//            const unit = parseFloat(document.getElementById("UnitAmount").value) || 0;
+//            const factor = parseFloat(document.getElementById("PayFactor").value) || 1;
+//            document.getElementById("TotalAmount").value = (hours * unit * factor).toFixed(2);
+        }
+
+//        document.addEventListener("input", function(e) {
+//            if (["Hours", "UnitAmount", "PayFactor"].includes(e.target.id)) {
+//                updateTotal();
+//            }
+//        });
+
+            // Abrir modal y setear empleado
+    //        document.addEventListener("click", function(e) {
+    //            if (e.target && e.target.id === "btnAddConcept") {
+    //                const empId = e.target.getAttribute("data-employee-id");
+    //                document.getElementById("PayrollTmpEmployeeId").value = empId;
+    //                const modal = new bootstrap.Modal(document.getElementById("conceptModal"));
+    //                modal.show();
+    //            }
+    //        });
+
+//        document.addEventListener("click", function(e) {
+//            if (e.target && e.target.id === "btnAddConcept") {
+//                const empId = e.target.getAttribute("data-employee-id");
+//                document.getElementById("PayrollTmpEmployeeId").value = empId;
+
+//                // mover modal al body si está incrustado en un partial
+//                const modalEl = document.getElementById("conceptModal");
+//                document.body.appendChild(modalEl);
+
+//                const modal = new bootstrap.Modal(modalEl);
+//                modal.show();
+//            }
+//        });
+
+//        // Guardar Concepto vía AJAX
+//        document.getElementById("saveConceptBtn").addEventListener("click", function () {
+//            const form = document.getElementById("conceptForm");
+//            const data = new FormData(form);
+
+//            fetch('/PayrollTmpHeaders/AddConcept', {
+//                method: 'POST',
+//                body: data
+//            })
+//            .then(r => r.text())
+//            .then(html => {
+//                // recargar lista de conceptos
+//                document.getElementById("conceptsContainer").innerHTML = html;
+//                bootstrap.Modal.getInstance(document.getElementById("conceptModal")).hide();
+//            })
+//            .catch(err => alert("Error al guardar concepto: " + err));
+//        });
+//    </script>
+
+}
+

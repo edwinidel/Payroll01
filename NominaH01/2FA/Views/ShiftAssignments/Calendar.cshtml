@@ -1,0 +1,73 @@
+@model IEnumerable<_2FA.Data.Entities.ShiftAssignmentEntity>
+
+@{
+    ViewData["Title"] = "Calendario de Turnos";
+}
+
+<div style="text-align: center;">
+    <h2>Calendario de Turnos Asignados</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    @foreach (var assignment in Model) {
+                        @if (assignment.Shift.ShiftSegments != null && assignment.Shift.ShiftSegments.Any()) {
+                            foreach (var segment in assignment.Shift.ShiftSegments.OrderBy(s => s.Order)) {
+                                <text>
+                                {
+                                    title: '@assignment.Employee.FullName - @assignment.Shift.Name (@segment.SegmentType)',
+                                    start: '@assignment.Date.ToString("yyyy-MM-dd")T@segment.StartTime.ToString("hh\\:mm")',
+                                    end: '@assignment.Date.ToString("yyyy-MM-dd")T@segment.EndTime.ToString("hh\\:mm")',
+                                    allDay: false
+                                },
+                                </text>
+                                if (!segment.Equals(assignment.Shift.ShiftSegments.OrderBy(s => s.Order).Last()) || !assignment.Equals(Model.Last())) {
+                                    <text>,</text>
+                                }
+                            }
+                        } else {
+                            <text>
+                            {
+                                title: '@assignment.Employee.FullName - @assignment.Shift.Name',
+                                start: '@assignment.Date.ToString("yyyy-MM-dd")T09:00',
+                                end: '@assignment.Date.ToString("yyyy-MM-dd")T17:00',
+                                allDay: false
+                            }
+                            </text>
+                            if (!assignment.Equals(Model.Last())) {
+                                <text>,</text>
+                            }
+                        }
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+}

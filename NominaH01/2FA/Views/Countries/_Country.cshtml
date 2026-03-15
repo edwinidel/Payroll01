@@ -1,0 +1,218 @@
+@model _2FA.Data.Entities.CountryEntity
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Name_es" class="control-label"></label>
+            <input asp-for="Name_es" class="form-control" />
+            <span asp-validation-for="Name_es" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <label asp-for="Iso2" class="control-label"></label>
+            <input asp-for="Iso2" class="form-control" />
+            <span asp-validation-for="Iso2" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <label asp-for="Iso3" class="control-label"></label>
+            <input asp-for="Iso3" class="form-control" />
+            <span asp-validation-for="Iso3" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Phone_code" class="control-label"></label>
+            <input asp-for="Phone_code" class="form-control" />
+            <span asp-validation-for="Phone_code" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Numeric_code" class="control-label"></label>
+            <input asp-for="Numeric_code" class="form-control" />
+            <span asp-validation-for="Numeric_code" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class = "row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Capital" class="control-label"></label>
+            <input asp-for="Capital" class="form-control" />
+            <span asp-validation-for="Capital" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Currency" class="control-label"></label>
+            <input asp-for="Currency" class="form-control" />
+            <span asp-validation-for="Currency" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Currency_name" class="control-label"></label>
+            <input asp-for="Currency_name" class="form-control" />
+            <span asp-validation-for="Currency_name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Currency_symbol" class="control-label"></label>
+            <input asp-for="Currency_symbol" class="form-control" />
+            <span asp-validation-for="Currency_symbol" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div class="form-group">
+            <label asp-for="Tld" class="control-label"></label>
+            <input asp-for="Tld" class="form-control" />
+            <span asp-validation-for="Tld" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Native" class="control-label"></label>
+            <input asp-for="Native" class="form-control" />
+            <span asp-validation-for="Native" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Nationality" class="control-label"></label>
+            <input asp-for="Nationality" class="form-control" />
+            <span asp-validation-for="Nationality" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Region" class="control-label"></label>
+            <input asp-for="Region" class="form-control" />
+            <span asp-validation-for="Region" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Region_id" class="control-label"></label>
+            <input asp-for="Region_id" class="form-control" />
+            <span asp-validation-for="Region_id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Subregion" class="control-label"></label>
+            <input asp-for="Subregion" class="form-control" />
+            <span asp-validation-for="Subregion" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Subregion_id" class="control-label"></label>
+            <input asp-for="Subregion_id" class="form-control" />
+            <span asp-validation-for="Subregion_id" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="TimeZoneId" class="control-label"></label>
+            <select asp-for="TimeZoneId" class="form-control" asp-items="ViewBag.TimeZoneId"></select>
+            <span asp-validation-for="TimeZoneId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Latitude" class="control-label"></label>
+            <input asp-for="Latitude" class="form-control" />
+            <span asp-validation-for="Latitude" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Longitude" class="control-label"></label>
+            <input asp-for="Longitude" class="form-control" />
+            <span asp-validation-for="Longitude" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Emoji" class="control-label"></label>
+            <input asp-for="Emoji" class="form-control" />
+            <span asp-validation-for="Emoji" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="EmojiU" class="control-label"></label>
+            <input asp-for="EmojiU" class="form-control" />
+            <span asp-validation-for="EmojiU" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Name_en" class="control-label"></label>
+            <input asp-for="Name_en" class="form-control" />
+            <span asp-validation-for="Name_en" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Name_fr" class="control-label"></label>
+            <input asp-for="Name_fr" class="form-control" />
+            <span asp-validation-for="Name_fr" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Created" class="control-label"></label>
+            <input asp-for="Created" class="form-control" />
+            <span asp-validation-for="CreatedLocal" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Modified" class="control-label"></label>
+            <input asp-for="Modified" class="form-control" />
+            <span asp-validation-for="ModifiedLocal" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="Deleted" class="control-label"></label>
+            <input asp-for="Deleted" class="form-control" />
+            <span asp-validation-for="DeletedLocal" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <br />
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheck" asp-for="IsDeleted" >
+            <label class="form-check-label" for="flexSwitchCheck">@Html.DisplayNameFor(model => model.IsDeleted)</label>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+@model IEnumerable<_2FA.Data.Entities.DocumentTemplateEntity>
+
+@{
+    ViewData["Title"] = "Plantillas";
+}
+
+<h2>Plantillas de documento</h2>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create")">Nueva plantilla</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var t in Model)
+    {
+        <tr>
+            <td>@t.Name</td>
+            <td>@t.Description</td>
+            <td>
+                <a class="btn btn-sm btn-secondary" href="@Url.Action("Edit", new { id = t.Id })">Editar</a>
+                <a class="btn btn-sm btn-info" href="@Url.Action("Details", new { id = t.Id })">Ver</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

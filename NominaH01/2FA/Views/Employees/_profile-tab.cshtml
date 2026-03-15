@@ -1,0 +1,207 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Columna izquierda -->
+            <div class="col-md-8">
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="DateOfBird" class="control-label"></label>
+                                    <input asp-for="DateOfBird" class="form-control" />
+                                    <span asp-validation-for="DateOfBird" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label asp-for="CivilStatus" class="control-label"></label>
+                                    <select asp-for="CivilStatus" class="form-control" name="myDropdown" id="dropdown">
+                                        <option value="Soltero" selected>Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="Unido">Unido</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label asp-for="BloodType" class="control-label"></label>
+                                    <select asp-for="BloodType" class="form-control" name="myDropdown" id="dropdown">
+                                        <option value="N/A" selected>No Asignado</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label asp-for="FixedPhone" class="control-label"></label>
+                                    <input asp-for="FixedPhone" class="form-control" />
+                                    <span asp-validation-for="FixedPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label asp-for="CellPhone" class="control-label"></label>
+                                    <input asp-for="CellPhone" class="form-control" />
+                                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label asp-for="CEMAIL" class="control-label"></label>
+                                    <input asp-for="CEMAIL" class="form-control" placeholder="yo@midominio.com.pa" />
+                                    <span asp-validation-for="CEMAIL" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <textarea asp-for="CDIR1" class="form-control" rows="3" placeholder="Ingrese la dirección"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <textarea asp-for="CDIR2" class="form-control" rows="3" placeholder="Ingrese la dirección"></textarea>
+                    </div>
+                </div>
+                <!--
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="p-3 border bg-light">Fila 6</div>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-4 d-flex flex-column">
+                <!-- Imagen ocupando 3/4 de altura -->
+                <div class="flex-grow-1 mb-2" style="min-height: 0;">
+                    <div class="h-100 p-3 border bg-white d-flex align-items-center justify-content-center">
+                    <!-- Imagen central -->
+                    <img id="previewImage" src="@(string.IsNullOrEmpty(Model?.PhotoPath) ? "https://via.placeholder.com/250x250?text=Foto" : $"/{Model.PhotoPath}")" class="img-fluid" style="max-height: 200px; max-width: 200px;" alt="Foto">
+                    </div>
+                </div>
+
+                <!-- Input archivo en la fila 4 -->
+                <div>
+                    <div class="p-3 border bg-light">
+                    <label for="photoInput" class="form-label">Seleccionar Foto</label>
+                    <input class="form-control" name="photoFile" type="file" id="photoInput" accept="image/*" onchange="loadPhoto(event)">
+                    <input type="hidden" asp-for="PhotoPath" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--1ra fila-->
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+
+    <!--2da fila-->
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+
+    <!--3ra fila-->
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+
+</div>

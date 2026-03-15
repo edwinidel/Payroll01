@@ -1,0 +1,55 @@
+@model IEnumerable<_2FA.Data.Entities.DestajoDocumentEntity>
+@{
+    ViewData["Title"] = "Documentos Destajo";
+}
+
+<h1>Documentos Destajo</h1>
+
+<form method="get" class="row g-3 mb-3">
+    <div class="col-auto">
+        <label for="startDate" class="form-label">Desde</label>
+        <input type="date" id="startDate" name="startDate" value="@ViewBag.StartDate" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label for="endDate" class="form-label">Hasta</label>
+        <input type="date" id="endDate" name="endDate" value="@ViewBag.EndDate" class="form-control" />
+    </div>
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a class="btn btn-secondary" href="@Url.Action("Index")">Limpiar</a>
+    </div>
+</form>
+
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create")">Nuevo Documento</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Referencia</th>
+            <th>Resp. Cliente</th>
+            <th>Resp. Empresa</th>
+            <th>Total Líneas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.DocumentDate.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@item.ReferenceNumber</td>
+            <td>@item.ClientResponsible</td>
+            <td>@item.CompanyResponsible</td>
+            <td>@item.Productions?.Count()</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="@Url.Action("Details", new { id = item.Id })">Detalles</a>
+                <a class="btn btn-sm btn-outline-secondary" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                <a class="btn btn-sm btn-outline-danger" href="@Url.Action("Delete", new { id = item.Id })">Borrar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

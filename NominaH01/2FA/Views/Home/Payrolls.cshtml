@@ -1,0 +1,62 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <!-- Nómina Regular -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Planilla Regular</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="PayrollTmpHeaders" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Planilla regular para los diferentes grupos de pago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nómina Servicios Profesionales -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-person-workspace"></i>
+                            <h5>Servicios Profesionales</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="PayrollTmpHeaders" asp-action="Create" asp-route-isContractor="true" class="btn btn-primary">Acceder</a>
+                            <p>Planilla de servicios profesionales de acuerdo al grupo de pago.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Captación de Producción - Destajo -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-person-workspace"></i>
+                            <h5>Captación de Producción - Destajo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="DestajoDocuments" asp-action="Index" asp-route-isContractor="true" class="btn btn-primary">Acceder</a>
+                            <p>Captación de producción para los trabajadores por destajo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

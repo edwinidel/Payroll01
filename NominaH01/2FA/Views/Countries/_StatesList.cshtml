@@ -1,0 +1,20 @@
+@model _2FA.Data.Entities.CountryEntity
+
+<table id="table2" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Provincia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var state in Model.States ?? Enumerable.Empty<_2FA.Data.Entities.StateEntity>())
+        {
+            <tr>
+                <td>@state.Name</td>
+                <td></td>
+            </tr>
+        }
+    </tbody >
+
+</table>

@@ -1,0 +1,57 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Plantillas</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="DocumentTemplates" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Creación y mantenimiento de plantillas de documentos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Documentos</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="BankDepositStructures" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Generación de documentos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-card-text"></i>
+                            <h5>Tipos de Documento</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="DocumentTypes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Mantenimiento de tipos de documento y firmas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

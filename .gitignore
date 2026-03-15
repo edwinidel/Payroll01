@@ -1,0 +1,18 @@
+.DS_Store
+.vs/
+.vscode/
+
+**/bin/
+**/obj/
+
+*.user
+*.suo
+*.swp
+
+**/logs/
+**/wwwroot/uploads/
+
+# Local secrets / environment-specific files
+**/appsettings.Development.json
+**/*.session.sql
+**/Secret Key OpenAi.txt

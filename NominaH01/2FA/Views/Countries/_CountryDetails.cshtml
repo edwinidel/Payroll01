@@ -1,0 +1,202 @@
+@model _2FA.Data.Entities.CountryEntity
+
+<div class="m-0 row justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title"></h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Name_es)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Capital)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Capital)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Iso3)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Iso3)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Iso2)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Iso2)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Numeric_code)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Numeric_code)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Phone_code)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Phone_code)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Currency)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Currency)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Currency_name)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Currency_name)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Tld)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Tld)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Native)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Native)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Nationality)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Nationality)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Latitude)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Latitude)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Longitude)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Longitude)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Emoji)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Emoji)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.EmojiU)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.EmojiU)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Currency_symbol)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Currency_symbol)
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Name_es)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Name_es)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Name_en)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Name_en)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Name_fr)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Name_fr)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.TimeZoneId)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.TimeZone.Name)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Region)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Region)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Region_id)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Region_id)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Subregion)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Subregion)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Subregion_id)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Subregion_id)
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Created)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Created)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Modified)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Modified)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.Deleted)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.Deleted)
+                        </dd>
+                        <dt class = "col-sm-6">
+                            @Html.DisplayNameFor(model => model.IsDeleted)
+                        </dt>
+                        <dd class = "col-sm-6">
+                            @Html.DisplayFor(model => model.IsDeleted)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

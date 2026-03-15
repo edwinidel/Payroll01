@@ -1,0 +1,234 @@
+@model _2FA.Models.EmployeeTransferViewModel
+@{
+    ViewData["Title"] = "Confirmar Transferencia de Empleados";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">
+        <i class="bi bi-check-circle-fill me-2 text-warning"></i>Confirmar Transferencia
+    </h1>
+    <div>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Cancelar
+        </a>
+    </div>
+</div>
+
+<!-- Alert -->
+<div class="alert alert-warning" role="alert">
+    <i class="bi bi-exclamation-triangle me-2"></i>
+    <strong>Atención:</strong> Esta acción transferirá los empleados seleccionados a otra compañía. 
+    Esta operación no se puede deshacer.
+</div>
+
+<div class="row">
+    <!-- Transfer Summary -->
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="bi bi-arrow-left-right me-2"></i>Resumen de Transferencia
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Grupo de Negocio:</strong>
+                    </div>
+                    <div class="col-7">
+                        <span class="badge bg-primary fs-6">@Model.BusinessGroupName</span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Compañía Origen:</strong>
+                    </div>
+                    <div class="col-7">
+                        <i class="bi bi-building text-danger me-1"></i>@Model.SourceCompanyName
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Compañía Destino:</strong>
+                    </div>
+                    <div class="col-7">
+                        <i class="bi bi-building text-success me-1"></i>@Model.TargetCompanyName
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Total Empleados:</strong>
+                    </div>
+                    <div class="col-7">
+                        <span class="badge bg-info fs-6">@Model.Employees.Count()</span>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Comments))
+                {
+                    <div class="row mb-3">
+                        <div class="col-5">
+                            <strong>Comentarios:</strong>
+                        </div>
+                        <div class="col-7">
+                            <small class="text-muted">@Model.Comments</small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Transfer Form -->
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="bi bi-shield-check me-2"></i>Confirmar Acción
+                </h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="TransferEmployees" method="post" id="transferConfirmForm">
+                    @Html.AntiForgeryToken()
+                    
+                    <!-- Hidden fields for transfer data -->
+                    <input type="hidden" asp-for="SourceCompanyId" />
+                    <input type="hidden" asp-for="TargetCompanyId" />
+                    <input type="hidden" asp-for="Comments" />
+                    
+                    <!-- Selected employees -->
+                    @for (int i = 0; i < Model.SelectedEmployeeIds.Count; i++)
+                    {
+                        <input type="hidden" name="SelectedEmployeeIds[@i]" value="@Model.SelectedEmployeeIds[i]" />
+                    }
+
+                    <div class="mb-3">
+                        <h6 class="text-danger">
+                            <i class="bi bi-exclamation-triangle me-1"></i>Acción Irreversible
+                        </h6>
+                        <p class="text-muted small">
+                            Una vez confirmada esta transferencia, los empleados seleccionados 
+                            serán asignados permanentemente a la compañía de destino.
+                        </p>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="confirmCheck" required>
+                        <label class="form-check-label" for="confirmCheck">
+                            <strong>Confirmo que deseo proceder con la transferencia de @Model.Employees.Count() empleados</strong>
+                        </label>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Index" class="btn btn-secondary me-md-2">
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-warning" id="confirmTransferBtn" disabled>
+                            <i class="bi bi-arrow-right me-1"></i>Confirmar Transferencia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Employees List -->
+<div class="card shadow">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <i class="bi bi-people me-2"></i>Empleados a Transferir (@Model.Employees.Count())
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="employeesTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre Completo</th>
+                        <th>Posición</th>
+                        <th>Departamento</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.Employees.OrderBy(e => e.FullName))
+                    {
+                        <tr>
+                            <td>
+                                <span class="badge bg-secondary">@employee.Code</span>
+                            </td>
+                            <td>
+                                <strong>@employee.FullName</strong>
+                            </td>
+                            <td>
+                                <small class="text-muted">@employee.CurrentPosition</small>
+                            </td>
+                            <td>
+                                <small class="text-muted">@employee.CurrentDepartment</small>
+                            </td>
+                            <td>
+                                <small>@employee.HiringDate.ToString("dd/MM/yyyy")</small>
+                            </td>
+                            <td>
+                                <span class="badge bg-success">@employee.Status</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Handle confirmation checkbox
+            $('#confirmCheck').on('change', function() {
+                $('#confirmTransferBtn').prop('disabled', !$(this).is(':checked'));
+            });
+
+            // Handle form submission
+            $('#transferConfirmForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                if (!$('#confirmCheck').is(':checked')) {
+                    alert('Debe confirmar la transferencia para proceder.');
+                    return;
+                }
+
+                if (!confirm('¿Está completamente seguro de que desea transferir estos @Model.Employees.Count() empleados? Esta acción no se puede deshacer.')) {
+                    return;
+                }
+
+                // Disable submit button and show loading
+                const submitBtn = $('#confirmTransferBtn');
+                submitBtn.prop('disabled', true);
+                submitBtn.html('<i class="bi bi-hourglass-split me-1"></i>Procesando...');
+
+                // Submit the form
+                this.submit();
+            });
+
+            // Initialize DataTable if available
+            if (typeof DataTable !== 'undefined') {
+                $('#employeesTable').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+                    },
+                    "pageLength": 25,
+                    "order": [[1, "asc"]], // Sort by name
+                    "columnDefs": [
+                        { "orderable": false, "targets": [0, 5] } // Disable sorting on code and status columns
+                    ]
+                });
+            }
+        });
+    </script>
+}

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OvertimeMobileMarcacion.MainPage"
+             xmlns:viewmodels="clr-namespace:OvertimeMobileMarcacion.ViewModels"
+             x:DataType="viewmodels:MainViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="App de Marcación Móvil" FontSize="24" HorizontalOptions="Center" />
+
+            <Label Text="Seleccionar Modo:" />
+            <HorizontalStackLayout>
+                <Button Text="Empleado Único" Command="{Binding SelectSingleEmployeeModeCommand}" BackgroundColor="LightBlue" />
+                <Button Text="Múltiples Empleados" Command="{Binding SelectMultiEmployeeModeCommand}" BackgroundColor="LightGreen" />
+            </HorizontalStackLayout>
+
+            <Entry Placeholder="Código de Empleado" Text="{Binding EmployeeCode}" />
+            <Entry Placeholder="URL API" Text="{Binding ApiUrl}" />
+            <Entry Placeholder="Token JWT" Text="{Binding Token}" />
+            <Entry Placeholder="Latitud Permitida" Text="{Binding AllowedLatitude}" Keyboard="Numeric" />
+            <Entry Placeholder="Longitud Permitida" Text="{Binding AllowedLongitude}" Keyboard="Numeric" />
+            <Entry Placeholder="Radio (metros)" Text="{Binding AllowedRadius}" Keyboard="Numeric" />
+
+            <Label Text="Tipo de Marcación:" FontSize="18" />
+            <Button Text="Marcar Entrada" Command="{Binding MarkEntryCommand}" BackgroundColor="Green" />
+            <Button Text="Marcar Salida" Command="{Binding MarkExitCommand}" BackgroundColor="Red" />
+            <Button Text="Inicio Comida" Command="{Binding MarkInicioComidaCommand}" BackgroundColor="Orange" />
+            <Button Text="Fin Comida" Command="{Binding MarkFinComidaCommand}" BackgroundColor="Blue" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

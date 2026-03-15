@@ -1,0 +1,73 @@
+@model _2FA.Data.Entities.ShiftEntity
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div style="text-align: center;">
+    <h2>Eliminar Turno</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <h3>¿Está seguro de que desea eliminar este registro?</h3>
+                <hr />
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Segmentos del Turno
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @if (Model.ShiftSegments != null && Model.ShiftSegments.Any())
+                        {
+                            foreach (var segment in Model.ShiftSegments.OrderBy(s => s.Order))
+                            {
+                                <div><strong>@segment.SegmentType:</strong> @segment.StartTime.ToString("hh\\:mm") - @segment.EndTime.ToString("hh\\:mm")</div>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sin segmentos definidos</span>
+                        }
+                    </dd>
+                    <dt class = "col-sm-2">
+                        Horario
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Schedule.Name)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @if(Model.IsActive)
+                        {
+                            <span class="badge bg-success">Sí</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">No</span>
+                        }
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

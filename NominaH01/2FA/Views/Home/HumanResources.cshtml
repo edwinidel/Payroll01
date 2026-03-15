@@ -1,0 +1,26 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <!-- Entrega de Uniformes -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Unifomes</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="UniformDeliveries" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Entrega y manejo de uniformes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

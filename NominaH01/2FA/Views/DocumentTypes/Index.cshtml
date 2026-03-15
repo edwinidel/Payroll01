@@ -1,0 +1,40 @@
+@model IEnumerable<_2FA.Data.Entities.DocumentTypeEntity>
+
+@{
+    ViewData["Title"] = "Tipos de Documento";
+}
+
+<h2>Tipos de Documento</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo tipo</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Firmante</th>
+            <th>Cargo</th>
+            <th>Activo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.SignerName</td>
+            <td>@item.SignerTitle</td>
+            <td>@(item.IsActive ? "Sí" : "No")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">Ver</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Editar</a>
+                <a asp-action="Signatures" asp-route-id="@item.Id" class="btn btn-sm btn-info">Firmas</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Borrar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,182 @@
+﻿@model _2FA.Data.Entities.BusinessGroupEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle del Grupo de Negocios</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    &nbsp;
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <hr />
+                <div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.Name)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.Description)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.IsActive)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @if(Model.IsActive)
+                                    {
+                                        <span class="badge bg-success">Sí</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">No</span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Created)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.Created)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.CreatedBy)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.CreatedBy)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Modified)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.Modified)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.ModifiedBy)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.Deleted)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.Deleted)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.DeletedBy)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.DeletedBy)
+                                </dd>
+                                <dt class = "col-sm-4">
+                                    @Html.DisplayNameFor(model => model.IsDeleted)
+                                </dt>
+                                <dd class = "col-sm-8">
+                                    @Html.DisplayFor(model => model.IsDeleted)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage Statistics Section -->
+                <hr />
+                <h4 class="mb-3">Estadísticas de Uso</h4>
+                <div class="row">
+                    <!-- Companies Usage -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fa-solid fa-building"></i> Empresas</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Actual:</strong> @ViewData["CurrentCompanies"]
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Límite:</strong> @(Model.MaxCompanies.HasValue ? Model.MaxCompanies.ToString() : "Sin límite")
+                                    </div>
+                                </div>
+                                @if (Model.MaxCompanies.HasValue)
+                                {
+                                    var companiesPercentage = (int)ViewData["CurrentCompanies"] * 100 / Model.MaxCompanies.Value;
+                                    var companiesColor = companiesPercentage >= 90 ? "bg-danger" : companiesPercentage >= 70 ? "bg-warning" : "bg-success";
+                                    <div class="mt-2">
+                                        <div class="progress">
+                                            <div class="progress-bar @companiesColor" role="progressbar"
+                                                 style="width: @companiesPercentage%"
+                                                 aria-valuenow="@companiesPercentage"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100">
+                                                @companiesPercentage%
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">Disponibles: @ViewData["AvailableCompanies"]</small>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employees Usage -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0"><i class="fa-solid fa-users"></i> Empleados</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Actual:</strong> @ViewData["CurrentEmployees"]
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Límite:</strong> @(Model.MaxEmployees.HasValue ? Model.MaxEmployees.ToString() : "Sin límite")
+                                    </div>
+                                </div>
+                                @if (Model.MaxEmployees.HasValue)
+                                {
+                                    var employeesPercentage = (int)ViewData["CurrentEmployees"] * 100 / Model.MaxEmployees.Value;
+                                    var employeesColor = employeesPercentage >= 90 ? "bg-danger" : employeesPercentage >= 70 ? "bg-warning" : "bg-success";
+                                    <div class="mt-2">
+                                        <div class="progress">
+                                            <div class="progress-bar @employeesColor" role="progressbar"
+                                                 style="width: @employeesPercentage%"
+                                                 aria-valuenow="@employeesPercentage"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100">
+                                                @employeesPercentage%
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">Disponibles: @ViewData["AvailableEmployees"]</small>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

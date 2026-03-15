@@ -1,0 +1,62 @@
+@OvertimeCalculator_HostAddress = http://localhost:5031
+
+GET {{OvertimeCalculator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+# Register a new user
+POST {{OvertimeCalculator_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+
+###
+
+# Login to get JWT token
+POST {{OvertimeCalculator_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "testpass123"
+}
+
+###
+
+# Calculate overtime (requires authentication)
+# Note: Replace YOUR_TOKEN_HERE with the actual token from the login response above
+POST {{OvertimeCalculator_HostAddress}}/api/overtime/calculate
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "Código": "000001",
+  "Nombre": "Juan",
+  "Apellido": "Pérez",
+  "Cédula": "8-888-8888",
+  "Salario por Hora": 3.75,
+  "Compañía": 1,
+  "Sucursal": 1,
+  "Departamento": 1,
+  "Centro de Costo": 1,
+  "Proyecto": 1,
+  "Fase": 1,
+  "Actividad": 1,
+  "Tipo de Día": "Domingo Compensatorio",
+  "Tipo de Horario": "Diurno",
+  "Tiempo Comida": 60,
+  "Inicia Horario": "08:00",
+  "Fin Horario": "17:00",
+  "Hora Entrada": "2023-10-01T07:55:00",
+  "Hora Salida": "2023-10-01T21:00:00",
+  "Periodo de Gracia Entrada Antes": 5,
+  "Periodo de Gracia Entrada Después": 5,
+  "Periodo de Gracia Salida Antes": 5,
+  "Periodo de Gracia Salida Después": 5
+}
+
+###

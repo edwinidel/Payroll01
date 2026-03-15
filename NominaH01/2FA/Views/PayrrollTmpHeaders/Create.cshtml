@@ -1,0 +1,82 @@
+﻿@model _2FA.Models.PayrollHeaderViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-10">
+        <div class="card-header">
+            <h1>Nueva Nómina</h1>
+        </div>
+        <div class="card-body">
+            <form asp-action="GeneratePayRoll" asp-route-isContractor="false">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <a class="btn btn-primary" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                    <input class="btn btn-primary" type="submit" value="Create" class="btn btn-primary" />
+                    <button type="button" type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                    </button>
+                    <button title="Generar Númina" type="button" class="btn btn-primary" asp-action="GeneratePayRoll">
+                        <i class="fa-solid fa-money-bill-1-wave"></i>
+                    </button>
+                </div>
+
+                <partial name="_PaymentHeader" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('paymentGroupSelect').addEventListener('change', function () {
+            var groupId = this.value;
+            fetch('/PayrollTmpHeaders/GetEmployeesByGroupId?groupId=' + groupId + '&isContractor=false')
+                .then(response => response.json())
+                .then(data => {
+                    var tbody = document.querySelector('#employeesTable tbody');
+                    tbody.innerHTML = '';
+                    data.employees.forEach(emp => {
+                        var row = `<tr>
+                            <td><input type="checkbox" name="SelectedEmployeeIds" value="${emp.id}" checked /></td>
+                            <td>${emp.code}</td>
+                            <td>${emp.fullName}</td>
+                            <td>${emp.idDocument}</td>
+                            <td>${emp.branchName}</td>
+                            <td>${emp.departmentName}</td>
+                        </tr>`;
+                        tbody.innerHTML += row;
+                    });
+
+                    // Ahora sí existe data.paymentGroup
+                    var pg = data.paymentGroup;
+                    if (pg) {
+                        function addDays(dateStr, days) {
+                            var date = new Date(dateStr);
+                            date.setDate(date.getDate() + days);
+                            return date.toISOString().slice(0, 10);
+                        }
+
+                        document.getElementById('StartDate').value = addDays(pg.lastPayDate, 1);
+                        var startDate = document.getElementById('StartDate').value;
+                        document.getElementById('EndDate').value = addDays(startDate, pg.quantityOfDays);
+
+                        document.getElementById('AbsensestDateStart').value = addDays(pg.lastAbsensestDate, 1);
+                        var absStart = document.getElementById('AbsensestDateStart').value;
+                        document.getElementById('AbsensestDateEnd').value = addDays(absStart, pg.quantityOfDays);
+
+                        document.getElementById('ExtraTimeDateStart').value = addDays(pg.extraTimeDate, 1);
+                        var extraStart = document.getElementById('ExtraTimeDateStart').value;
+                        document.getElementById('ExtraTimeDateEnd').value = addDays(extraStart, pg.quantityOfDays);
+                    }
+                });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

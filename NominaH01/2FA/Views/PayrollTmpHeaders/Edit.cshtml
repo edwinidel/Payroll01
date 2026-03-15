@@ -1,0 +1,116 @@
+﻿@model _2FA.Data.Entities.PayrollTmpHeaderEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="text-align: center;">
+    <h2>Edición de Nóminas en Proceso</h2>
+</div>
+<hr />
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+            </div>
+
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Created" />
+                    <input type="hidden" asp-for="CreatedBy" />
+
+                    <div class="form-group">
+                        <a title="Regresar a la página anterior" asp-action="Index" class="btn-action"><i class="fa-solid fa-arrow-left"></i></a>
+                        <button title="Guardar Registrso" type="submit" class="btn-action"><i class="fa-solid fa-floppy-disk"></i></button>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="PaymentGroupId" class="control-label"></label>
+                                <select disabled asp-for="PaymentGroupId" class="form-control" asp-items="ViewBag.PaymentGroupId"></select>
+                                <span asp-validation-for="PaymentGroupId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Status" class="control-label"></label>
+                                <input disabled asp-for="Status" class="form-control" />
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="control-label"></label>
+                                <input disabled asp-for="StartDate" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="control-label"></label>
+                                <input disabled asp-for="EndDate" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="AbsensestDateStart" class="control-label"></label>
+                                <input disabled asp-for="AbsensestDateStart" class="form-control" />
+                                <span asp-validation-for="AbsensestDateStart" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="AbsensestDateEnd" class="control-label"></label>
+                                <input disabled asp-for="AbsensestDateEnd" class="form-control" />
+                                <span asp-validation-for="AbsensestDateEnd" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="ExtraTimeDateStart" class="control-label"></label>
+                                <input disabled asp-for="ExtraTimeDateStart" class="form-control" />
+                                <span asp-validation-for="ExtraTimeDateStart" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label asp-for="ExtraTimeDateEnd" class="control-label"></label>
+                                <input disabled asp-for="ExtraTimeDateEnd" class="form-control" />
+                                <span asp-validation-for="ExtraTimeDateEnd" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label"></label>
+                        <textarea asp-for="Notes" class="form-control" ></textarea>
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

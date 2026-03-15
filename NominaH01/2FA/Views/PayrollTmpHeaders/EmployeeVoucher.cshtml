@@ -1,0 +1,163 @@
+@model _2FA.Data.Entities.PayrollTmpEmployeeEntity
+
+@{
+    ViewData["Title"] = "Comprobante de Pago";
+
+    var legalDeductions = (Model.PayrollTmpLegalDeductions ?? Enumerable.Empty<_2FA.Data.Entities.PayrollTmpLegalDeductionEntity>())
+        .Where(d => d.Amount > 0)
+        .OrderBy(d => d.LegalDeduction?.Name)
+        .ToList();
+
+    var creditorDiscounts = (Model.HistoricTmpLiabilities ?? Enumerable.Empty<_2FA.Data.Entities.HistoricTmpLiabilityEntity>())
+        .Where(l => l.DiscountedAmount > 0)
+        .OrderBy(l => l.Liability?.Creditor?.Name)
+        .ThenBy(l => l.Liability?.Code)
+        .ToList();
+}
+
+<div class="container-fluid">
+    <div class="text-center mb-4">
+        <h2>Comprobante de Pago</h2>
+        <p>@Model.PayrollTmpHeader?.PaymentGroup?.Name - @Model.PayrollTmpHeader?.StartDate.ToString("dd/MM/yyyy") - @Model.PayrollTmpHeader?.EndDate.ToString("dd/MM/yyyy")</p>
+    </div>
+
+    <div class="mb-3 text-end">
+        <button onclick="window.print()" class="btn btn-secondary">
+            <i class="fa-solid fa-print"></i> Imprimir
+        </button>
+    </div>
+
+    <div class="card mb-4" style="page-break-inside: avoid;">
+        <div class="card-header">
+            <h5>@Model.Employee?.FullName</h5>
+            <small>Cédula: @Model.Employee?.IdDocument</small>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Ingresos</h6>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Horas</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var concept in Model.PayrollTmpConcepts)
+                            {
+                                <tr>
+                                    <td>@concept.PaymentConcept?.Name</td>
+                                    <td>@concept.Hours</td>
+                                    <td style="text-align: right;">@concept.TotalAmount.ToString("C")</td>
+                                </tr>
+                            }
+                            @if (Model.PayrollTmpOvertime.Any())
+                            {
+                                <tr>
+                                    <td colspan="3"><strong>Horas Extras:</strong></td>
+                                </tr>
+                                @foreach (var overtime in Model.PayrollTmpOvertime)
+                                {
+                                    <tr>
+                                        <td>&nbsp;&nbsp;@overtime.OvertimeDate.ToString("dd/MM/yyyy") - @overtime.FactorCode</td>
+                                        <td>@overtime.CalculatedHours.ToString("N2")</td>
+                                        <td style="text-align: right;">@overtime.TotalAmount.ToString("C")</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Total Ingresos</th>
+                                <th></th>
+                                <th>@Model.TotalEarnings.ToString("C")</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h6>Deducciones</h6>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (legalDeductions.Any())
+                            {
+                                <tr class="table-light">
+                                    <th colspan="3">Deducciones legales aplicadas</th>
+                                </tr>
+                                @foreach (var legalDeduction in legalDeductions)
+                                {
+                                    <tr>
+                                        <td>Legal</td>
+                                        <td>@legalDeduction.LegalDeduction?.Code - @legalDeduction.LegalDeduction?.Name</td>
+                                        <td style="text-align: right;">@legalDeduction.Amount.ToString("C")</td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <th>Total deducciones legales</th>
+                                <th></th>
+                                <td style="text-align: right;">@Model.TotalLegalDiscount.ToString("C")</td>
+                            </tr>
+
+                            @if (creditorDiscounts.Any())
+                            {
+                                <tr class="table-light">
+                                    <th colspan="3">Descuentos de acreedores</th>
+                                </tr>
+                                @foreach (var liability in creditorDiscounts)
+                                {
+                                    <tr>
+                                        <td>Acreedor</td>
+                                        <td>@liability.Liability?.Code - @liability.Liability?.Creditor?.Name</td>
+                                        <td style="text-align: right;">@liability.DiscountedAmount.ToString("C")</td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <th>Total acreedores</th>
+                                <th></th>
+                                <td style="text-align: right;">@Model.TotalOtherDiscount.ToString("C")</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Total Deducciones</th>
+                                <th></th>
+                                <th style="text-align: right;">@Model.TotalDeductions.ToString("C")</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-end">
+                    <strong>Salario Neto: @Model.NetPay.ToString("C")</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @@media print {
+        .btn, .card-header {
+            display: none !important;
+        }
+        .card {
+            border: none !important;
+            margin-bottom: 20px;
+        }
+        body {
+            font-size: 12px;
+        }
+    }
+</style>

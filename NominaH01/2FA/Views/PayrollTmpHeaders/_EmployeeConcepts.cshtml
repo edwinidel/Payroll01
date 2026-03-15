@@ -1,0 +1,229 @@
+@model _2FA.Models.PaymentTmpConceptsViewModel
+@using _2FA.Data.Entities
+
+@{
+    var overtimeGroups = Model.Overtime
+        .OrderBy(o => o.OvertimeDate)
+        .ThenBy(o => o.EntryTime)
+        .ThenBy(o => o.FactorCode)
+        .GroupBy(o => o.OvertimeDate)
+        .ToList();
+}
+
+<button class="btn btn-sm btn-primary mb-2"
+        tabindex="-1"
+        id="btnAddConcept"
+        data-employee-id="@ViewBag.EmployeeId"
+        data-bs-toggle="modal"
+        data-bs-target="#conceptModal">
+        <i class="fa-solid fa-plus"></i>&nbsp;Concepto
+</button>
+
+<button class="btn btn-sm btn-warning mb-2 ms-2"
+    type="button"
+    tabindex="-1"
+    id="btnAddOvertime"
+    data-employee-id="@ViewBag.EmployeeId"
+    onclick="showOvertimeFormFromButton(this)">
+        <i class="fa-solid fa-clock"></i>&nbsp;Horas Extras
+</button>
+
+<br/>
+
+<table class="table table-sm table-bordered table2">
+    <thead>
+        <tr>
+            <th width="50%">Concepto de Pago</th>
+            <th width="15%">Monto</th>
+            <th width="15%">Total</th>
+            <th width="20%">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.Concepts.Any())
+        {
+            <tr>
+                <td colspan="4">@Html.Display("No hay Conceptos de pago seleccionados")</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var c in Model.Concepts)
+            {
+                <tr>
+                    <td>@c.PaymentConcept?.Name</td>
+                    <td>@c.UnitAmount.ToString("C")</td>
+                    <td>@c.TotalAmount.ToString("C")</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger"
+                                onclick="deleteConcept(@c.Id, '@c.PaymentConcept?.Name')"
+                                title="Eliminar concepto">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Horas Extras -->
+<h5>Horas Extras</h5>
+@if(!Model.Overtime.Any())
+{
+    <p class="text-muted">No hay horas extras registradas</p>
+}
+else
+{
+    <div class="accordion accordion-flush" id="overtimeAccordion">
+        @for (var i = 0; i < overtimeGroups.Count; i++)
+        {
+            var group = overtimeGroups[i];
+            var groupDate = group.Key;
+            var collapseId = $"overtimeDayCollapse_{groupDate:yyyyMMdd}_{i}";
+            var headingId = $"overtimeDayHeading_{groupDate:yyyyMMdd}_{i}";
+            var totalHours = group.Sum(o => o.CalculatedHours);
+            var totalAmount = group.Sum(o => o.TotalAmount);
+            var segmentCount = group.Count();
+            var dayLabel = group.Any(o => o.IsSunday)
+                ? "Domingo"
+                : group.Any(o => o.IsHoliday)
+                    ? "Feriado"
+                    : "Regular";
+            var dayBadgeClass = group.Any(o => o.IsSunday)
+                ? "bg-warning text-dark"
+                : group.Any(o => o.IsHoliday)
+                    ? "bg-info text-dark"
+                    : "bg-secondary";
+
+            <div class="accordion-item mb-2 border rounded">
+                <h2 class="accordion-header" id="@headingId">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                        <div class="w-100 d-flex flex-wrap align-items-center gap-2 pe-3">
+                            <strong>@groupDate.ToString("dd/MM/yyyy")</strong>
+                            <span class="badge bg-primary">@totalHours.ToString("N2") horas</span>
+                            <span class="badge bg-success">@totalAmount.ToString("C")</span>
+                            <span class="badge bg-dark">@segmentCount segmento@(segmentCount == 1 ? "" : "s")</span>
+                            <span class="badge @dayBadgeClass">@dayLabel</span>
+                        </div>
+                    </button>
+                </h2>
+                <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#overtimeAccordion">
+                    <div class="accordion-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered mb-0 align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Horario</th>
+                                        <th>Factor</th>
+                                        <th>Horas</th>
+                                        <th>Tarifa</th>
+                                        <th>Total</th>
+                                        <th>Estatus</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var overtimeSegment in group)
+                                    {
+                                        var segmentLabel = overtimeSegment.IsSunday
+                                            ? "Domingo"
+                                            : overtimeSegment.IsHoliday
+                                                ? "Feriado"
+                                                : "Regular";
+                                        var segmentBadgeClass = overtimeSegment.IsSunday
+                                            ? "bg-warning text-dark"
+                                            : overtimeSegment.IsHoliday
+                                                ? "bg-info text-dark"
+                                                : "bg-secondary";
+
+                                        <tr>
+                                            <td>@overtimeSegment.EntryTime.ToString(@"hh\:mm") - @overtimeSegment.ExitTime.ToString(@"hh\:mm")</td>
+                                            <td>@overtimeSegment.FactorCode</td>
+                                            <td>@overtimeSegment.CalculatedHours.ToString("N2")</td>
+                                            <td>@overtimeSegment.HourlyRate.ToString("C") × @overtimeSegment.AppliedFactor.ToString("N4")</td>
+                                            <td>@overtimeSegment.TotalAmount.ToString("C")</td>
+                                            <td><span class="badge @segmentBadgeClass">@segmentLabel</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger"
+                                                        onclick="deleteOvertime(@overtimeSegment.Id, '@overtimeSegment.OvertimeDate.ToString("dd/MM/yyyy")')"
+                                                        title="Eliminar este segmento de horas extras">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot class="table-light">
+                                    <tr>
+                                        <th colspan="2">Resumen del día</th>
+                                        <th>@totalHours.ToString("N2")</th>
+                                        <th></th>
+                                        <th>@totalAmount.ToString("C")</th>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<!-- Deducciones Legales -->
+<h5>Deducciones Legales</h5>
+<table class="table table-sm table-bordered mb-4">
+    <thead>
+        <tr>
+            <th width="80%">Descuento</th>
+            <th width="20%">Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.LegalDeductions.Any())
+        {
+            @Html.Display("No hay Deducciones Legales")
+        }
+        else
+        {
+            @foreach (var d in Model.LegalDeductions)
+            {
+                <tr>
+                    <td>@d?.LegalDeduction?.Name</td>
+                    <td>@d?.Amount</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Deudas -->
+<h5>Deudas / Responsabilidades</h5>
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th width="60%">Deuda</th>
+            <th width="20%">Monto a Descontar</th>
+            <th width="20%">Monto Descontado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.Liabilities.Any())
+        {
+            @Html.Display("No hay Descuentos / Compromisos")
+        }
+        else 
+        {
+            @foreach (var l in Model.Liabilities)
+            {
+                <tr>
+                    <td>@l.Liability?.Creditor?.Name</td>
+                    <td>@l.AmountToDiscount</td>
+                    <td>@l.DiscountedAmount</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

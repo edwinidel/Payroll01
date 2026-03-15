@@ -1,0 +1,191 @@
+@model _2FA.Data.Entities.PayrollTmpHeaderEntity
+
+@{
+    ViewData["Title"] = "Reporte de Nómina";
+}
+
+<div class="container-fluid">
+    @if (TempData["PayrollDraftMessage"] is string draftMessage && !string.IsNullOrWhiteSpace(draftMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @draftMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="text-center mb-4">
+        <h2>Reporte de Nómina</h2>
+        <p>@Model.PaymentGroup?.Name - @Model.StartDate.ToString("dd/MM/yyyy") - @Model.EndDate.ToString("dd/MM/yyyy")</p>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between align-items-center">
+        <a href="@Url.Action("Details", "PayrollTmpHeaders", new { id = Model.Id })" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Regresar al detalle
+        </a>
+
+        <div class="text-end">
+        <a href="@Url.Action("ExportToPdf", "PayrollTmpHeaders", new { id = Model.Id })" class="btn btn-primary" target="_blank">
+            <i class="fa-solid fa-file-pdf"></i> Exportar a PDF
+        </a>
+        <button onclick="window.print()" class="btn btn-secondary">
+            <i class="fa-solid fa-print"></i> Imprimir
+        </button>
+        </div>
+    </div>
+
+    @foreach (var employee in Model.Employees)
+    {
+        <div class="card mb-4 payroll-report-employee">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>@employee.Employee?.FullName</h5>
+                    <small>Cédula: @employee.Employee?.IdDocument</small>
+                </div>
+                <a href="@Url.Action("EmployeeVoucher", "PayrollTmpHeaders", new { employeeId = employee.Id, payrollId = Model.Id })" class="btn btn-sm btn-primary" target="_blank">
+                    <i class="fa-solid fa-file-invoice-dollar"></i> Comprobante de Pago
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Ingresos</h6>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th>Horas</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var concept in employee.PayrollTmpConcepts)
+                                {
+                                    <tr>
+                                        <td>@concept.PaymentConcept?.Name</td>
+                                        <td>@concept.Hours</td>
+                                        <td style="text-align: right;">@concept.TotalAmount</td>
+                                    </tr>
+                                }
+                                @if (employee.PayrollTmpOvertime.Any())
+                                {
+                                    <tr>
+                                        <td colspan="3"><strong>Horas Extras:</strong></td>
+                                    </tr>
+                                    @foreach (var overtime in employee.PayrollTmpOvertime)
+                                    {
+                                        <tr>
+                                            <td>&nbsp;&nbsp;@overtime.OvertimeDate.ToString("dd/MM/yyyy") - @overtime.FactorCode</td>
+                                            <td>@overtime.CalculatedHours.ToString("N2")</td>
+                                            <td style="text-align: right;">@overtime.TotalAmount.ToString("C")</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total Ingresos</th>
+                                    <th></th>
+                                    <th>@employee.TotalEarnings.ToString("C")</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Deducciones</h6>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var legalDeduction in employee.PayrollTmpLegalDeductions)
+                                {
+                                    <tr>
+                                        <td>Legal</td>
+                                        <td>@legalDeduction.LegalDeduction?.Name</td>
+                                        <td style="text-align: right;">@legalDeduction.Amount</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td>Total de Deducciones Legales</td>
+                                    <td></td>
+                                    <td style="text-align: right;">@employee.TotalLegalDiscount</td>
+                                </tr>
+                                @foreach (var liability in employee.HistoricTmpLiabilities)
+                                {
+                                    <tr>
+                                        <td>Acreedor</td>
+                                        <td>@liability.Liability?.Code - @liability.Liability?.Creditor?.Name</td>
+                                        <td style="text-align: right;">@liability.DiscountedAmount</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th>Total de Acreedores</th>
+                                    <th></th>
+                                    <td style="text-align: right;">@employee.TotalOtherDiscount</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total Deducciones</th>
+                                    <th></th>
+                                    <th style="text-align: right;">@employee.TotalDeductions</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-end">
+                        <strong>Salario Neto: @employee.NetPay</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Total Ingresos: @Model.Employees.Sum(e => e.TotalEarnings).ToString("C")</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>Total Deducciones: @Model.Employees.Sum(e => e.TotalDeductions).ToString("C")</strong>
+                </div>
+                <div class="col-md-4 text-end">
+                    <strong>Total Neto: @Model.Employees.Sum(e => e.NetPay).ToString("C")</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .payroll-report-employee {
+        page-break-inside: auto;
+        break-inside: auto;
+    }
+
+    @@media print {
+        .btn, .card-header {
+            display: none !important;
+        }
+        .card {
+            border: none !important;
+            margin-bottom: 20px;
+            page-break-inside: auto !important;
+            break-inside: auto !important;
+        }
+        body {
+            font-size: 12px;
+        }
+
+        @@page {
+            margin: 14mm 10mm 16mm 10mm;
+        }
+    }
+</style>

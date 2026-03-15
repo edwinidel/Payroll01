@@ -1,0 +1,132 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <!--1ra línea-->
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.BranchId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Branch.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.DepartmentId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Department.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.SectionId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Section.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.CostCenterId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.CostCenter.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!--2da línea-->
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.DivisionId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Division.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.ProjectId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Project.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.PhaseId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Phase.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.ActivityId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Activity.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <!--3ra línea-->
+    <div class="row">
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.OriginCountryId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.OriginCountry.Name_es)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.Unionized)
+                </dt>
+                <dd class = "col-sm-12">
+                    @if(Model.Unionized)
+                    {
+                        @Html.DisplayName("Sí")
+                    }
+                    else 
+                    {
+                        @Html.DisplayName("No")
+                    }
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.DiscountPercentage)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.DiscountPercentage)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

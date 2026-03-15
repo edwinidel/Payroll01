@@ -1,0 +1,54 @@
+@model _2FA.Data.Entities.OtcConfigurationEntity
+@{
+    ViewData["Title"] = "Detalle configuración OTC";
+}
+<div style="text-align: center; margin-bottom: 20px;">
+    <h1>Detalle de configuración OTC</h1>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-10">
+        <card-header>
+            <div class="p-3">
+                <a title="Regresar" class="btn-action" onclick="history.back();" ><i class="bi bi-arrow-left"></i></a>
+                &nbsp;
+                <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+            </div>
+        </card-header>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Name)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.RegisterEndpoint)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.RegisterEndpoint)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.LoginEndpoint)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.LoginEndpoint)</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CalculateEndpoint)</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.CalculateEndpoint)</dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                        <dl class="row">
+
+                            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IsActive)</dt>
+                            <dd class="col-sm-9">@(Model.IsActive ? "Sí" : "No")</dd>
+
+                            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Created)</dt>
+                            <dd class="col-sm-9">@Model.Created.ToLocalTime()</dd>
+
+                            @if (Model.Modified.HasValue)
+                            {
+                                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Modified)</dt>
+                                <dd class="col-sm-9">@Model.Modified.Value.ToLocalTime()</dd>
+                            }
+                        </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+@model IEnumerable<_2FA.Models.BusinessGroupLimitsViewModel>
+
+@{
+    ViewData["Title"] = "Administración SuperAdmin";
+}
+
+<div style="text-align: center;">
+    <h2>Administración SuperAdmin</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="p-3">
+                    <h5>Grupos de Negocio y Límites</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table2">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaxCompanies)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaxEmployees)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrentCompanies)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrentEmployees)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @if (item.MaxCompanies.HasValue)
+                                    {
+                                        @item.MaxCompanies.Value.ToString("N0")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sin límite</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.MaxEmployees.HasValue)
+                                    {
+                                        @item.MaxEmployees.Value.ToString("N0")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sin límite</span>
+                                    }
+                                </td>
+                                <td>
+                                    @item.CurrentCompanies.ToString("N0")
+                                </td>
+                                <td>
+                                    @item.CurrentEmployees.ToString("N0")
+                                </td>
+                                <td>
+                                    <a title="Configurar Límites" class="btn-index" asp-action="ConfigureLimits" asp-route-id="@item.Id"><i class="fa-solid fa-cogs"></i></a>
+                                    <a title="Ver Reporte de Uso" class="btn-index" asp-action="UsageReport"><i class="fa-solid fa-chart-bar"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,675 @@
+/* =============================================================================
+   CORPORATE BACKGROUND SYSTEM - ELEGANT & PROFESSIONAL
+   Sistema de fondos corporativos elegante y profesional para software RRHH
+   ============================================================================= */
+
+/* ===== VARIABLES DEL SISTEMA DE BACKGROUND CORPORATIVO ===== */
+:root {
+  /* Colores base del fondo corporativo - TONO AUMENTADO */
+  --bg-primary: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 15%, #90caf9 30%, #64b5f6 65%, #42a5f5 80%);
+  --bg-dashboard: linear-gradient(135deg, #0D234B 0%, #1a365d 50%, #2d3748 100%);
+  --bg-forms: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --bg-cards: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+  
+  /* Patrones sutiles con mayor visibilidad */
+  --pattern-subtle: radial-gradient(circle at 25% 25%, rgba(13, 35, 75, 0.08) 0%, transparent 50%);
+  --pattern-grid: linear-gradient(rgba(13, 35, 75, 0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(13, 35, 75, 0.05) 1px, transparent 1px);
+  --pattern-dots: radial-gradient(circle, rgba(13, 35, 75, 0.06) 1px, transparent 1px);
+  
+  /* Sombras corporativas mejoradas */
+  --shadow-soft: 0 4px 6px rgba(13, 35, 75, 0.08), 0 2px 4px rgba(13, 35, 75, 0.12);
+  --shadow-medium: 0 8px 25px rgba(13, 35, 75, 0.12), 0 3px 10px rgba(13, 35, 75, 0.18);
+  --shadow-strong: 0 15px 35px rgba(13, 35, 75, 0.15), 0 5px 15px rgba(13, 35, 75, 0.25);
+}
+
+/* ===== BACKGROUND PRINCIPAL CORPORATIVO ===== */
+body.corporate-background {
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Patrón sutil superpuesto */
+body.corporate-background::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--pattern-subtle);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== BACKGROUND PARA DASHBOARD ===== */
+.dashboard-background {
+  background: var(--bg-dashboard);
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
+
+.dashboard-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--pattern-grid);
+  background-size: 60px 60px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ===== BACKGROUND PARA FORMULARIOS ===== */
+.form-background {
+  background: var(--bg-forms);
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.form-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--pattern-dots);
+  background-size: 40px 40px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ===== TARJETAS CORPORATIVAS ===== */
+.corporate-card {
+  background: var(--bg-cards);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.corporate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.3), transparent);
+}
+
+.corporate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+.corporate-card:hover::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.6), transparent);
+}
+
+/* ===== TARJETAS GIRATORIAS - SISTEMA DE CENTRADO REAL ===== */
+
+/* Contenedor principal para centrado perfecto */
+.flip-cards-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Wrapper para cada fila de tarjetas - Agrupado y centrado */
+.flip-cards-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 90%;
+  width: 90%;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 0;
+}
+
+/* Contenedor para cada tarjeta individual */
+.flip-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 280px;
+  max-width: 280px;
+}
+
+/* Para páginas con pocas tarjetas (2-3) - Grupo centrado */
+.home-flip-cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.home-flip-cards .flip-cards-row {
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  display: flex;
+}
+
+.home-flip-cards .flip-card-container {
+  min-width: 240px;
+  max-width: 240px;
+  flex: 0 0 auto;
+}
+
+/* Solución específica para páginas con exactamente 3 tarjetas (como Employees) */
+.three-cards-layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.three-cards-layout .flip-cards-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 900px;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.three-cards-layout .flip-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+}
+
+/* Específicamente para la página de Employees */
+.employees-page .three-cards-layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.employees-page .three-cards-layout .flip-cards-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 780px;
+  gap: 0.75rem;
+}
+
+.employees-page .three-cards-layout .flip-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+}
+
+.employees-page .three-cards-layout .flip-card {
+  width: 220px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+/* Responsive para páginas con 3 tarjetas */
+@media (max-width: 1200px) {
+  .employees-page .three-cards-layout {
+    padding: 0 1.5rem;
+  }
+  
+  .employees-page .three-cards-layout .flip-card-container {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+  }
+  
+  .employees-page .three-cards-layout .flip-card {
+    width: 200px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 991px) {
+  .employees-page .three-cards-layout {
+    padding: 0 1rem;
+  }
+  
+  .employees-page .three-cards-layout .flip-cards-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .employees-page .three-cards-layout .flip-card-container {
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+    margin: 0 auto;
+  }
+}
+
+/* Para páginas con múltiples tarjetas (4-6 tarjetas) - Grupo centrado */
+.multi-flip-cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.multi-flip-cards .flip-cards-row {
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.multi-flip-cards .flip-card-container {
+  min-width: 240px;
+  max-width: 280px;
+  flex: 0 0 auto;
+}
+
+/* Asegurar que el contenido no se extienda más de lo necesario */
+.main-panel .home-flip-cards,
+.main-panel .multi-flip-cards {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* Asegurar que el main-panel respete los márgenes del contenedor padre */
+.main-panel .home-flip-cards,
+.main-panel .multi-flip-cards,
+.main-panel .flip-cards-center {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+/* Para asegurar márgenes simétricos en el contenido dentro del main-panel */
+.main-panel {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.main-panel > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive design específico para centrado perfecto */
+@media (min-width: 1200px) {
+  .multi-flip-cards .flip-card-container {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .multi-flip-cards .flip-card-container {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .multi-flip-cards .flip-card-container {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .multi-flip-cards .flip-card-container {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 575px) {
+  .multi-flip-cards .flip-card-container,
+  .home-flip-cards .flip-card-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Estilos para las tarjetas giratorias individuales */
+.flip-card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Asegurar que el flip-card mantenga su tamaño */
+.flip-card {
+  width: 100%;
+  max-width: 280px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+/* Anular estilos de Bootstrap que interfieren */
+.flip-cards-center .col-3,
+.flip-cards-row .col-3 {
+  width: auto !important;
+  flex: none !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+/* ===== CONTENEDOR PARA MÁRGENES SIMÉTRICOS ===== */
+.content-container {
+  width: 95%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ===== ÁREA DE CONTENIDO PARA CENTRADO PERFECTO ===== */
+.content-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Estilos específicos para el área de contenido cuando contiene tarjetas flip */
+.content-area:has(.home-flip-cards),
+.content-area:has(.multi-flip-cards) {
+  width: 100%;
+  max-width: 100%;
+}
+
+.content-area .home-flip-cards,
+.content-area .multi-flip-cards {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== PANELES PRINCIPALES ===== */
+.main-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem;
+  margin: 1rem 0;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.main-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: var(--pattern-subtle);
+  background-size: 50px 50px;
+  opacity: 0.1;
+  border-radius: 50%;
+  transform: translate(30px, -30px);
+}
+
+/* ===== SIDEBAR CORPORATIVO ===== */
+.corporate-sidebar {
+  background: linear-gradient(180deg, #0D234B 0%, #1a365d 100%);
+  box-shadow: var(--shadow-medium);
+  position: relative;
+}
+
+.corporate-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--pattern-dots);
+  background-size: 30px 30px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ===== NAVEGACIÓN CORPORATIVA ===== */
+.corporate-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(13, 35, 75, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.corporate-nav .navbar-brand {
+  background: linear-gradient(135deg, #0D234B, #FFC107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ===== TABLAS CORPORATIVAS ===== */
+.corporate-table {
+  background: var(--bg-cards);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.corporate-table thead {
+  background: linear-gradient(135deg, #0D234B, #1a365d);
+  color: white;
+}
+
+.corporate-table thead th {
+  border: none;
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+}
+
+.corporate-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.corporate-table tbody tr:hover {
+  background: rgba(13, 35, 75, 0.05);
+  transform: scale(1.01);
+}
+
+/* ===== BOTONES CORPORATIVOS CON MEJORAS ===== */
+.btn-corporate {
+  background: linear-gradient(135deg, #0D234B, #1a365d);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-corporate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-corporate:hover::before {
+  left: 100%;
+}
+
+.btn-corporate:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, #1a365d, #0D234B);
+}
+
+.btn-corporate-accent {
+  background: linear-gradient(135deg, #FFC107, #FFD700);
+  color: #0D234B;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.btn-corporate-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, #FFD700, #FFC107);
+}
+
+/* ===== ANIMACIONES CORPORATIVAS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* ===== EFECTOS ESPECIALES ===== */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  box-shadow: var(--shadow-medium);
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--bg-cards);
+  border-radius: 16px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #0D234B, #FFC107, #0D234B);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .corporate-card {
+    margin: 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .main-panel {
+    padding: 1.5rem;
+    margin: 0.5rem;
+    border-radius: 16px;
+  }
+  
+  .btn-corporate,
+  .btn-corporate-accent {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .corporate-background::before,
+  .form-background::before,
+  .dashboard-background::before {
+    background-size: 100px 100px;
+  }
+}

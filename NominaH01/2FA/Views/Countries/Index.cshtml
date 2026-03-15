@@ -1,0 +1,67 @@
+@model IEnumerable<_2FA.Data.Entities.CountryEntity>
+
+@{
+    ViewData["Title"] = "Countries";
+}
+
+<div style="text-align: center;">
+    <h2>Listado de Países</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a class="btn-action" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table id="table2" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="25%">
+                                @Html.DisplayNameFor(model => model.Name_es)
+                            </th>
+                            <th width="10%">
+                                @Html.DisplayNameFor(model => model.Phone_code)
+                            </th>
+                            <th width="20%">
+                                @Html.DisplayNameFor(model => model.Capital)
+                            </th>
+                            <th width="25%">
+                                @Html.DisplayNameFor(model => model.Name_en)
+                            </th>
+                            <th width="20%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name_es)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone_code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Capital)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name_en)
+                                </td>
+                                <td>
+                                    <a title="Editar Registro" class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a title="Detalle del Registro" class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                    <a title="Borrar Registro" class="btn btn-secondary" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />

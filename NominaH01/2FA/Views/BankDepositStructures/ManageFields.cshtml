@@ -1,0 +1,186 @@
+@model _2FA.Data.Entities.BankDepositStructureEntity
+
+@{
+    ViewData["Title"] = "ManageFields";
+}
+
+<div style="text-align: center;">
+    <h2>Gestionar Campos - @Model.StructureName</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Campos Disponibles</h4>
+                        @if (ViewBag.AvailableFields != null && ((List<SelectListItem>)ViewBag.AvailableFields).Any())
+                        {
+                            <ul id="availableFields" class="list-group">
+                                <li class="list-group-item">
+                                    <input type="checkbox" id="selectAll" /> Seleccionar todos
+                                </li>
+                                @foreach (var field in ViewBag.AvailableFields)
+                                {
+                                    <li class="list-group-item" data-field="@field.Value">
+                                        <input type="checkbox" class="fieldCheckbox" value="@field.Value" /> @field.Text
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No hay campos disponibles para agregar.</p>
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Campos Configurados</h4>
+                        <form asp-action="BulkEditFields" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="structureId" value="@Model.Id" />
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="50%">Nombre</th>
+                                        <th width="15%">Orden</th>
+                                        <th width="15%">Ignorar</th>
+                                        <th width="20%">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Fields != null && Model.Fields.Any())
+                                    {
+                                        @for (int i = 0; i < Model.Fields.Count; i++)
+                                        {
+                                            var field = Model.Fields.OrderBy(f => f.Order).ElementAt(i);
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="fields[@i].Id" value="@field.Id" />
+                                                    <input type="text" name="fields[@i].FieldName" value="@field.FieldName" class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="number" name="fields[@i].Order" value="@field.Order" class="form-control" min="1" />
+                                                </td>
+                                                <td>
+                                                    @if (field.Ignore)
+                                                    {
+                                                        <input type="checkbox" name="fields[@i].Ignore" checked />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" name="fields[@i].Ignore" />
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <a title="Eliminar Campo" class="btn btn-danger btn-sm" asp-action="DeleteField" asp-route-id="@field.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6">No hay campos configurados.</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="mt-3 text-center">
+                                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <form id="addFieldsForm" asp-action="BulkCreateFields" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="structureId" value="@Model.Id" />
+                        <div class="form-group">
+                            <label for="companyId">Seleccionar Compañía para los Campos</label>
+                            <select name="companyId" class="form-control" required>
+                                <option value="">-- Seleccionar --</option>
+                                @foreach (var company in ViewBag.Companies)
+                                {
+                                    <option value="@company.Id">@company.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addSelectedFields()">Agregar Campos Seleccionados</button>
+                    </form>
+                </div>
+
+                <hr />
+                <h4>Generar Archivo</h4>
+                <form asp-action="GenerateFile" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <div class="form-group">
+                        <label for="companyId">Seleccionar Compañía</label>
+                        <select name="companyId" class="form-control" required>
+                            <option value="">-- Seleccionar --</option>
+                            @foreach (var company in ViewBag.Companies as IEnumerable<_2FA.Data.Entities.CompanyEntity>)
+                            {
+                                <option value="@company.Id">@company.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generar Archivo</button>
+                </form>
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger mt-3">
+                        @TempData["Error"]
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+@section Scripts {
+    <script>
+        // No sortable needed since order is editable
+    </script>
+}
+<script>
+    function addSelectedFields() {
+        const form = document.getElementById('addFieldsForm');
+        const companyId = form.querySelector('select[name="companyId"]').value;
+        const checkboxes = document.querySelectorAll('.fieldCheckbox:checked');
+        
+        if (companyId === '') {
+            alert('Por favor seleccione una compañía');
+            return;
+        }
+        
+        if (checkboxes.length === 0) {
+            alert('Por favor seleccione al menos un campo');
+            return;
+        }
+        
+        let index = 0;
+        checkboxes.forEach(checkbox => {
+            const hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = `selectedFields[${index}]`;
+            hidden.value = checkbox.value;
+            form.appendChild(hidden);
+            index++;
+        });
+        
+        form.submit();
+    }
+    
+    // Select all functionality
+    document.getElementById('selectAll').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.fieldCheckbox');
+        checkboxes.forEach(cb => {
+            cb.checked = this.checked;
+        });
+    });
+</script>

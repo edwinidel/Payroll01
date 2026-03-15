@@ -1,0 +1,149 @@
+@model _2FA.Models.PaymentTmpConceptsViewModel
+@using _2FA.Data.Entities
+
+<h5>Conceptos de Pago</h5>
+<button class="btn btn-sm btn-primary mb-2" id="btnAddConcept" data-employee-id="@ViewBag.EmployeeId">
+    + Agregar Concepto
+</button>
+<br/>
+
+<table class="table table-sm table-bordered table2">
+    <thead>
+        <tr>
+            <th width="60%">Concepto de Pago</th>
+            <th width="20%">Monto</th>
+            <th width="20%">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.Concepts.Any())
+        {
+            @Html.Display("No hay Conceptos de pago seleccionados")
+        }
+        else
+        {
+            @foreach (var c in Model.Concepts)
+            {
+                <tr>
+                    <td>@c.PaymentConcept?.Name</td>
+                    <td>@c.UnitAmount</td>
+                    <td>@c.TotalAmount</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Deducciones Legales -->
+<h5>Deducciones Legales</h5>
+<table class="table table-sm table-bordered mb-4">
+    <thead>
+        <tr>
+            <th>Descuento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.LegalDeductions.Any())
+        {
+            @Html.Display("No hay Deducciones Legales")
+        }
+        else
+        {
+            @foreach (var d in Model.LegalDeductions)
+            {
+                <tr>
+                    <td>@d.LegalDeduction.Name</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Deudas -->
+<h5>Deudas / Responsabilidades</h5>
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th>Deuda</th>
+            <th>Monto a Descontar</th>
+            <th>Monto Descontado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.Liabilities.Any())
+        {
+            @Html.Display("No hay Descuentos / Compromisos")
+        }
+        else 
+        {
+            @foreach (var l in Model.Liabilities)
+            {
+                <tr>
+                    <td>@l.Liability.Creditor.Name</td>
+                    <td>@l.AmountToDiscount</td>
+                    <td>@l.DiscountedAmount</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- Modal Agregar Concepto -->
+<div class="modal fade" id="conceptModal" tabindex="-1" aria-labelledby="conceptModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="conceptModalLabel">Agregar Concepto de Pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="conceptForm">
+            <input type="hidden" name="PayrollTmpEmployeeId" id="PayrollTmpEmployeeId" />
+
+            <div class="mb-3">
+                <label for="PaymentConceptId" class="form-label">Concepto</label>
+                <select class="form-select" name="PaymentConceptId" id="PaymentConceptId" required>
+                    <option value="">-- Seleccione --</option>
+                    @if (ViewBag.PaymentConcepts != null)
+                    {
+                        foreach (PaymentConceptEntity pc in ViewBag.PaymentConcepts)
+                        {
+                            <option value="@pc.Id">@pc.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="Hours" class="form-label">Horas</label>
+                    <input type="number" step="0.01" class="form-control" name="Hours" id="Hours" />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="UnitAmount" class="form-label">Monto Unitario</label>
+                    <input type="number" step="0.01" class="form-control" name="UnitAmount" id="UnitAmount" />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="PayFactor" class="form-label">Factor</label>
+                    <input type="number" step="0.01" class="form-control" name="PayFactor" id="PayFactor" value="1" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="TotalAmount" class="form-label">Monto Total</label>
+                <input type="number" step="0.01" class="form-control" name="TotalAmount" id="TotalAmount" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label for="Notes" class="form-label">Notas</label>
+                <textarea class="form-control" name="Notes" id="Notes"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="saveConceptBtn">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

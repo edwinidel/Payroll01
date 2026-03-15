@@ -1,0 +1,73 @@
+@model _2FA.Data.Entities.UniformDeliveryEntity
+@{
+    ViewData["Title"] = "Detalle Uniforme";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle de Entrega</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                    <a title="Editar" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Empleado</dt>
+                    <dd class="col-sm-8">@Model?.Employee?.FullNameWithCode</dd>
+
+                    <dt class="col-sm-4">Prenda/Artículo</dt>
+                    <dd class="col-sm-8">@Model?.ItemName</dd>
+
+                    <dt class="col-sm-4">Marca</dt>
+                    <dd class="col-sm-8">@Model?.Brand</dd>
+
+                    <dt class="col-sm-4">Talla</dt>
+                    <dd class="col-sm-8">@Model?.Size</dd>
+
+                    <dt class="col-sm-4">Color</dt>
+                    <dd class="col-sm-8">@Model?.Color</dd>
+
+                    <dt class="col-sm-4">Cantidad</dt>
+                    <dd class="col-sm-8">@Model?.Quantity</dd>
+
+                    <dt class="col-sm-4">Fecha de Entrega</dt>
+                    <dd class="col-sm-8">@Model?.DeliveryDate.ToShortDateString()</dd>
+
+                    <dt class="col-sm-4">Vigencia (días)</dt>
+                    <dd class="col-sm-8">@Model?.ValidityDays</dd>
+
+                    <dt class="col-sm-4">Vence el</dt>
+                    <dd class="col-sm-8">@Model?.ExpirationDate.ToShortDateString()</dd>
+
+                    <dt class="col-sm-4">Avisar días antes</dt>
+                    <dd class="col-sm-8">@Model?.AlertDaysBefore</dd>
+
+                    <dt class="col-sm-4">Estado</dt>
+                    <dd class="col-sm-8">
+                        @if (Model?.IsExpired == true)
+                        {
+                            <span class="badge bg-danger">Vencido</span>
+                        }
+                        else if (Model?.IsExpiringSoon == true)
+                        {
+                            <span class="badge bg-warning text-dark">Próximo a vencer</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Vigente</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4">Notas</dt>
+                    <dd class="col-sm-8">@Model?.Notes</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

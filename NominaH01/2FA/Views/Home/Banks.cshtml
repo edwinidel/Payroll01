@@ -1,0 +1,57 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Bancos</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Banks" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Creación y mantenimiento de bancos con los que se trabaja</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Formatos de ACH</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="BankDepositStructures" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Estructuras para Pagos Bancarios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-bank"></i>
+                            <h5>Bancos</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="/Banks" class="btn btn-primary">Ingresar</a>
+                            <p>Manejo de los bancos y métodos de pago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

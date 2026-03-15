@@ -1,0 +1,72 @@
+﻿@model IEnumerable<_2FA.Data.Entities.PayrollHeaderEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div style="text-align: center;">
+    <h2>Listado de Núminas</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a class="btn btn-primary" asp-action="Create">Nuevo</a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StartDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EndDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Notes)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PaymentGroup)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Notes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentGroup.Name)
+                                </td>
+                                <td>
+                                    <a title="Editar registro" class="btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a title="Detalle del registro" class="btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                    <a title="Borrar registro" class="btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

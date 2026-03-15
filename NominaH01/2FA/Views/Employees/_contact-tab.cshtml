@@ -1,0 +1,103 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <!--1ra línea-->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="BranchId" class="control-label"></label>
+                <select asp-for="BranchId" class ="form-control" asp-items="ViewBag.BranchId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="SectionId" class="control-label"></label>
+                <select asp-for="SectionId" class ="form-control" asp-items="ViewBag.SectionId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="CostCenterId" class="control-label"></label>
+                <select asp-for="CostCenterId" class ="form-control" asp-items="ViewBag.CostCenterId"></select>
+            </div>
+        </div>
+    </div>
+
+    <!--2da línea-->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="DivisionId" class="control-label"></label>
+                <select asp-for="DivisionId" class ="form-control" asp-items="ViewBag.DivisionId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class ="form-control" asp-items="ViewBag.ProjectId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="PhaseId" class="control-label"></label>
+                <select asp-for="PhaseId" class ="form-control" asp-items="ViewBag.PhaseId"></select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="ActivityId" class="control-label"></label>
+                <select asp-for="ActivityId" class ="form-control" asp-items="ViewBag.ActivityId"></select>
+            </div>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+
+    <!--3ra línea-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="OriginCountryId" class="control-label"></label>
+                <select asp-for="OriginCountryId" class ="form-control" asp-items="ViewBag.OriginCountryId"></select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div style="text-align: center;">
+                <label asp-for="Unionized" class="control-label"></label>
+            </div>
+            <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+                <input class="form-check-input" asp-for="Unionized" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="DiscountPercentage" class="control-label"></label>
+                <input asp-for="DiscountPercentage" class="form-control" />
+                <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</div>

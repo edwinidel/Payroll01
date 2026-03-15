@@ -1,0 +1,103 @@
+@model _2FA.Data.Entities.PayrollTmpHeaderEntity
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="PaymentGroupId" class="control-label"></label>
+            <select asp-for="PaymentGroupId" class="form-control" asp-items="ViewBag.PaymentGroupId" id="paymentGroupSelect"></select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="StartDate" class="control-label"></label>
+            <input asp-for="StartDate" class="form-control" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="EndDate" class="control-label"></label>
+            <input asp-for="EndDate" class="form-control" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <input asp-for="Status" class="form-control" disabled />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="AbsensestDateStart" class="control-label"></label>
+            <input asp-for="AbsensestDateStart" class="form-control" />
+            <span asp-validation-for="AbsensestDateStart" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="AbsensestDateEnd" class="control-label"></label>
+            <input asp-for="AbsensestDateEnd" class="form-control" />
+            <span asp-validation-for="AbsensestDateEnd" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="ExtraTimeDateStart" class="control-label"></label>
+            <input asp-for="ExtraTimeDateStart" class="form-control" />
+            <span asp-validation-for="ExtraTimeDateStart" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="ExtraTimeDateEnd" class="control-label"></label>
+            <input asp-for="ExtraTimeDateEnd" class="form-control" />
+            <span asp-validation-for="ExtraTimeDateEnd" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label"></label>
+        <Textarea asp-for="Notes" class="form-control" rows="3" 
+            placeholder="Ingrese aquí su comentario de esta planilla"></Textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="col-md-12 mt-3">
+    <label>Empleados Seleccionables</label>
+    <table class="table table-bordered" id="employeesTable">
+        <thead>
+            <tr>
+                <th width="10%">Seleccionar</th>
+                <th width="15%">Código</th>
+                <th width="20%">Nombre</th>
+                <th width="10%">Cédula</th>
+                <th width="20%">Sucursal</th>
+                <th width="20%">Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Employees != null)
+            {
+                foreach (var emp in ViewBag.Employees)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="SelectedEmployeeIds" value="@emp.Id" checked />
+                        </td>
+                        <td>@emp.Code</td>
+                        <td>@emp.Name</td>
+                        <td>@emp.IdDocument</td>
+                        <td>@emp.Bransh.Name</td>
+                        <td>@emp.Department</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

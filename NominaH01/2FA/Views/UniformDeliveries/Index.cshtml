@@ -1,0 +1,84 @@
+@model IEnumerable<_2FA.Data.Entities.UniformDeliveryEntity>
+@{
+    ViewData["Title"] = "Uniformes";
+    var expiredCount = ViewData["ExpiredCount"] as int? ?? 0;
+    var expiringSoonCount = ViewData["ExpiringSoonCount"] as int? ?? 0;
+}
+
+<div style="text-align: center;">
+    <h2>Control de Uniformes Entregados</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <card-header>
+                <div class="p-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <a class="btn-action" asp-action="Create"><i class="fa-solid fa-shirt"></i> Nuevo</a>
+                        <span class="badge bg-danger">Vencidos: @expiredCount</span>
+                        <span class="badge bg-warning text-dark">Próx. a vencer: @expiringSoonCount</span>
+                    </div>
+                    <form class="d-flex align-items-center gap-2" method="get">
+                        <select class="form-select" name="employeeId" asp-items="ViewBag.EmployeeId">
+                            <option value="">Todos los empleados</option>
+                        </select>
+                        <button class="btn-action" type="submit"><i class="fa-solid fa-filter"></i></button>
+                    </form>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th>Empleado</th>
+                            <th>Prenda/Artículo</th>
+                            <th>Marca</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Cantidad</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Vence el</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Employee?.FullNameWithCode</td>
+                                <td>@item.ItemName</td>
+                                <td>@item.Brand</td>
+                                <td>@item.Size</td>
+                                <td>@item.Color</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.DeliveryDate.ToShortDateString()</td>
+                                <td>@item.ExpirationDate.ToShortDateString()</td>
+                                <td>
+                                    @if (item.IsExpired)
+                                    {
+                                        <span class="badge bg-danger">Vencido (hace @Math.Abs(item.DaysToExpire) días)</span>
+                                    }
+                                    else if (item.IsExpiringSoon)
+                                    {
+                                        <span class="badge bg-warning text-dark">Próx. a vencer en @item.DaysToExpire días</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Vigente</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a title="Editar" class="btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a title="Detalle" class="btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                    <a title="Eliminar" class="btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

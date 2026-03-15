@@ -1,0 +1,207 @@
+@model _2FA.Data.Entities.OtcConfigurationEntity
+@{
+    ViewData["Title"] = "Nueva configuración OTC";
+}
+
+<h1>Configuración de sobretiempo - Crear</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" id="otcForm">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Version" class="control-label"></label>
+                <input asp-for="Version" class="form-control" id="Version" />
+                <span asp-validation-for="Version" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegisterEndpoint" class="control-label"></label>
+                <input asp-for="RegisterEndpoint" class="form-control" />
+                <span asp-validation-for="RegisterEndpoint" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LoginEndpoint" class="control-label"></label>
+                <input asp-for="LoginEndpoint" class="form-control" id="LoginEndpoint" />
+                <span asp-validation-for="LoginEndpoint" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="Password" class="form-control" type="password" id="Password" />
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword" title="Mostrar mientras se mantiene presionado">
+                        👁
+                    </button>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CalculateEndpoint" class="control-label"></label>
+                <input asp-for="CalculateEndpoint" class="form-control" />
+                <span asp-validation-for="CalculateEndpoint" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+
+            <input type="hidden" asp-for="ValidationToken" id="ValidationToken" />
+            <input type="hidden" asp-for="ValidationSessionKey" id="ValidationSessionKey" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group d-flex gap-2">
+                        <input type="submit" value="Guardar" class="btn btn-action" id="saveButton" disabled />
+                        <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <button type="button" class="btn btn-secondary" id="validateButton">Validar acceso</button>
+                        <span id="validationStatus" class="text-muted small">Pendiente de validación</span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const validateButton = document.getElementById('validateButton');
+            const saveButton = document.getElementById('saveButton');
+            const validationTokenInput = document.getElementById('ValidationToken');
+            const sessionKeyInput = document.getElementById('ValidationSessionKey');
+            const loginInput = document.getElementById('LoginEndpoint');
+            const versionInput = document.getElementById('Version');
+            const usernameInput = document.getElementById('Username');
+            const passwordInput = document.getElementById('Password');
+            const togglePasswordButton = document.getElementById('togglePassword');
+            const statusEl = document.getElementById('validationStatus');
+            const form = document.getElementById('otcForm');
+
+            const antiForgeryTokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+            const antiForgeryToken = antiForgeryTokenInput ? antiForgeryTokenInput.value : '';
+
+            const setStatus = (message, ok, neutral = false) => {
+                statusEl.textContent = message;
+                statusEl.className = ok ? 'text-success small' : neutral ? 'text-muted small' : 'text-danger small';
+            };
+
+            const markPendingValidation = () => {
+                validationTokenInput.value = '';
+                saveButton.disabled = true;
+                setStatus('Pendiente de validación', false, true);
+            };
+
+            [loginInput, versionInput, usernameInput, passwordInput].forEach(input => {
+                input?.addEventListener('input', markPendingValidation);
+            });
+
+            if (togglePasswordButton && passwordInput) {
+                const showPassword = () => passwordInput.setAttribute('type', 'text');
+                const hidePassword = () => passwordInput.setAttribute('type', 'password');
+                togglePasswordButton.addEventListener('mousedown', showPassword);
+                togglePasswordButton.addEventListener('touchstart', showPassword);
+                togglePasswordButton.addEventListener('mouseup', hidePassword);
+                togglePasswordButton.addEventListener('mouseleave', hidePassword);
+                togglePasswordButton.addEventListener('touchend', hidePassword);
+                togglePasswordButton.addEventListener('touchcancel', hidePassword);
+            }
+
+            validateButton.addEventListener('click', async () => {
+                const loginEndpoint = loginInput.value.trim();
+                if (!loginEndpoint) {
+                    setStatus('Debe registrar el endpoint de inicio de sesión.', false);
+                    return;
+                }
+
+                const version = versionInput.value.trim();
+                if (!version) {
+                    setStatus('Debe indicar la versión a utilizar.', false);
+                    versionInput.focus();
+                    return;
+                }
+
+                const username = usernameInput.value.trim();
+                if (!username) {
+                    setStatus('Debe indicar un usuario.', false);
+                    usernameInput.focus();
+                    return;
+                }
+
+                const password = passwordInput.value;
+                if (!password) {
+                    setStatus('Debe indicar una contraseña.', false);
+                    passwordInput.focus();
+                    return;
+                }
+
+                saveButton.disabled = true;
+                setStatus('Validando acceso...', false);
+
+                try {
+                    const response = await fetch('@Url.Action("ValidateAccess")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': antiForgeryToken
+                        },
+                        body: JSON.stringify({
+                            loginEndpoint: loginEndpoint,
+                            version: version,
+                            username: username,
+                            password: password,
+                            sessionKey: sessionKeyInput.value
+                        })
+                    });
+
+                    const payload = await response.json().catch(() => null);
+                    if (!response.ok || !payload || payload.success !== true) {
+                        const message = payload && payload.message ? payload.message : 'No se pudo validar las credenciales.';
+                        setStatus(message, false);
+                        validationTokenInput.value = '';
+                        return;
+                    }
+
+                    validationTokenInput.value = payload.validationToken || '';
+                    setStatus('Acceso validado correctamente. Puede guardar.', true);
+                    saveButton.disabled = false;
+                } catch (error) {
+                    setStatus('No se pudo contactar el endpoint. Intente nuevamente.', false);
+                    validationTokenInput.value = '';
+                }
+            });
+
+            form.addEventListener('submit', evt => {
+                if (!validationTokenInput.value) {
+                    evt.preventDefault();
+                    setStatus('Debe validar las credenciales antes de guardar.', false);
+                    saveButton.disabled = false;
+                }
+            });
+        })();
+    </script>
+}

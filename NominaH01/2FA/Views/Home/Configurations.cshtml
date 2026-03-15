@@ -1,0 +1,153 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="multi-flip-cards">
+    <div class="flip-cards-row">
+
+        <!-- Grupo de Negocios -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Grupo de Negocios</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="BusinessGroups" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Grupo de Negocios al que pertenece el cliente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empresas -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-people"></i>
+                            <h5>Empresas</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Companies" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Datos de la Empresa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paises -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-building"></i>
+                            <h5>Paises</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Countries" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Información de paises y su distribución geográfica</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bancos -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-bank"></i>
+                            <h5>Bancos</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="Home" asp-action="Banks" class="btn btn-primary">Ingresar</a>
+                            <p>Manejo de los bancos y métodos de pago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cambiar de Compañía -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-bank"></i>
+                            <h5>Cambiar de Compañía</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="/Home/SwitchCompany" class="btn btn-primary">Ingresar</a>
+                            <p>Abandonar la compañía actual para ingresar en otra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API para calcular SobreTiempo -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-gear"></i>
+                            <h5>API para calcular SobreTiempo</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="OtcConfigurations" asp-action="Index" class="btn btn-primary">Ingresar</a>
+                            <p>Configurar API para calcular SobreTiempo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grupo de Negocios -->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-calculator"></i>
+                            <h5>Deducciones Legales</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a asp-controller="LegalDeductions" asp-action="Index" class="btn btn-primary">Acceder</a>
+                            <p>Administrar las deducciones legales por país</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OTROS-->
+        <div class="flip-card-container">
+            <div class="flip-card-wrapper">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <i class="bi bi-bank"></i>
+                            <h5>Otras Configuraciones</h5>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="/Home/OtherClasifications" class="btn btn-primary">Ingresar</a>
+                            <p>Administrar otras configuraciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

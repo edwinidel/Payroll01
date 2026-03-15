@@ -1,0 +1,73 @@
+﻿@model IEnumerable<_2FA.Data.Entities.LegalDeductionEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-6">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="btn btn-action" asp-action="Create"><i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <div class="col-md-10" style="text-align: center;">
+                <h1>Deducciones Legales</h1>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Country)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeducFromPayroll)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @(item.Country?.Name_es ?? string.Empty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DeducFromPayroll)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsActive)
+                            </td>
+                            <td>
+                                <a title="Editar Registro" class="btn btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil"></i></a> 
+                                <a title="Ver Detalles" class="btn btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info-circle"></i></a> 
+                                <a title="Eliminar Registro" class="btn btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<p>
+</p>

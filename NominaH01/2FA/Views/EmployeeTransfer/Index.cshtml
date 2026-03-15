@@ -1,0 +1,329 @@
+@model _2FA.Models.EmployeeTransferViewModel
+@{
+    ViewData["Title"] = "Transferencia de Empleados";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">
+        <i class="bi bi-people-fill me-2 text-primary"></i>Transferencia de Empleados
+    </h1>
+    <div>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-1"></i>Volver
+        </a>
+    </div>
+</div>
+
+<!-- Alert Messages -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-2"></i>@TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <!-- Transfer Form -->
+    <div class="col-lg-8">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="bi bi-arrow-left-right me-2"></i>Configurar Transferencia
+                </h6>
+            </div>
+            <div class="card-body">
+                <form asp-action="ConfirmTransfer" method="get" id="transferForm">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="SourceCompanyId" class="form-label">Compañía Origen *</label>
+                            <select asp-for="SourceCompanyId" asp-items="Model.SourceCompanies" 
+                                    class="form-select" id="sourceCompanySelect" required>
+                                <option value="">-- Seleccione compañía de origen --</option>
+                            </select>
+                            <span asp-validation-for="SourceCompanyId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="TargetCompanyId" class="form-label">Compañía Destino *</label>
+                            <select asp-for="TargetCompanyId" asp-items="Model.TargetCompanies" 
+                                    class="form-select" id="targetCompanySelect" required>
+                                <option value="">-- Seleccione compañía de destino --</option>
+                            </select>
+                            <span asp-validation-for="TargetCompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Business Group Warning -->
+                    <div id="businessGroupWarning" class="alert alert-warning d-none" role="alert">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        Las compañías seleccionadas no pertenecen al mismo grupo de negocio. 
+                        Solo se pueden transferir empleados entre compañías del mismo BusinessGroup.
+                    </div>
+
+                    <!-- Employee Selection -->
+                    <div id="employeeSelectionSection" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <strong>Empleados a Transferir *</strong>
+                            </label>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="selectAllBtn">
+                                    <i class="bi bi-check2-square me-1"></i>Seleccionar Todos
+                                </button>
+                                <span class="text-muted" id="employeeCount">0 empleados seleccionados</span>
+                            </div>
+                            <div id="employeesList" class="border rounded p-3" style="max-height: 400px; overflow-y: auto; background-color: #f8f9fa;">
+                                <!-- Employees will be loaded here dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Comments" class="form-label">Comentarios (Opcional)</label>
+                            <textarea asp-for="Comments" class="form-control" rows="3" 
+                                      placeholder="Agregar comentarios sobre la transferencia..."></textarea>
+                            <span asp-validation-for="Comments" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-warning me-md-2" id="validateBtn">
+                                <i class="bi bi-check-circle me-1"></i>Validar Transferencia
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="confirmBtn" disabled>
+                                <i class="bi bi-arrow-right me-1"></i>Confirmar Transferencia
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Information Panel -->
+    <div class="col-lg-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="bi bi-info-circle me-2"></i>Información
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6 class="text-primary">Requisitos para la Transferencia:</h6>
+                    <ul class="list-unstyled small">
+                        <li><i class="bi bi-check text-success me-2"></i>Ambas compañías deben pertenecer al mismo BusinessGroup</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Solo se pueden transferir empleados activos</li>
+                        <li><i class="bi bi-check text-success me-2"></i>El usuario debe tener permisos de Administrador</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-3">
+                    <h6 class="text-primary">Consideraciones:</h6>
+                    <ul class="list-unstyled small">
+                        <li><i class="bi bi-info text-info me-2"></i>Los empleados mantienen toda su información personal</li>
+                        <li><i class="bi bi-info text-info me-2"></i>Se actualiza la fecha y usuario de modificación</li>
+                        <li><i class="bi bi-info text-info me-2"></i>Los datos históricos se mantienen intactos</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-info" role="alert">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    <strong>Consejo:</strong> Después de seleccionar las compañías, podrá ver todos los empleados disponibles para transferir.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        /* Fix dropdown z-index issues for employee transfer page */
+        #transferForm .form-select {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Ensure Bootstrap 5 dropdown menus appear above content-container */
+        #transferForm .dropdown-menu {
+            z-index: 1050 !important;
+        }
+        
+        /* Container with lower z-index */
+        #employeeSelectionSection {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function() {
+            let selectedEmployees = new Set();
+            let currentBusinessGroupId = null;
+
+            // Handle company selection changes
+            $('#sourceCompanySelect, #targetCompanySelect').on('change', function() {
+                validateCompanies();
+                if ($('#sourceCompanySelect').val() && $('#targetCompanySelect').val()) {
+                    loadEmployees();
+                }
+            });
+
+            // Validate that companies belong to same business group
+            function validateCompanies() {
+                const sourceCompanyId = $('#sourceCompanySelect').val();
+                const targetCompanyId = $('#targetCompanySelect').val();
+
+                if (sourceCompanyId && targetCompanyId) {
+                    // This would need to be implemented to check business group
+                    // For now, we'll assume validation passes
+                    $('#businessGroupWarning').addClass('d-none');
+                    $('#employeeSelectionSection').removeClass('d-none');
+                } else {
+                    $('#employeeSelectionSection').addClass('d-none');
+                }
+            }
+
+            // Load employees from source company
+            function loadEmployees() {
+                const sourceCompanyId = $('#sourceCompanySelect').val();
+                if (!sourceCompanyId) return;
+
+                $.ajax({
+                    url: '@Url.Action("LoadEmployees")',
+                    type: 'GET',
+                    data: { companyId: sourceCompanyId },
+                    success: function(response) {
+                        if (response.success) {
+                            displayEmployees(response.employees);
+                        } else {
+                            alert('Error al cargar empleados: ' + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error al cargar empleados.');
+                    }
+                });
+            }
+
+            // Display employees in the selection list
+            function displayEmployees(employees) {
+                const container = $('#employeesList');
+                container.empty();
+                selectedEmployees.clear(); // Clear selection when new employees load
+
+                if (employees.length === 0) {
+                    container.html('<div class="text-center text-muted py-4"><i class="bi bi-person-x fs-1 mb-2"></i><br>No hay empleados activos en esta compañía</div>');
+                    updateEmployeeSelection();
+                    return;
+                }
+
+                employees.forEach(function(employee) {
+                    const employeeHtml = `
+                        <div class="form-check mb-2 p-2 border rounded hover-bg-light">
+                            <input class="form-check-input employee-checkbox" type="checkbox" 
+                                   value="${employee.id}" id="emp_${employee.id}">
+                            <label class="form-check-label w-100" for="emp_${employee.id}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>${employee.fullName}</strong> (${employee.code})
+                                        <br><small class="text-muted">
+                                            ${employee.currentPosition} - ${employee.currentDepartment}
+                                        </small>
+                                    </div>
+                                    <div class="text-end">
+                                        <small class="text-muted">Ingreso: ${new Date(employee.hiringDate).toLocaleDateString()}</small>
+                                        <br><span class="badge bg-success">${employee.status}</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    `;
+                    container.append(employeeHtml);
+                });
+
+                // Handle employee checkbox changes
+                $('.employee-checkbox').on('change', function() {
+                    updateEmployeeSelection();
+                });
+
+                updateEmployeeSelection();
+            }
+
+            // Update selected employees count and list
+            function updateEmployeeSelection() {
+                selectedEmployees.clear();
+                $('.employee-checkbox:checked').each(function() {
+                    selectedEmployees.add(parseInt($(this).val()));
+                });
+
+                const count = selectedEmployees.size;
+                $('#employeeCount').text(`${count} empleado${count !== 1 ? 's' : ''} seleccionado${count !== 1 ? 's' : ''}`);
+                $('#confirmBtn').prop('disabled', count === 0);
+            }
+
+            // Select all employees
+            $('#selectAllBtn').on('click', function() {
+                const allChecked = $('.employee-checkbox:checked').length === $('.employee-checkbox').length;
+                $('.employee-checkbox').prop('checked', !allChecked);
+                updateEmployeeSelection();
+            });
+
+            // Add selected employees to form before submission
+            function addEmployeesToForm() {
+                if (selectedEmployees.size === 0) {
+                    alert('Debe seleccionar al menos un empleado para transferir.');
+                    return false;
+                }
+
+                const form = $('#transferForm');
+                
+                // Remove any existing hidden inputs for selected employees
+                form.find('input[name="SelectedEmployeeIds"]').remove();
+                
+                // Add each selected employee as a hidden input
+                let index = 0;
+                selectedEmployees.forEach(function(employeeId) {
+                    form.append(`<input type="hidden" name="SelectedEmployeeIds[${index}]" value="${employeeId}">`);
+                    index++;
+                });
+
+                return true;
+            }
+
+            // Handle form submission
+            $('#transferForm').on('submit', function(e) {
+                // Add employees to form before submission
+                if (!addEmployeesToForm()) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                return true;
+            });
+
+            // Validate transfer button (for testing/preparation)
+            $('#validateBtn').on('click', function() {
+                if (selectedEmployees.size === 0) {
+                    alert('Debe seleccionar al menos un empleado para transferir.');
+                    return;
+                }
+
+                // Add employees to form for testing
+                if (addEmployeesToForm()) {
+                    alert(`Transferencia validada. ${selectedEmployees.size} empleado${selectedEmployees.size !== 1 ? 's' : ''} seleccionado${selectedEmployees.size !== 1 ? 's' : ''}. Puede proceder a confirmar.`);
+                }
+            });
+        });
+    </script>
+}

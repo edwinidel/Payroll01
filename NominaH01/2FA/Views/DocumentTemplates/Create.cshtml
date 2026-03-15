@@ -1,0 +1,146 @@
+@model _2FA.Data.Entities.DocumentTemplateEntity
+
+@{
+    ViewData["Title"] = "Crear plantilla";
+}
+
+<h2>Crear plantilla</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Logo (opcional)</label>
+        <input type="file" name="logo" accept="image/*" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Firma (opcional)</label>
+        <input type="file" name="signature" accept="image/*" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Tipo de Documento (opcional)</label>
+        <select id="documentTypeSelect" name="DocumentTypeId" class="form-control">
+            <option value="">-- Ninguno --</option>
+        </select>
+        <button type="button" id="insertSignatureBtn" class="btn btn-sm btn-outline-primary mt-2">Insertar firma del tipo seleccionado</button>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h5>Campos disponibles</h5>
+            <p class="text-muted">Arrastra un campo sobre el contenido.</p>
+            <div id="fieldsAccordion" class="accordion" aria-live="polite">
+                <div class="text-muted p-2" id="fieldsLoading">Cargando...</div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label>Contenido</label>
+                <textarea id="summernote" name="Content" style="height:400px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Cancelar</a>
+</form>
+
+
+
+@section Scripts{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script>
+        $(function(){
+            $('#summernote').summernote({
+                height: 400
+            });
+
+            // load fields dynamically into accordion (Bootstrap 5 data-bs attributes)
+            $.getJSON('@Url.Action("Fields")', function (groups) {
+                var accordion = $('#fieldsAccordion').empty();
+                groups.forEach(function (g, idx) {
+                    var headingId = 'fieldHeading' + idx;
+                    var collapseId = 'fieldCollapse' + idx;
+
+                    var item = $('<div>').addClass('accordion-item');
+
+                    var header = $('<h2>').addClass('accordion-header').attr('id', headingId);
+                    var btn = $('<button>')
+                        .addClass('accordion-button' + (idx === 0 ? '' : ' collapsed'))
+                        .attr('type', 'button')
+                        .attr('data-bs-toggle', 'collapse')
+                        .attr('data-bs-target', '#' + collapseId)
+                        .attr('aria-expanded', idx === 0 ? 'true' : 'false')
+                        .attr('aria-controls', collapseId)
+                        .text(g.group);
+                    header.append(btn);
+
+                    var bodyWrapper = $('<div>')
+                        .attr('id', collapseId)
+                        .addClass('accordion-collapse collapse' + (idx === 0 ? ' show' : ''))
+                        .attr('aria-labelledby', headingId)
+                        .attr('data-bs-parent', '#fieldsAccordion');
+
+                    var body = $('<div>').addClass('accordion-body p-0');
+                    var list = $('<div>').addClass('list-group list-group-flush');
+                    g.fields.forEach(function (f) {
+                        var itemBtn = $('<button>')
+                            .addClass('list-group-item list-group-item-action draggable-field')
+                            .attr('type', 'button')
+                            .attr('draggable', 'true')
+                            .attr('data-field', f.placeholder)
+                            .text(f.name + ' — ' + f.placeholder);
+                        list.append(itemBtn);
+                    });
+                    body.append(list);
+                    bodyWrapper.append(body);
+                    item.append(header).append(bodyWrapper);
+                    accordion.append(item);
+                });
+
+                $('.draggable-field').on('dragstart', function (ev) {
+                    ev.originalEvent.dataTransfer.setData('text/plain', $(this).data('field'));
+                });
+            });
+
+            // allow drop into summernote editable area
+            $(document).on('dragover', '.note-editable', function (e) { e.preventDefault(); });
+            $(document).on('drop', '.note-editable', function (e) {
+                e.preventDefault();
+                var data = e.originalEvent.dataTransfer.getData('text/plain');
+                // insert at caret
+                var editor = $(this);
+                editor.focus();
+                // use summernote API to insert HTML
+                $('#summernote').summernote('saveRange');
+                $('#summernote').summernote('restoreRange');
+                $('#summernote').summernote('pasteHTML', data);
+            });
+
+            // load document types for signature insertion
+            $.getJSON('@Url.Action("List", "DocumentTypes")', function(list) {
+                var sel = $('#documentTypeSelect');
+                list.forEach(function (d) {
+                    sel.append($('<option>').val(d.id).text(d.name));
+                });
+            });
+
+            $('#insertSignatureBtn').on('click', function () {
+                var id = $('#documentTypeSelect').val();
+                if (!id) { alert('Seleccione un tipo de documento'); return; }
+                $.getJSON('@Url.Action("GetPrimarySignatureForType", "DocumentTypes")', { documentTypeId: id }, function (data) {
+                    if (!data || !data.signatureUrl) { alert('No hay firma disponible para este tipo'); return; }
+                    var imgHtml = '<img src="' + data.signatureUrl + '" alt="Firma" style="max-height:120px;" />';
+                    $('#summernote').summernote('saveRange');
+                    $('#summernote').summernote('restoreRange');
+                    $('#summernote').summernote('pasteHTML', imgHtml);
+                }).fail(function () { alert('Error al obtener la firma'); });
+            });
+        });
+    </script>
+}

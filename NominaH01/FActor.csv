@@ -1,0 +1,29 @@
+Nombre,Codigo,Paíis,Hrs. Regulares,SobreTiempo,Factor de Pago,Recurrente
+Salario Regular,,PA,Sí,,1,No
+SobreTiemp,,PA,,Sí,1,No
+Ajuste B/.,,PA,Sí,,1,No
+Comisión,,PA,Sí,,1,Sí
+Prima de Producción,,PA,Sí,,1,Sí
+Bonificaciones,,PA,Sí,,1,No
+Gratificaciones,,PA,Sí,,1,No
+Vacaciones,,PA,Sí,,1,No
+XIII Mes,,PA,Sí,,1,No
+Mejora al XIIi Mes,,PA,Sí,,1,No
+Participación de Utilidades,,PA,Sí,,1,No
+Gto de Transporte,,PA,Sí,,1,Sí
+Viaticos,,PA,Sí,,1,Sí
+Gastos de Representación,,PA,Sí,,1,Sí
+GR del XIII Mes,,PA,Sí,,1,No
+GR de Vacaciones,,PA,Sí,,1,No
+Preaviso,,PA,Sí,,1,No
+Prima de Antiguedad,,PA,Sí,,1,No
+Indemnización,,PA,Sí,,1,No
+Ingreso 6%,,PA,Sí,,1,No
+Bono de Asistencia,,PA,Sí,,1,No
+Lluvia,,PA,Sí,,1,No
+Altura hasta 125ms,,PA,Sí,,1,No
+Altura mayor a 125ms,,PA,Sí,,1,No
+Produndidad,,PA,Sí,,1,No
+Tunel,,PA,Sí,,1,No
+Martillo,,PA,Sí,,1,No
+Rastrilleo,,PA,Sí,,1,No

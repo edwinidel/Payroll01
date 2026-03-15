@@ -1,0 +1,91 @@
+@using Microsoft.AspNetCore.Identity
+@using _2FA.Data.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="employees-page">
+    <div class="three-cards-layout">
+        <div class="flip-cards-row">
+            <div class="flip-card-container">
+                <div class="flip-card-wrapper">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="bi bi-people"></i>
+                                <h5>Empleado</h5>
+                            </div>
+                            <div class="flip-card-back">
+                                <a asp-controller="Employees" asp-action="Index" class="btn btn-primary">Acceder</a>
+                                <p>Administración de datos de empleados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card-container">
+                <div class="flip-card-wrapper">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="bi bi-person-lines-fill"></i>
+                                <h5>Tipos de Empleados</h5>
+                            </div>
+                            <div class="flip-card-back">
+                                <a asp-controller="EmployeeTypes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                                <p>Tipos de Empleados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card-container">
+                <div class="flip-card-wrapper">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="bi bi-person-vcard"></i>
+                                <h5>Transferir Empleados</h5> 
+                            </div>
+                            <div class="flip-card-back">
+                                <a asp-controller="EmployeeTransfer" asp-action="Index" class="btn btn-primary">Acceder</a>
+                                <p>Transferencia de empleados entre compañías del mismo grupo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card-container">
+                <div class="flip-card-wrapper">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="bi bi-person-vcard"></i>
+                                <h5>Tipo de Documento de Identidad</h5>
+                            </div>
+                            <div class="flip-card-back">
+                                <a asp-controller="IdentityDocumentTypes" asp-action="Index" class="btn btn-primary">Acceder</a>
+                                <p>Tipos de documentos de identidad a utilizar con los empleados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="flip-card-container">
+                <div class="flip-card-wrapper">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <i class="bi bi-person-vcard"></i>
+                                <h5>Correspondencia</h5>
+                            </div>
+                            <div class="flip-card-back">
+                                <a asp-controller="Home" asp-action="Correspondence" class="btn btn-primary">Acceder</a>
+                                <p>Correspondencia con datos de empleados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

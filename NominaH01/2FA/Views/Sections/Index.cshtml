@@ -1,0 +1,67 @@
+﻿@model IEnumerable<_2FA.Data.Entities.SectionEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="text-align: center;">
+    <h2>Listado de Seccciones</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Nuevo Banco" class="btn-action" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Created)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) 
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @if(item.IsActive)
+                                        {
+                                            <span class="badge bg-success">Sí</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">No</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedLocal)
+                                    </td>
+                                    <td>
+                                        <a title="Editar registro" class="btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a title="Detalle del registro" class="btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                        <a title="Borrar registro" class="btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+    </div>
+</div>

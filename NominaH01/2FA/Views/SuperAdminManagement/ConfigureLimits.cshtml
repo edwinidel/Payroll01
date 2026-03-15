@@ -1,0 +1,65 @@
+@model _2FA.Models.BusinessGroupLimitsViewModel
+
+@{
+    ViewData["Title"] = "Configurar Límites";
+}
+
+<div style="text-align: center;">
+    <h2>Configurar Límites - @Model.Name</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="p-3">
+                    <h5>Configuración de Límites</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form asp-action="ConfigureLimits">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Name" />
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="MaxCompanies" class="control-label"></label>
+                                        <input asp-for="MaxCompanies" class="form-control" placeholder="Sin límite" />
+                                        <span asp-validation-for="MaxCompanies" class="text-danger"></span>
+                                        <small class="form-text text-muted">Empresas actuales: @Model.CurrentCompanies</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="MaxEmployees" class="control-label"></label>
+                                        <input asp-for="MaxEmployees" class="form-control" placeholder="Sin límite" />
+                                        <span asp-validation-for="MaxEmployees" class="text-danger"></span>
+                                        <small class="form-text text-muted">Empleados actuales: @Model.CurrentEmployees</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <strong>Nota:</strong> Deje los campos en blanco para no establecer límites. No puede establecer límites menores al uso actual.
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <a title="Regresar" class="btn btn-secondary" asp-action="Index"><i class="fa-solid fa-arrow-left"></i> Regresar</a>
+                                <button title="Guardar" class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

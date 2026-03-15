@@ -1,0 +1,177 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <div class="row">
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.SalaryType)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.SalaryType)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.RegularHours)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.RegularHours)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.AgreeSalary)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.AgreeSalary)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.HourSalary)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.HourSalary)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.RetainISR)
+                </dt>
+                <dd class="col-sm-12">
+                    @if(Model.RetainISR)
+                    {
+                        @Html.DisplayName("Sí")
+                    }
+                    else 
+                    {
+                        @Html.DisplayName("No")
+                    }
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.TypeOfWorkerId)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.TypeOfWorker.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.PaymentGroupId)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.PaymentGroup.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.IsrMethod)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.IsrMethod)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.IsrFixed)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.IsrFixed)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.AdditionalIsr)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.AdditionalIsr)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.DeclareIsr)
+                </dt>
+                <dd class="col-sm-12">
+                    @if(Model.DeclareIsr)
+                    {
+                        @Html.DisplayName("Sí")
+                    }
+                    else 
+                    {
+                        @Html.DisplayName("No")
+                    }
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <label class="form-label mt-3">Datos del Banco</label>
+    <div class="row">
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.PayingBankId)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.Bank.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.BankId)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.Bank.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.PayAccount)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.PayAccount)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.PayAccountType)
+                </dt>
+                <dd class="col-sm-12">
+                    @Html.DisplayFor(model => model.PayAccountType)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

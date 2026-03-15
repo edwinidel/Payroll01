@@ -1,0 +1,57 @@
+@model _2FA.Data.Entities.PaymentGroupEntity
+
+
+<div class="roq">
+    <div class="col-md-7">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label asp-for="PaymentFrequencyId" class="control-label"></label>
+            <select asp-for="PaymentFrequencyId" class ="form-control" asp-items="ViewBag.PaymentFrequencyId"></select>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <div style="text-align: center;">
+            <label asp-for="IsActive" class="control-label"></label>
+        </div>
+        <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+            <input class="form-check-input" asp-for="IsActive" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="BaseHours" class="control-label"></label>
+            <input asp-for="BaseHours" class="form-control" />
+            <span asp-validation-for="BaseHours" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="LastPayDate" class="control-label"></label>
+            <input asp-for="LastPayDate" class="form-control" />
+            <span asp-validation-for="LastPayDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="LastAbsensestDate" class="control-label"></label>
+            <input asp-for="LastAbsensestDate" class="form-control" />
+            <span asp-validation-for="LastAbsensestDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label asp-for="ExtraTimeDate" class="control-label"></label>
+            <input asp-for="ExtraTimeDate" class="form-control" />
+            <span asp-validation-for="ExtraTimeDate" class="text-danger"></span>
+        </div>
+    </div>
+</div>

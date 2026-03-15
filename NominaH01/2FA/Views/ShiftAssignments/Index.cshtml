@@ -1,0 +1,87 @@
+@model IEnumerable<_2FA.Data.Entities.ShiftAssignmentEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="text-align: center;">
+    <h2>Listado de Asignaciones de Turnos</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-10">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Nueva Asignación" class="btn-action" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                    <a title="Ver Calendario" class="btn-action" asp-action="Calendar"><i class="fa-solid fa-calendar"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <table class="table" id="table2">
+                    <thead>
+                        <tr>
+                            <th>
+                                Empleado
+                            </th>
+                            <th>
+                                Turno
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th>
+                                Horario
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Created)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Shift.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Schedule.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedLocal)
+                                </td>
+                                <td>
+                                    <a title="Editar registro" class="btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a title="Detalle del registro" class="btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+                                    <a title="Borrar registro" class="btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                                    <form asp-action="SendNotification" asp-route-id="@item.Id" method="post" style="display:inline;">
+                                        <button type="submit" title="Enviar Notificación" class="btn-index" onclick="return confirm('¿Enviar notificación al empleado?');"><i class="fa-solid fa-envelope"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

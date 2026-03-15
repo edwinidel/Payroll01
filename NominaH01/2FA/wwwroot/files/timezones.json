@@ -1,0 +1,2932 @@
+[
+  {
+    "Name": "Africa/Abidjan",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Accra",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Addis_Ababa",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Algiers",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Asmara",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Bamako",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Bangui",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Banjul",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Bissau",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Blantyre",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Brazzaville",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Bujumbura",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Cairo",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Casablanca",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Ceuta",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Conakry",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Dakar",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Dar_es_Salaam",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Djibouti",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Douala",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/El_Aaiun",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Freetown",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Gaborone",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Harare",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Johannesburg",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Juba",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Kampala",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Khartoum",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Kigali",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Kinshasa",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Lagos",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Libreville",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Lome",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Luanda",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Lubumbashi",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Lusaka",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Malabo",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Maputo",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Maseru",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Mbabane",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Mogadishu",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Monrovia",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Nairobi",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Africa/Ndjamena",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Niamey",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Nouakchott",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Ouagadougou",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Porto-Novo",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Sao_Tome",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Timbuktu",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Africa/Tripoli",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Africa/Tunis",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Africa/Windhoek",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "America/Adak",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -32400
+  },
+  {
+    "Name": "America/Anchorage",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/Anguilla",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Antigua",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Araguaina",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Buenos_Aires",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Catamarca",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/ComodRivadavia",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Cordoba",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Jujuy",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/La_Rioja",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Mendoza",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Rio_Gallegos",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Salta",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/San_Juan",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/San_Luis",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Tucuman",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Argentina/Ushuaia",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Aruba",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Asuncion",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Atikokan",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Atka",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -32400
+  },
+  {
+    "Name": "America/Bahia",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Bahia_Banderas",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Barbados",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Belem",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Belize",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Blanc-Sablon",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Boa_Vista",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Bogota",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Boise",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Buenos_Aires",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Cambridge_Bay",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Campo_Grande",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Cancun",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Caracas",
+    "GmtOffset": -16200,
+    "DaylightSavingOffset": -16200
+  },
+  {
+    "Name": "America/Catamarca",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Cayenne",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Cayman",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Chicago",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Chihuahua",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Coral_Harbour",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Cordoba",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Costa_Rica",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Creston",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Cuiaba",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Curacao",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Danmarkshavn",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "America/Dawson",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Dawson_Creek",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Denver",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Detroit",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Dominica",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Edmonton",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Eirunepe",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/El_Salvador",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Ensenada",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Fort_Nelson",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Fort_Wayne",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Fortaleza",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Glace_Bay",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Godthab",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "America/Goose_Bay",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Grand_Turk",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Grenada",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Guadeloupe",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Guatemala",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Guayaquil",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Guyana",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Halifax",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Havana",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Hermosillo",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Indiana/Indianapolis",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indiana/Knox",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Indiana/Marengo",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indiana/Petersburg",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indiana/Tell_City",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Indiana/Vevay",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indiana/Vincennes",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indiana/Winamac",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Indianapolis",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Inuvik",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Iqaluit",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Jamaica",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Jujuy",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Juneau",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/Kentucky/Louisville",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Kentucky/Monticello",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Knox_IN",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Kralendijk",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/La_Paz",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Lima",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Los_Angeles",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Louisville",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Lower_Princes",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Maceio",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Managua",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Manaus",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Marigot",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Martinique",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Matamoros",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Mazatlan",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Mendoza",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Menominee",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Merida",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Metlakatla",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/Mexico_City",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Miquelon",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "America/Moncton",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Monterrey",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Montevideo",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "America/Montreal",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Montserrat",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Nassau",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/New_York",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Nipigon",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Nome",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/Noronha",
+    "GmtOffset": -7200,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "America/North_Dakota/Beulah",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/North_Dakota/Center",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/North_Dakota/New_Salem",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Ojinaga",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Panama",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Pangnirtung",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Paramaribo",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Phoenix",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Port-au-Prince",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Port_of_Spain",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Porto_Acre",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Porto_Velho",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Puerto_Rico",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Rainy_River",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Rankin_Inlet",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Recife",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Regina",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Resolute",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Rio_Branco",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Rosario",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Santa_Isabel",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Santarem",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Santiago",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Santo_Domingo",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Sao_Paulo",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "America/Scoresbysund",
+    "GmtOffset": -3600,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "America/Shiprock",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Sitka",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/St_Barthelemy",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/St_Johns",
+    "GmtOffset": -12600,
+    "DaylightSavingOffset": -9000
+  },
+  {
+    "Name": "America/St_Kitts",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/St_Lucia",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/St_Thomas",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/St_Vincent",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Swift_Current",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Tegucigalpa",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "America/Thule",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "America/Thunder_Bay",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Tijuana",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Toronto",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Tortola",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Vancouver",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Virgin",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "America/Whitehorse",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "America/Winnipeg",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "America/Yakutat",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "America/Yellowknife",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Antarctica/Casey",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Antarctica/Davis",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Antarctica/DumontDUrville",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Antarctica/Macquarie",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Antarctica/Mawson",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Antarctica/McMurdo",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Antarctica/Palmer",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Antarctica/Rothera",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Antarctica/South_Pole",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Antarctica/Syowa",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Antarctica/Troll",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Antarctica/Vostok",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Arctic/Longyearbyen",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Asia/Aden",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Almaty",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Amman",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Anadyr",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Asia/Aqtau",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Aqtobe",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Ashgabat",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Ashkhabad",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Baghdad",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Bahrain",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Baku",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Bangkok",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Beirut",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Bishkek",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Brunei",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Calcutta",
+    "GmtOffset": 19800,
+    "DaylightSavingOffset": 19800
+  },
+  {
+    "Name": "Asia/Chita",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Choibalsan",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Chongqing",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Chungking",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Colombo",
+    "GmtOffset": 19800,
+    "DaylightSavingOffset": 19800
+  },
+  {
+    "Name": "Asia/Dacca",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Damascus",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Dhaka",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Dili",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Dubai",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Asia/Dushanbe",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Gaza",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Harbin",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Hebron",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Ho_Chi_Minh",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Hong_Kong",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Hovd",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Irkutsk",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Istanbul",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Jakarta",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Jayapura",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Jerusalem",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Kabul",
+    "GmtOffset": 16200,
+    "DaylightSavingOffset": 16200
+  },
+  {
+    "Name": "Asia/Kamchatka",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Asia/Karachi",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Kashgar",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Kathmandu",
+    "GmtOffset": 20700,
+    "DaylightSavingOffset": 20700
+  },
+  {
+    "Name": "Asia/Katmandu",
+    "GmtOffset": 20700,
+    "DaylightSavingOffset": 20700
+  },
+  {
+    "Name": "Asia/Khandyga",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Kolkata",
+    "GmtOffset": 19800,
+    "DaylightSavingOffset": 19800
+  },
+  {
+    "Name": "Asia/Krasnoyarsk",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Kuala_Lumpur",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Kuching",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Kuwait",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Macao",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Macau",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Magadan",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Asia/Makassar",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Manila",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Muscat",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Asia/Nicosia",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Novokuznetsk",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Novosibirsk",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Omsk",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Oral",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Phnom_Penh",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Pontianak",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Pyongyang",
+    "GmtOffset": 30600,
+    "DaylightSavingOffset": 30600
+  },
+  {
+    "Name": "Asia/Qatar",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Qyzylorda",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Rangoon",
+    "GmtOffset": 23400,
+    "DaylightSavingOffset": 23400
+  },
+  {
+    "Name": "Asia/Riyadh",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Riyadh87",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Riyadh88",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Riyadh89",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Saigon",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Sakhalin",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Asia/Samarkand",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Seoul",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Shanghai",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Singapore",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Srednekolymsk",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Asia/Taipei",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Tashkent",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Tbilisi",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Asia/Tehran",
+    "GmtOffset": 12600,
+    "DaylightSavingOffset": 16200
+  },
+  {
+    "Name": "Asia/Tel_Aviv",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Asia/Thimbu",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Thimphu",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Tokyo",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Ujung_Pandang",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Asia/Ulaanbaatar",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Ulan_Bator",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Urumqi",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Asia/Vientiane",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Asia/Vladivostok",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Asia/Yakutsk",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Asia/Yekaterinburg",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Asia/Yerevan",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Atlantic/Azores",
+    "GmtOffset": -3600,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Atlantic/Bermuda",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Atlantic/Canary",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Atlantic/Cape_Verde",
+    "GmtOffset": -3600,
+    "DaylightSavingOffset": -3600
+  },
+  {
+    "Name": "Atlantic/Faeroe",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Atlantic/Faroe",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Atlantic/Jan_Mayen",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Atlantic/Madeira",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Atlantic/Reykjavik",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Atlantic/South_Georgia",
+    "GmtOffset": -7200,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "Atlantic/St_Helena",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Atlantic/Stanley",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Australia/ACT",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Adelaide",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 37800
+  },
+  {
+    "Name": "Australia/Brisbane",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Australia/Broken_Hill",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 37800
+  },
+  {
+    "Name": "Australia/Canberra",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Currie",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Darwin",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 34200
+  },
+  {
+    "Name": "Australia/Eucla",
+    "GmtOffset": 31500,
+    "DaylightSavingOffset": 31500
+  },
+  {
+    "Name": "Australia/Hobart",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/LHI",
+    "GmtOffset": 37800,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Lindeman",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Australia/Lord_Howe",
+    "GmtOffset": 37800,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Melbourne",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/NSW",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/North",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 34200
+  },
+  {
+    "Name": "Australia/Perth",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Australia/Queensland",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Australia/South",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 37800
+  },
+  {
+    "Name": "Australia/Sydney",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Tasmania",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/Victoria",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Australia/West",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Australia/Yancowinna",
+    "GmtOffset": 34200,
+    "DaylightSavingOffset": 37800
+  },
+  {
+    "Name": "Brazil/Acre",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Brazil/DeNoronha",
+    "GmtOffset": -7200,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "Brazil/East",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "Brazil/West",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "CET",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "CST6CDT",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Canada/Atlantic",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Canada/Central",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Canada/East-Saskatchewan",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Canada/Eastern",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "Canada/Mountain",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Canada/Newfoundland",
+    "GmtOffset": -12600,
+    "DaylightSavingOffset": -9000
+  },
+  {
+    "Name": "Canada/Pacific",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "Canada/Saskatchewan",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Canada/Yukon",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "Chile/Continental",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Chile/EasterIsland",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Cuba",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "EET",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "EST",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "EST5EDT",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "Egypt",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Eire",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Etc/GMT",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/GMT+0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/GMT+1",
+    "GmtOffset": -3600,
+    "DaylightSavingOffset": -3600
+  },
+  {
+    "Name": "Etc/GMT+10",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Etc/GMT+11",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "Etc/GMT+12",
+    "GmtOffset": -43200,
+    "DaylightSavingOffset": -43200
+  },
+  {
+    "Name": "Etc/GMT+2",
+    "GmtOffset": -7200,
+    "DaylightSavingOffset": -7200
+  },
+  {
+    "Name": "Etc/GMT+3",
+    "GmtOffset": -10800,
+    "DaylightSavingOffset": -10800
+  },
+  {
+    "Name": "Etc/GMT+4",
+    "GmtOffset": -14400,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "Etc/GMT+5",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Etc/GMT+6",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Etc/GMT+7",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "Etc/GMT+8",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "Etc/GMT+9",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -32400
+  },
+  {
+    "Name": "Etc/GMT-0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/GMT-1",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Etc/GMT-10",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Etc/GMT-11",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Etc/GMT-12",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Etc/GMT-13",
+    "GmtOffset": 46800,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Etc/GMT-14",
+    "GmtOffset": 50400,
+    "DaylightSavingOffset": 50400
+  },
+  {
+    "Name": "Etc/GMT-2",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Etc/GMT-3",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Etc/GMT-4",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Etc/GMT-5",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Etc/GMT-6",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Etc/GMT-7",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Etc/GMT-8",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Etc/GMT-9",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Etc/GMT0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/Greenwich",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/UCT",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/Universal",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Etc/Zulu",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Europe/Amsterdam",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Andorra",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Athens",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Belfast",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Belgrade",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Berlin",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Bratislava",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Brussels",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Bucharest",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Budapest",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Busingen",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Chisinau",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Copenhagen",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Dublin",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Gibraltar",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Guernsey",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Helsinki",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Isle_of_Man",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Istanbul",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Jersey",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Kaliningrad",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Kiev",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Lisbon",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Ljubljana",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/London",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Europe/Luxembourg",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Madrid",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Malta",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Mariehamn",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Minsk",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Monaco",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Moscow",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Nicosia",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Oslo",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Paris",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Podgorica",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Prague",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Riga",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Rome",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Samara",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Europe/San_Marino",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Sarajevo",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Simferopol",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Skopje",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Sofia",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Stockholm",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Tallinn",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Tirane",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Tiraspol",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Uzhgorod",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Vaduz",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Vatican",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Vienna",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Vilnius",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Volgograd",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Warsaw",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Zagreb",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Europe/Zaporozhye",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Europe/Zurich",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Factory",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "GB",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "GB-Eire",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "GMT",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "GMT+0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "GMT-0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "GMT0",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Greenwich",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "HST",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Hongkong",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Iceland",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Indian/Antananarivo",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Indian/Chagos",
+    "GmtOffset": 21600,
+    "DaylightSavingOffset": 21600
+  },
+  {
+    "Name": "Indian/Christmas",
+    "GmtOffset": 25200,
+    "DaylightSavingOffset": 25200
+  },
+  {
+    "Name": "Indian/Cocos",
+    "GmtOffset": 23400,
+    "DaylightSavingOffset": 23400
+  },
+  {
+    "Name": "Indian/Comoro",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Indian/Kerguelen",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Indian/Mahe",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Indian/Maldives",
+    "GmtOffset": 18000,
+    "DaylightSavingOffset": 18000
+  },
+  {
+    "Name": "Indian/Mauritius",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Indian/Mayotte",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Indian/Reunion",
+    "GmtOffset": 14400,
+    "DaylightSavingOffset": 14400
+  },
+  {
+    "Name": "Iran",
+    "GmtOffset": 12600,
+    "DaylightSavingOffset": 16200
+  },
+  {
+    "Name": "Israel",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "Jamaica",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Japan",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Kwajalein",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Libya",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "MET",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "MST",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "MST7MDT",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Mexico/BajaNorte",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "Mexico/BajaSur",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Mexico/General",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Mideast/Riyadh87",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Mideast/Riyadh88",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Mideast/Riyadh89",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "NZ",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "NZ-CHAT",
+    "GmtOffset": 45900,
+    "DaylightSavingOffset": 49500
+  },
+  {
+    "Name": "Navajo",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "PRC",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "PST8PDT",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Pacific/Apia",
+    "GmtOffset": 46800,
+    "DaylightSavingOffset": 50400
+  },
+  {
+    "Name": "Pacific/Auckland",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Pacific/Bougainville",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Chatham",
+    "GmtOffset": 45900,
+    "DaylightSavingOffset": 49500
+  },
+  {
+    "Name": "Pacific/Chuuk",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Pacific/Easter",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "Pacific/Efate",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Enderbury",
+    "GmtOffset": 46800,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Pacific/Fakaofo",
+    "GmtOffset": 46800,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Pacific/Fiji",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Pacific/Funafuti",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Galapagos",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "Pacific/Gambier",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -32400
+  },
+  {
+    "Name": "Pacific/Guadalcanal",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Guam",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Pacific/Honolulu",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Pacific/Johnston",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Pacific/Kiritimati",
+    "GmtOffset": 50400,
+    "DaylightSavingOffset": 50400
+  },
+  {
+    "Name": "Pacific/Kosrae",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Kwajalein",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Majuro",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Marquesas",
+    "GmtOffset": -34200,
+    "DaylightSavingOffset": -34200
+  },
+  {
+    "Name": "Pacific/Midway",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "Pacific/Nauru",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Niue",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "Pacific/Norfolk",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Noumea",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Pago_Pago",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "Pacific/Palau",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Pacific/Pitcairn",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "Pacific/Ponape",
+    "GmtOffset": 39600,
+    "DaylightSavingOffset": 39600
+  },
+  {
+    "Name": "Pacific/Port_Moresby",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Pacific/Rarotonga",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Pacific/Saipan",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Pacific/Samoa",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "Pacific/Tahiti",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "Pacific/Tarawa",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Tongatapu",
+    "GmtOffset": 46800,
+    "DaylightSavingOffset": 46800
+  },
+  {
+    "Name": "Pacific/Truk",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Pacific/Wake",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Wallis",
+    "GmtOffset": 43200,
+    "DaylightSavingOffset": 43200
+  },
+  {
+    "Name": "Pacific/Yap",
+    "GmtOffset": 36000,
+    "DaylightSavingOffset": 36000
+  },
+  {
+    "Name": "Poland",
+    "GmtOffset": 3600,
+    "DaylightSavingOffset": 7200
+  },
+  {
+    "Name": "Portugal",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "ROC",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "ROK",
+    "GmtOffset": 32400,
+    "DaylightSavingOffset": 32400
+  },
+  {
+    "Name": "Singapore",
+    "GmtOffset": 28800,
+    "DaylightSavingOffset": 28800
+  },
+  {
+    "Name": "Turkey",
+    "GmtOffset": 7200,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "UCT",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "US/Alaska",
+    "GmtOffset": -32400,
+    "DaylightSavingOffset": -28800
+  },
+  {
+    "Name": "US/Aleutian",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -32400
+  },
+  {
+    "Name": "US/Arizona",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "US/Central",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "US/East-Indiana",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "US/Eastern",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "US/Hawaii",
+    "GmtOffset": -36000,
+    "DaylightSavingOffset": -36000
+  },
+  {
+    "Name": "US/Indiana-Starke",
+    "GmtOffset": -21600,
+    "DaylightSavingOffset": -18000
+  },
+  {
+    "Name": "US/Michigan",
+    "GmtOffset": -18000,
+    "DaylightSavingOffset": -14400
+  },
+  {
+    "Name": "US/Mountain",
+    "GmtOffset": -25200,
+    "DaylightSavingOffset": -21600
+  },
+  {
+    "Name": "US/Pacific",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "US/Pacific-New",
+    "GmtOffset": -28800,
+    "DaylightSavingOffset": -25200
+  },
+  {
+    "Name": "US/Samoa",
+    "GmtOffset": -39600,
+    "DaylightSavingOffset": -39600
+  },
+  {
+    "Name": "UTC",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "Universal",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  },
+  {
+    "Name": "W-SU",
+    "GmtOffset": 10800,
+    "DaylightSavingOffset": 10800
+  },
+  {
+    "Name": "WET",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 3600
+  },
+  {
+    "Name": "Zulu",
+    "GmtOffset": 0,
+    "DaylightSavingOffset": 0
+  }
+]

@@ -1,0 +1,84 @@
+@model _2FA.Data.Entities.ShiftAssignmentEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="text-align: center;">
+    <h2>Detalle de Asignación de Turno</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                    <a title="Editar registro" class="btn-action" asp-action="Edit" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    &nbsp;
+                    <a title="Regresar" class="btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                </div>
+            </card-header>
+            <div class="card-body">
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class = "col-sm-4">
+                                Empleado
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Employee.FullName)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                Turno
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Shift.Name)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Date)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Date)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                Horario
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Schedule.Name)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Created)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Created)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.Modified)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.Modified)
+                            </dd>
+                            <dt class = "col-sm-4">
+                                @Html.DisplayNameFor(model => model.ModifiedBy)
+                            </dt>
+                            <dd class = "col-sm-8">
+                                @Html.DisplayFor(model => model.ModifiedBy)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

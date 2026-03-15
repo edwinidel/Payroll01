@@ -1,0 +1,42 @@
+@model IEnumerable<_2FA.Data.Entities.OtcConfigurationEntity>
+@{
+    ViewData["Title"] = "Configuraciones OTC";
+}
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <h1>Configuraciones OTC</h1>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-5">
+        <div class="card-header">
+            <div class="p-3">
+                <a title="Agregar nueva configuración" asp-action="Create" class="btn btn-action"><i class="bi bi-plus-lg"></i></a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@(item.IsActive ? "Sí" : "No")</td>
+                            <td class="text-end">
+                                <a title="Información del registro" class="btn btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-info"></i></a>
+                                <a title="Editar configuración" class="btn btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a title="Eliminar configuración" class="btn btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

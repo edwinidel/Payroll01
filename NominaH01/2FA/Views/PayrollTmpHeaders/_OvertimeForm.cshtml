@@ -1,0 +1,190 @@
+@{
+    var model = new _2FA.Data.Entities.PayrollTmpOvertimeEntity();
+}
+
+<div id="overtimeFormContainer" class="overtime-form-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5>Capturar Horas Extras</h5>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="showConceptsView()">← Volver a Conceptos</button>
+    </div>
+
+    <form id="overtimeForm" asp-action="AddOvertime" asp-controller="PayrollTmpHeaders" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="PayrollTmpEmployeeId" id="PayrollTmpEmployeeId" />
+        <input type="hidden" name="PayrollTmpHeaderId" id="PayrollTmpHeaderId" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="OvertimeDate" class="form-label">Fecha del Sobretiempo</label>
+                    <input name="OvertimeDate" id="OvertimeDate" class="form-control" type="date" required />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label for="EntryTime" class="form-label">Hora de Entrada</label>
+                    <input name="EntryTime" id="EntryTime" class="form-control time-input" type="text" placeholder="HH:MM o HH:MM AM/PM" required />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <label for="ExitTime" class="form-label">Hora de Salida</label>
+                    <input name="ExitTime" id="ExitTime" class="form-control time-input" type="text" placeholder="HH:MM o HH:MM AM/PM" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="TypeOfDayId" class="form-label">Tipo de Día</label>
+                    <select name="TypeOfDayId" id="TypeOfDayId" class="form-control" required>
+                        <option value="">Seleccione...</option>
+                        @if (ViewBag.TypeOfDays != null)
+                        {
+                            foreach (var day in ViewBag.TypeOfDays as IEnumerable<dynamic>)
+                            {
+                                <option value="@day.Id">@day.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="TypeOfWorkScheduleId" class="form-label">Tipo de Jornada</label>
+                    <select name="TypeOfWorkScheduleId" id="TypeOfWorkScheduleId" class="form-control" required>
+                        <option value="">Seleccione...</option>
+                        @if (ViewBag.TypeOfWorkSchedules != null)
+                        {
+                            foreach (var schedule in ViewBag.TypeOfWorkSchedules as IEnumerable<dynamic>)
+                            {
+                                <option value="@schedule.Id">@schedule.Description</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Guardar Horas Extras</button>
+            <button type="button" class="btn btn-secondary" onclick="showConceptsView()">Cancelar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Normalize 12h inputs ("05:00 pm") into 24h ("17:00") 
+        $('#EntryTime, #ExitTime').on('blur', function () {
+            var converted = convertTo24Hour($(this).val());
+            if (converted) {
+                $(this).val(converted);
+            }
+        });
+
+        // Handle form submission
+        $('#overtimeForm').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("AddOvertime", "PayrollTmpHeaders")',
+                type: 'POST',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function (response, status, xhr) {
+                    console.log('Overtime saved successfully');
+                    // Mostrar vista de conceptos después de guardar
+                    showConceptsView();
+                    // Recargar los conceptos del empleado
+                    loadEmployeeConcepts();
+                },
+                error: function (xhr, status, error) {
+                    console.log('Error details:', xhr);
+                    console.log('Status:', status);
+                    console.log('Error:', error);
+
+                    try {
+                        var errorData = JSON.parse(xhr.responseText);
+                        if (errorData && errorData.message) {
+                            alert('Error al guardar las horas extras: ' + errorData.message);
+                        } else {
+                            alert('Error al guardar las horas extras: ' + (xhr.responseText || error));
+                        }
+                    } catch (e) {
+                        alert('Error al guardar las horas extras: ' + (xhr.responseText || error));
+                    }
+                }
+            });
+        });
+    });
+
+    function convertTo24Hour(timeStr) {
+        if (!timeStr) return '';
+        timeStr = timeStr.trim().toUpperCase();
+
+        if (/^\d{1,2}:\d{2}$/.test(timeStr)) {
+            var parts = timeStr.split(':');
+            var hour = parseInt(parts[0]);
+            var minute = parts[1];
+            if (hour >= 1 && hour <= 12) {
+                if (hour < 12) hour += 12;
+            }
+            return hour.toString().padStart(2, '0') + ':' + minute;
+        }
+
+        var match = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/);
+        if (match) {
+            var hour = parseInt(match[1]);
+            var minute = match[2];
+            var period = match[3];
+            if (period === 'PM' && hour !== 12) {
+                hour += 12;
+            } else if (period === 'AM' && hour === 12) {
+                hour = 0;
+            }
+            return hour.toString().padStart(2, '0') + ':' + minute;
+        }
+
+        return timeStr;
+    }
+
+    function showOvertimeFormFromButton(button) {
+        var employeeId = button.getAttribute('data-employee-id');
+        // Get header ID from parent container
+        var conceptsContainer = document.getElementById('conceptsContainer');
+        var headerId = conceptsContainer ? conceptsContainer.getAttribute('data-header-id') : null;
+        showOvertimeForm(employeeId, headerId);
+    }
+
+    function showOvertimeForm(employeeId, headerId) {
+        $('#PayrollTmpEmployeeId').val(employeeId);
+        $('#PayrollTmpHeaderId').val(headerId);
+        $('#conceptsContainer').hide();
+        $('#overtimeFormContainer').show();
+    }
+
+    function showConceptsView() {
+        $('#overtimeFormContainer').hide();
+        $('#conceptsContainer').show();
+    }
+
+    function loadEmployeeConcepts() {
+        var employeeId = $('#PayrollTmpEmployeeId').val();
+        if (employeeId) {
+            fetch(`/PayrollTmpHeaders/GetConceptsByEmployee?employeeId=${employeeId}&partial=true`, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('conceptsContainer').innerHTML = html;
+            })
+            .catch(err => console.error('Error loading concepts:', err));
+        }
+    }
+</script>

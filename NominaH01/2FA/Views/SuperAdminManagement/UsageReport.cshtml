@@ -1,0 +1,177 @@
+@model IEnumerable<_2FA.Models.BusinessGroupLimitsViewModel>
+
+@{
+    ViewData["Title"] = "Reporte de Uso";
+}
+
+<div style="text-align: center;">
+    <h2>Reporte de Uso</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="p-3">
+                    <h5>Reporte de Uso por Grupo de Negocio</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table2">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaxCompanies)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaxEmployees)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrentCompanies)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CurrentEmployees)
+                            </th>
+                            <th>Uso Empresas (%)</th>
+                            <th>Uso Empleados (%)</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            var companyUsagePercent = item.MaxCompanies.HasValue && item.MaxCompanies.Value > 0
+                                ? (double)item.CurrentCompanies / item.MaxCompanies.Value * 100
+                                : 0;
+                            var employeeUsagePercent = item.MaxEmployees.HasValue && item.MaxEmployees.Value > 0
+                                ? (double)item.CurrentEmployees / item.MaxEmployees.Value * 100
+                                : 0;
+
+                            var companyStatus = item.MaxCompanies.HasValue
+                                ? (companyUsagePercent >= 100 ? "danger" : companyUsagePercent >= 80 ? "warning" : "success")
+                                : "info";
+                            var employeeStatus = item.MaxEmployees.HasValue
+                                ? (employeeUsagePercent >= 100 ? "danger" : employeeUsagePercent >= 80 ? "warning" : "success")
+                                : "info";
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @if (item.MaxCompanies.HasValue)
+                                    {
+                                        @item.MaxCompanies.Value.ToString("N0")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sin límite</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.MaxEmployees.HasValue)
+                                    {
+                                        @item.MaxEmployees.Value.ToString("N0")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Sin límite</span>
+                                    }
+                                </td>
+                                <td>
+                                    @item.CurrentCompanies.ToString("N0")
+                                </td>
+                                <td>
+                                    @item.CurrentEmployees.ToString("N0")
+                                </td>
+                                <td>
+                                    @if (item.MaxCompanies.HasValue)
+                                    {
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar bg-@companyStatus" role="progressbar"
+                                                 style="width: @(Math.Min(companyUsagePercent, 100))%"
+                                                 aria-valuenow="@companyUsagePercent"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100">
+                                                @companyUsagePercent.ToString("F1")%
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.MaxEmployees.HasValue)
+                                    {
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar bg-@employeeStatus" role="progressbar"
+                                                 style="width: @(Math.Min(employeeUsagePercent, 100))%"
+                                                 aria-valuenow="@employeeUsagePercent"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100">
+                                                @employeeUsagePercent.ToString("F1")%
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.MaxCompanies.HasValue && companyUsagePercent >= 100)
+                                    {
+                                        <span class="badge bg-danger">Límite alcanzado</span>
+                                    }
+                                    else if (item.MaxEmployees.HasValue && employeeUsagePercent >= 100)
+                                    {
+                                        <span class="badge bg-danger">Límite alcanzado</span>
+                                    }
+                                    else if ((item.MaxCompanies.HasValue && companyUsagePercent >= 80) ||
+                                             (item.MaxEmployees.HasValue && employeeUsagePercent >= 80))
+                                    {
+                                        <span class="badge bg-warning">Cerca del límite</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Dentro del límite</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6>Leyenda:</h6>
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-success me-2">&nbsp;</span>
+                    <small>Dentro del límite</small>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-warning me-2">&nbsp;</span>
+                    <small>Cerca del límite (≥80%)</small>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-danger me-2">&nbsp;</span>
+                    <small>Límite alcanzado (≥100%)</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

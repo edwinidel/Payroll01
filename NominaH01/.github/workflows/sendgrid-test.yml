@@ -1,0 +1,26 @@
+name: SendGrid Test
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  sendgrid-test:
+    name: SendGrid Test (manual)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+      - name: Build SendGridTest
+        working-directory: tools/SendGridTest
+        run: dotnet build --configuration Release
+      - name: Run SendGrid test (requires secrets)
+        working-directory: tools/SendGridTest
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          SENDGRID_FROM: ${{ secrets.SENDGRID_FROM }}
+          SENDGRID_FROM_NAME: ${{ secrets.SENDGRID_FROM_NAME }}
+        run: |
+          dotnet run --project SendGridTest.csproj --configuration Release

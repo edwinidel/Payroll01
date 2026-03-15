@@ -1,0 +1,200 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <div class="row">
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.Code)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Code)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-3">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.IdDocument)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.IdDocument)
+                </dd>   
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.IdentityDocumentTypeId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.IdentityDocumentType.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.Dv)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Dv)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.PositionId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Position.Name)
+                </dd> 
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.CodOfClock)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.CodOfClock)
+                </dd>   
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.ScheduleId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Schedule.Name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.Genere)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Genere)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.SocSecNum)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.SocSecNum)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-1">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.IsrGroup)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.IsrGroup)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.EmployeeTypeId)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.EmployeeType.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.HiringDate)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.HiringDate)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.LastSalaryIncrease)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.LastSalaryIncrease)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.EndOfContract)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.EndOfContract)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.LiquidationDate)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.LiquidationDate)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <dl class="row">
+                <dt class = "col-sm-12">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class = "col-sm-12">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-2">
+            <br />
+            <button type="button"
+                    class="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#observationHistoryModal"
+                    data-employee-id="@Model.Id">
+                Observaciones
+            </button>
+        </div>
+    </div>
+</div>

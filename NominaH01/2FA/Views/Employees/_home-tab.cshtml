@@ -1,0 +1,157 @@
+@model _2FA.Data.Entities.EmployeeEntity
+
+<div class="row g-4 align-items-center">
+    <div class="row">
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="IdDocument" class="control-label"></label>
+                <input asp-for="IdDocument" class="form-control" />
+                <span asp-validation-for="IdDocument" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="IdentityDocumentTypeId" class="control-label"></label>
+                <select asp-for="IdentityDocumentTypeId" class ="form-control" asp-items="ViewBag.IdentityDocumentTypeId"></select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="Dv" class="control-label"></label>
+                <input asp-for="Dv" class="form-control" />
+                <span asp-validation-for="Dv" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="PositionId" class="control-label"></label>
+                <select asp-for="PositionId" class ="form-control" asp-items="ViewBag.PositionId"></select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="CodOfClock" class="control-label"></label>
+                <input asp-for="CodOfClock" class="form-control" />
+                <span asp-validation-for="CodOfClock" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ScheduleId" class="control-label"></label>
+                <select asp-for="ScheduleId" class ="form-control" asp-items="ViewBag.ScheduleId"></select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="Genere" class="control-label"></label>
+                <input asp-for="Genere" class="form-control" />
+                <span asp-validation-for="Genere" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="SocSecNum" class="control-label"></label>
+                <input asp-for="SocSecNum" class="form-control" />
+                <span asp-validation-for="SocSecNum" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label asp-for="IsrGroup" class="control-label"></label>
+                <input asp-for="IsrGroup" class="form-control" />
+                <span asp-validation-for="IsrGroup" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="EmployeeTypeId" class="control-label"></label>
+                <select asp-for="EmployeeTypeId" class ="form-control" asp-items="ViewBag.EmployeeTypeId"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="HiringDate" class="control-label"></label>
+                <input asp-for="HiringDate" class="form-control" />
+                <span asp-validation-for="HiringDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="LastSalaryIncrease" class="control-label"></label>
+                <input asp-for="LastSalaryIncrease" class="form-control" />
+                <span asp-validation-for="LastSalaryIncrease" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="EndOfContract" class="control-label"></label>
+                <input asp-for="EndOfContract" class="form-control" />
+                <span asp-validation-for="EndOfContract" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="LiquidationDate" class="control-label"></label>
+                <input asp-for="LiquidationDate" class="form-control" />
+                <span asp-validation-for="LiquidationDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" id="statusSelect">
+                    <option value="Activo" selected>Activo</option>
+                    <option value="Vacaciones">Vacaciones</option>
+                    <option value="Suspendido">Suspendido</option>
+                    <option value="Licencia">Licencia</option>
+                    <option value="Cesante">Cesante</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div style="text-align: center;">
+                <label asp-for="IsContractor" class="control-label"></label>
+            </div>
+            <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+                <input class="form-check-input" asp-for="IsContractor" type="checkbox" id="isContractorSwitch" style="font-size: 20px;">
+                <label class="form-check-label" for="isContractorSwitch"></label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <br />
+            <button type="button"
+                    class="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#observationHistoryModal"
+                    data-employee-id="@Model.Id"
+                    @(Model?.Id == 0 ? "disabled" : null)>
+                Observaciones
+            </button>
+        </div>
+    </div>
+</div>

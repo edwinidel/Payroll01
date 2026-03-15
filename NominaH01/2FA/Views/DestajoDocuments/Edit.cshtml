@@ -1,0 +1,105 @@
+@model _2FA.Models.DestajoDocumentFormViewModel
+@{
+    ViewData["Title"] = "Editar Documento Destajo";
+}
+
+<h1>Editar Documento Destajo</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CompanyId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <partial name="_Destajo" model="Model" />
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = Model.Id })">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        (function () {
+            const searchInput = document.getElementById('employeeSearch');
+            const employeeItems = document.querySelectorAll('#employeeList [data-employee-index]');
+            const selectedRows = document.querySelectorAll('[data-selected-row]');
+
+            const syncRowVisibility = (checkbox) => {
+                const index = checkbox.getAttribute('data-index');
+                const row = document.querySelector(`[data-selected-row="${index}"]`);
+                if (row) {
+                    row.classList.toggle('d-none', !checkbox.checked);
+                }
+            };
+
+            document.querySelectorAll('.employee-checkbox').forEach(cb => {
+                syncRowVisibility(cb);
+                cb.addEventListener('change', () => syncRowVisibility(cb));
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    const term = searchInput.value.trim().toLowerCase();
+                    employeeItems.forEach(item => {
+                        const content = (item.getAttribute('data-searchable') || '').toLowerCase();
+                        const matches = term === '' || content.includes(term);
+                        item.classList.toggle('d-none', !matches);
+                    });
+                });
+            }
+
+            selectedRows.forEach(row => {
+                const index = row.getAttribute('data-selected-row');
+                const checkbox = document.querySelector(`.employee-checkbox[data-index="${index}"]`);
+                if (checkbox) {
+                    row.classList.toggle('d-none', !checkbox.checked);
+                }
+            });
+        })();
+    </script>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        (function () {
+            const searchInput = document.getElementById('employeeSearch');
+            const employeeItems = document.querySelectorAll('#employeeList [data-employee-index]');
+            const selectedRows = document.querySelectorAll('[data-selected-row]');
+
+            const syncRowVisibility = (checkbox) => {
+                const index = checkbox.getAttribute('data-index');
+                const row = document.querySelector(`[data-selected-row="${index}"]`);
+                if (row) {
+                    row.classList.toggle('d-none', !checkbox.checked);
+                }
+            };
+
+            document.querySelectorAll('.employee-checkbox').forEach(cb => {
+                syncRowVisibility(cb);
+                cb.addEventListener('change', () => syncRowVisibility(cb));
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    const term = searchInput.value.trim().toLowerCase();
+                    employeeItems.forEach(item => {
+                        const content = (item.getAttribute('data-searchable') || '').toLowerCase();
+                        const matches = term === '' || content.includes(term);
+                        item.classList.toggle('d-none', !matches);
+                    });
+                });
+            }
+
+            selectedRows.forEach(row => {
+                const index = row.getAttribute('data-selected-row');
+                const checkbox = document.querySelector(`.employee-checkbox[data-index="${index}"]`);
+                if (checkbox) {
+                    row.classList.toggle('d-none', !checkbox.checked);
+                }
+            });
+        })();
+    </script>
+}

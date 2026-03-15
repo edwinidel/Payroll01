@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NominaH01", "NominaH01", "{8D40DEF0-DA61-45DB-8050-8C677A9EF56A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2FA", "NominaH01\2FA\2FA.csproj", "{146E632F-E19D-4088-8E62-11D5E8ECC01D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OvertimeCalc01", "OvertimeCalc01", "{4A7A84EC-4A93-43C8-8F5C-14650176FDA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvertimeCalculator", "OvertimeCalc01\OvertimeCalculator\OvertimeCalculator.csproj", "{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{146E632F-E19D-4088-8E62-11D5E8ECC01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{146E632F-E19D-4088-8E62-11D5E8ECC01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{146E632F-E19D-4088-8E62-11D5E8ECC01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{146E632F-E19D-4088-8E62-11D5E8ECC01D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{146E632F-E19D-4088-8E62-11D5E8ECC01D} = {8D40DEF0-DA61-45DB-8050-8C677A9EF56A}
+		{5F37D16E-A659-4C6F-B722-5BDCDC61D22F} = {4A7A84EC-4A93-43C8-8F5C-14650176FDA0}
+	EndGlobalSection
+EndGlobal

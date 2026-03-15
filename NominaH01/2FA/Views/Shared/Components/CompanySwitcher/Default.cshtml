@@ -1,0 +1,43 @@
+@model IEnumerable<_2FA.Data.Entities.CompanyEntity>
+
+@if (Model.Any())
+{
+    var currentCompanyId = ViewBag.CurrentCompanyId as int?;
+    var currentCompany = Model.FirstOrDefault(c => c.Id == currentCompanyId);
+
+    if (Model.Count() > 1)
+    {
+        <!-- Multiple companies - show dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="companyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-building"></i> @(currentCompany?.Name ?? "Seleccionar Compañía")
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                @foreach (var company in Model)
+                {
+                    <li>
+                        <form asp-action="SwitchCompany" asp-controller="Home" method="post" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="selectedCompanyId" value="@company.Id" />
+                            <button type="submit" class="dropdown-item @(company.Id == currentCompanyId ? "active" : "")"
+                                    style="border: none; background: none; width: 100%; text-align: left; padding: 0.25rem 1.5rem;">
+                                @company.Name @(company.Id == currentCompanyId ? "✓" : "")
+                            </button>
+                        </form>
+                    </li>
+                }
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="SwitchCompany"><i class="fas fa-exchange-alt"></i> Gestionar Compañías</a></li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <!-- Single company - show as text -->
+        <li class="nav-item">
+            <span class="nav-link text-muted">
+                <i class="fas fa-building"></i> @Model.First().Name
+            </span>
+        </li>
+    }
+}

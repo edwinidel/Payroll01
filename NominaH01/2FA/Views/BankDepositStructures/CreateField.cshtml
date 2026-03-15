@@ -1,0 +1,63 @@
+@model _2FA.Data.Entities.BankDepositFieldEntity
+
+@{
+    ViewData["Title"] = "CreateField";
+}
+
+<div style="text-align: center;">
+    <h2>Nuevo Campo de Depósito Bancario</h2>
+</div>
+
+<div class="m-0 row justify-content-center">
+    <div class="col-md-5">
+        <div class="card">
+            <card-header>
+                <div class="p-3">
+                </div>
+            </card-header>
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <form asp-action="CreateField">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="BankDepositStructureId" />
+                            <div class="form-group">
+                                <a title="Regresar" class="btn-action" asp-action="ManageFields" asp-route-id="@Model.BankDepositStructureId"><i class="fa-solid fa-left-long"></i></a>
+                                <button title="Guardar" class="btn-action" type="submit"><i class="fa-solid fa-floppy-disk"></i></button>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label asp-for="CompanyId" class="control-label"></label>
+                                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.Companies" required></select>
+                                <span asp-validation-for="CompanyId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FieldName" class="control-label"></label>
+                                <input asp-for="FieldName" class="form-control" />
+                                <span asp-validation-for="FieldName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FieldContent" class="control-label"></label>
+                                <select asp-for="FieldContent" class="form-control" asp-items="ViewBag.FieldContents" required></select>
+                                <span asp-validation-for="FieldContent" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Order" class="control-label"></label>
+                                <input asp-for="Order" class="form-control" type="number" />
+                                <span asp-validation-for="Order" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <input asp-for="Ignore" class="form-check-input" />
+                                <label asp-for="Ignore" class="form-check-label"></label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,247 @@
+﻿@using _2FA.Models
+@model _2FA.Models.PaymentConceptAssignmentViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    var available = (IEnumerable<dynamic>)ViewBag.AvailableDeductionsData;
+}
+
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-8">
+        <div class="card-header">
+            <div style="text-align: center;">
+                <h2>Detalle del Concepto de Pago</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.PayFactor)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @Html.DisplayFor(model => model.PayFactor)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.Country.Name)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @Html.DisplayFor(model => model.Country.Name)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-2">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.RecurrentPayment)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @if(Model.RecurrentPayment)
+                            {
+                                @Html.DisplayName("Sí")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("No")
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-2">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.RegularHours)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @if(Model.RegularHours)
+                            {
+                                @Html.DisplayName("Sí")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("No")
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-2">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.ExtraHours)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @if(Model.ExtraHours)
+                            {
+                                @Html.DisplayName("Sí")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("No")
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-3">
+                    <dl class="row">
+                        <dt class = "col-sm-12">
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </dt>
+                        <dd class = "col-sm-12">
+                            @if(Model.IsActive)
+                            {
+                                @Html.DisplayName("Sí")
+                            }
+                            else
+                            {
+                                @Html.DisplayName("No")
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-8">
+        <div class="card-header">
+            <div style="text-align: center;">
+                <h2>Asignación de Descuentos Legales</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="SaveAssignments" method="post">
+                @Html.HiddenFor(m => m.PaymentConceptId)
+
+                <!-- Selector de deducciones -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="legalDeductionSelect" class="form-label">Seleccione un descuento legal</label>
+                        <select id="legalDeductionSelect" class="form-select">
+                            <option value="">-- Seleccione --</option>
+                            @foreach (var ld in available)
+                            {
+                                <option value="@ld.Id"
+                                        data-code="@ld.Code"
+                                        data-name="@ld.Name"
+                                        data-emp-discount="@ld.EmployeeDiscount"
+                                        data-empr-discount="@ld.EmployerDiscount">
+                                    @ld.Name
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 align-self-end">
+                        <button type="button" id="btnAdd" class="btn btn-success">Agregar</button>
+                    </div>
+                </div>
+
+                <!-- Tabla de deducciones asignadas -->
+                <table id="assignedTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Desc. Empleado</th>
+                            <th>Desc. Empleador</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AssignedDeductions)
+                        {
+                            <tr>
+                                <td>@item.Code</td>
+                                <td>@item.Name</td>
+                                <td>@item.EmployeeDiscount</td>
+                                <td>@item.EmployerDiscount</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm btnRemove" data-id="@item.Id">Quitar</button>
+                                    <input type="hidden" name="AssignedIds" value="@item.Id" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('btnAdd').addEventListener('click', function () {
+            var select = document.getElementById('legalDeductionSelect');
+            var selectedId = select.value;
+            var opt = select.options[select.selectedIndex];
+
+            if (!selectedId) {
+                alert("Debe seleccionar un descuento legal.");
+                return;
+            }
+
+            // Evitar duplicados
+            if (document.querySelector(`input[name="AssignedIds"][value="${selectedId}"]`)) {
+                alert("Este descuento ya está asignado.");
+                return;
+            }
+
+            var code = opt.getAttribute('data-code');
+            var name = opt.getAttribute('data-name');
+            var empDiscount = opt.getAttribute('data-emp-discount');
+            var emprDiscount = opt.getAttribute('data-empr-discount');
+
+            if (!code || !name) {
+                alert("No se encontró información del descuento.");
+                return;
+            }
+
+            var tbody = document.querySelector("#assignedTable tbody");
+            var row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${code}</td>
+                <td>${name}</td>
+                <td>${empDiscount}</td>
+                <td>${emprDiscount}</td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm btnRemove" data-id="${selectedId}">Quitar</button>
+                    <input type="hidden" name="AssignedIds" value="${selectedId}" />
+                </td>
+            `;
+
+            tbody.appendChild(row);
+        });
+
+        // Eliminar fila
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('btnRemove')) {
+                e.target.closest('tr').remove();
+            }
+        });
+    </script>
+}
+

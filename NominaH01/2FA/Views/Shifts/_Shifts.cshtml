@@ -1,0 +1,140 @@
+@model _2FA.Data.Entities.ShiftEntity
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<hr />
+<h5>Segmentos del Turno</h5>
+<p class="text-muted">Configure los diferentes segmentos del turno (trabajo, comida, etc.)</p>
+<div id="segments-container">
+    <!-- Segments will be added here dynamically -->
+</div>
+<button type="button" class="btn btn-secondary" id="add-segment">Agregar Segmento</button>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="ScheduleId" class="control-label"></label>
+            <select asp-for="ScheduleId" class="form-control" asp-items="ViewBag.ScheduleId"></select>
+            <span asp-validation-for="ScheduleId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div style="text-align: center;">
+            <label asp-for="IsActive" class="control-label"></label>
+        </div>
+        <div class="form-check form-switch d-flex justify-content-center align-items-center" style="min-height: 50px;">
+            <input class="form-check-input" asp-for="IsActive" type="checkbox" id="flexSwitchCheckDefault" style="font-size: 20px;">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+    </div>
+</div>
+
+<style>
+    .time-input::-webkit-datetime-edit-ampm-field {
+        display: none;
+    }
+    .time-input::-webkit-datetime-edit-text {
+        display: none;
+    }
+    .time-input {
+        font-family: monospace;
+    }
+</style>
+<script>
+    let segmentCount = 0;
+
+    function addSegment(segmentType = 'Trabajo', startTime = '', endTime = '', segmentId = '', segmentOrder = '') {
+        segmentCount++;
+        const container = document.getElementById('segments-container');
+        if (!container) {
+            console.error('Segments container not found');
+            return;
+        }
+
+        const segmentDiv = document.createElement('div');
+        segmentDiv.className = 'segment-item border p-3 mb-3';
+
+        let selectedTrabajo = segmentType === 'Trabajo' ? 'selected' : '';
+        let selectedComida = segmentType === 'Comida' ? 'selected' : '';
+        let selectedDescanso = segmentType === 'Descanso' ? 'selected' : '';
+
+        segmentDiv.innerHTML = `
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Tipo de Segmento</label>
+                    <select name="Segments[${segmentCount}].SegmentType" class="form-control">
+                        <option value="Trabajo" ${selectedTrabajo}>Trabajo</option>
+                        <option value="Comida" ${selectedComida}>Comida</option>
+                        <option value="Descanso" ${selectedDescanso}>Descanso</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Hora de Inicio</label>
+                    <input name="Segments[${segmentCount}].StartTime" type="time" class="form-control time-input" step="60" min="00:00" max="23:59" value="${startTime}" required />
+                </div>
+                <div class="col-md-3">
+                    <label>Hora de Fin</label>
+                    <input name="Segments[${segmentCount}].EndTime" type="time" class="form-control time-input" step="60" min="00:00" max="23:59" value="${endTime}" required />
+                </div>
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="button" class="btn btn-danger btn-sm remove-segment">Eliminar</button>
+                </div>
+            </div>
+            ${segmentId ? `<input name="Segments[${segmentCount}].Id" type="hidden" value="${segmentId}" />` : ''}
+            <input name="Segments[${segmentCount}].Order" type="hidden" value="${segmentOrder || segmentCount}" />
+        `;
+
+        container.appendChild(segmentDiv);
+
+        // Add event listener to remove button
+        segmentDiv.querySelector('.remove-segment').addEventListener('click', function() {
+            container.removeChild(segmentDiv);
+        });
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('JavaScript loaded for segments - DOMContentLoaded fired');
+
+        // Check if elements exist
+        const container = document.getElementById('segments-container');
+        console.log('Segments container found:', !!container);
+
+        // Add event listener to the add button
+        const addButton = document.getElementById('add-segment');
+        if (addButton) {
+            addButton.addEventListener('click', function() {
+                console.log('Add segment button clicked');
+                addSegment();
+            });
+            console.log('Event listener attached to add button');
+        } else {
+            console.error('Add button not found - ID: add-segment');
+        }
+
+        // Load existing segments
+        @if (Model.Segments != null && Model.Segments.Any())
+        {
+            @foreach (var segment in Model.Segments.OrderBy(s => s.Order))
+            {
+                <text>
+                addSegment('@segment.SegmentType', '@segment.StartTime.ToString("HH:mm")', '@segment.EndTime.ToString("HH:mm")', '@segment.Id', '@segment.Order');
+                </text>
+            }
+        }
+        else
+        {
+            <text>
+            // Add initial segment if no existing segments
+            addSegment();
+            </text>
+        }
+    });
+</script>
