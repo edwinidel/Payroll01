@@ -45,7 +45,7 @@ namespace _2FA.Controllers
             ViewData["Breadcrumb"] = new List<BreadcrumbItem>
             {
                 new BreadcrumbItem { Text = "Home", Url = "/" },
-                new BreadcrumbItem { Text = "Administración", Url = "Home/Administration" },
+                new BreadcrumbItem { Text = "Administración", Url = "/Home/Administration" },
                 new BreadcrumbItem { Text = "Listado de Planillas" }
             };
 
@@ -132,7 +132,7 @@ namespace _2FA.Controllers
             ViewData["Breadcrumb"] = new List<BreadcrumbItem>
             {
                 new BreadcrumbItem { Text = "Home", Url = "/" },
-                new BreadcrumbItem { Text = "Administración", Url = "Home/Administration" },
+                new BreadcrumbItem { Text = "Administración", Url = "/Home/Administration" },
                 new BreadcrumbItem { Text = "Listado de Planillas", Url = "/PayrollTmpHeaders" },
                 new BreadcrumbItem { Text = $"Detalle {(payrollTmpHeaderEntity.Notes.Length <= 100 ? payrollTmpHeaderEntity.Notes : payrollTmpHeaderEntity.Notes[..100])}" }
             };
