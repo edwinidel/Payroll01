@@ -14,6 +14,10 @@
             <card-header>
                 <div class="p-3">
                     <a title="Nuevo Empleado" class="btn-action" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a title="Importación inicial" class="btn-action" asp-controller="InitialEmployeeImports" asp-action="Index"><i class="fa-solid fa-file-import"></i></a>
+                    }
                 </div>
             </card-header>
             <div class="card-body">

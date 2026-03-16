@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NominaH01", "NominaH01", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2FA", "NominaH01\2FA\2FA.csproj", "{146E632F-E19D-4088-8E62-11D5E8ECC01D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OvertimeCalc01", "OvertimeCalc01", "{4A7A84EC-4A93-43C8-8F5C-14650176FDA0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OverTimeCalc01", "OverTimeCalc01", "{4A7A84EC-4A93-43C8-8F5C-14650176FDA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvertimeCalculator", "OvertimeCalc01\OvertimeCalculator\OvertimeCalculator.csproj", "{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvertimeCalculator", "OverTimeCalc01\OvertimeCalculator\OvertimeCalculator.csproj", "{5F37D16E-A659-4C6F-B722-5BDCDC61D22F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

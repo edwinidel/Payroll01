@@ -34,6 +34,15 @@ Monorepo para la solución de nómina y cálculo de horas extras.
 
 ## Ejecución local
 
+### Ambos proyectos a la vez
+Desde la raíz del repositorio:
+
+- `./scripts/run-payroll-stack.sh`
+
+Modo watch opcional:
+
+- `./scripts/run-payroll-stack.sh --watch`
+
 ### API de horas extras
 Desde la raíz del repositorio:
 
@@ -58,6 +67,7 @@ O por proyecto:
 ## Notas de repositorio
 
 - Este repositorio fue inicializado como un monorepo nuevo.
+- `dotnet run` ya no funciona desde la raíz por sí solo, porque la raíz contiene una solución y no un proyecto ejecutable único.
 - Los repositorios Git originales de los proyectos fueron preservados fuera de esta copia.
 - Los archivos sensibles y de ambiente local están ignorados en `.gitignore`.
 

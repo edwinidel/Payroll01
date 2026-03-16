@@ -61,6 +61,7 @@ builder.Services.AddHsts(options =>
 builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddScoped<BankDepositFileGenerator>();
+builder.Services.AddScoped<InitialEmployeeImportService>();
 builder.Services.AddScoped<IPaystubService, PaystubService>();
 builder.Services.AddScoped<ICertificateService, CertificateService>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
