@@ -35,6 +35,23 @@
 
     @foreach (var employee in Model.Employees)
     {
+        var overtimeSummary = employee.PayrollTmpOvertime
+            .GroupBy(o => new
+            {
+                o.FactorCode,
+                PaidType = o.IsSunday ? "Domingo" : o.IsHoliday ? "Feriado" : "Regular"
+            })
+            .Select(g => new
+            {
+                g.Key.FactorCode,
+                g.Key.PaidType,
+                Hours = g.Sum(x => x.CalculatedHours),
+                Amount = g.Sum(x => x.TotalAmount)
+            })
+            .OrderBy(x => x.FactorCode)
+            .ThenBy(x => x.PaidType)
+            .ToList();
+
         <div class="card mb-4 payroll-report-employee">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>
@@ -66,17 +83,17 @@
                                         <td style="text-align: right;">@concept.TotalAmount</td>
                                     </tr>
                                 }
-                                @if (employee.PayrollTmpOvertime.Any())
+                                @if (overtimeSummary.Any())
                                 {
                                     <tr>
                                         <td colspan="3"><strong>Horas Extras:</strong></td>
                                     </tr>
-                                    @foreach (var overtime in employee.PayrollTmpOvertime)
+                                    @foreach (var overtime in overtimeSummary)
                                     {
                                         <tr>
-                                            <td>&nbsp;&nbsp;@overtime.OvertimeDate.ToString("dd/MM/yyyy") - @overtime.FactorCode</td>
-                                            <td>@overtime.CalculatedHours.ToString("N2")</td>
-                                            <td style="text-align: right;">@overtime.TotalAmount.ToString("C")</td>
+                                            <td>&nbsp;&nbsp;Factor @overtime.FactorCode - @overtime.PaidType</td>
+                                            <td>@overtime.Hours.ToString("N2")</td>
+                                            <td style="text-align: right;">@overtime.Amount.ToString("C")</td>
                                         </tr>
                                     }
                                 }

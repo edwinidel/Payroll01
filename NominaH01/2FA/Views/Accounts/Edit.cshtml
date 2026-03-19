@@ -4,34 +4,63 @@
     ViewData["Title"] = "Edit";
 }
 
+
+<div class="m-0 row jistify-content-center">
+    <div class="card col-md-6">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a title="Regresar a la vista anterior" class="btn btn-action" asp-action="Index"><i class="fa-solid fa-left-long"></i></a>
+                    <button title="Guardar cambios" type="submit" class="btn btn-action"><i class="fa-solid fa-floppy-disk"></i></button>
+                </div>
+                <div class="col-md-10 text-center">
+                    <h3>Editar Cuenta</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group mb-3">
+                            <label asp-for="AccountNumber" class="control-label"></label>
+                            <input asp-for="AccountNumber" class="form-control" />
+                            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label asp-for="Clasification" class="control-label"></label>
+                            <select asp-for="Clasification" class="form-control" asp-items="Html.GetEnumSelectList<_2FA.Data.Entities.AccountClasificationType>()">
+                                <option value="">Seleccione una clasificación</option>
+                            </select>
+                            <span asp-validation-for="Clasification" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check mb-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <h1>Edit</h1>
 
 <h4>AccountEntity</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="AccountNumber" class="control-label"></label>
-                <input asp-for="AccountNumber" class="form-control" />
-                <span asp-validation-for="AccountNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
 </div>
 

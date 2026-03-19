@@ -15,6 +15,9 @@ namespace _2FA.Data.Entities
         [StringLength(200, ErrorMessage = "El campo {0} no puede exceder los {1} caracteres")]
         public string? Description { get; set; }
 
+        [Display(Name = "Clasificación")]
+        public AccountClasificationType? Clasification { get; set; }
+
         [Display(Name = "¿Activo?")]
         public bool IsActive { get; set; } = true;
 

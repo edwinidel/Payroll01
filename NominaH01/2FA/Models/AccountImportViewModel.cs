@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using _2FA.Data.Entities;
 
 namespace _2FA.Models
 {
@@ -12,6 +13,9 @@ namespace _2FA.Models
 
         [StringLength(200, ErrorMessage = "La descripción no puede exceder los 200 caracteres")]
         public string Description { get; set; } = string.Empty;
+
+        [Display(Name = "Clasificación")]
+        public AccountClasificationType? Clasification { get; set; }
 
         public bool IsValid { get; set; } = true;
 

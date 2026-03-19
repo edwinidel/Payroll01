@@ -4,90 +4,66 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="m-0 row justify-content-center">
+    <div class="card col-md-8">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <a title="Agregar Nueva Cuenta" class="btn btn-action" asp-action="Create"><i class="fas fa-plus"></i></a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a title="Importar Cuentas" class="btn btn-action" asp-action="Import"><i class="fas fa-upload"></i></a>
+                    }
+                </div>
+                <div class="col-md-10 text-center">
+                    <h2>Catálogo de Cuentas</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Clasification)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Clasification)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsActive)
+                            </td>
+                            <td>
+                                <a title="Editar Registro" class="btn btn-index" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> 
+                                <a title="Ver Detalles" class="btn btn-index" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> 
+                                <a title="Eliminar Registro" class="btn btn-index" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a> |
-    <a asp-action="Import" class="btn btn-secondary">
-        <i class="fas fa-upload"></i> Import from Excel
-    </a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modified)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Deleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Created)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>

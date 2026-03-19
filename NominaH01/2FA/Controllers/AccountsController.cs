@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,6 +20,8 @@ namespace _2FA.Controllers
 {
     public class AccountsController : BaseController
     {
+        private static readonly string[] ImportTemplateHeaders = { "AccountNumber", "Description", "Clasification" };
+
         public AccountsController(ApplicationDbContext context) : base(context)
         {
         }
@@ -35,6 +39,7 @@ namespace _2FA.Controllers
         }
 
         // GET: Accounts/Import
+        [Authorize(Roles = "Administrator")]
         public IActionResult Import()
         {
             // Ensure company is selected
@@ -45,9 +50,64 @@ namespace _2FA.Controllers
             return View();
         }
 
+        // GET: Accounts/DownloadTemplate
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DownloadTemplate()
+        {
+            var redirectResult = EnsureCompanySelected();
+            if (redirectResult != null)
+                return redirectResult;
+
+            var company = await GetCurrentCompanyAsync();
+
+            using var workbook = new XLWorkbook();
+
+            var instructionsSheet = workbook.Worksheets.Add("Instrucciones");
+            instructionsSheet.Cell(1, 1).Value = "Importación de catálogo de cuentas";
+            instructionsSheet.Cell(2, 1).Value = "Columnas requeridas:";
+            instructionsSheet.Cell(3, 1).Value = "AccountNumber y Clasification.";
+            instructionsSheet.Cell(4, 1).Value = "Description es opcional.";
+            instructionsSheet.Cell(5, 1).Value = "Clasification acepta: Activo, Pasivo, Patrimonio, Ingreso, Gasto, Costo.";
+            instructionsSheet.Cell(6, 1).Value = "No duplique números de cuenta dentro de la misma compañía.";
+            instructionsSheet.Columns().AdjustToContents();
+
+            var accountsSheet = workbook.Worksheets.Add("Cuentas");
+            for (var i = 0; i < ImportTemplateHeaders.Length; i++)
+            {
+                accountsSheet.Cell(1, i + 1).Value = ImportTemplateHeaders[i];
+                accountsSheet.Cell(1, i + 1).Style.Font.Bold = true;
+                accountsSheet.Cell(1, i + 1).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            }
+
+            accountsSheet.Cell(2, 1).Value = "1-01-001";
+            accountsSheet.Cell(2, 2).Value = "Caja general";
+            accountsSheet.Cell(2, 3).Value = AccountClasificationType.Activo.ToString();
+            accountsSheet.SheetView.FreezeRows(1);
+            accountsSheet.Columns().AdjustToContents();
+
+            var catalogSheet = workbook.Worksheets.Add("Catalogos");
+            catalogSheet.Cell(1, 1).Value = "Clasificaciones válidas";
+            catalogSheet.Cell(1, 1).Style.Font.Bold = true;
+            var row = 2;
+            foreach (var clasification in Enum.GetValues<AccountClasificationType>())
+            {
+                catalogSheet.Cell(row, 1).Value = clasification.ToString();
+                row++;
+            }
+            catalogSheet.Columns().AdjustToContents();
+
+            using var stream = new MemoryStream();
+            workbook.SaveAs(stream);
+
+            var safeCompanyName = (company?.Name ?? "empresa").Replace(" ", "-").ToLowerInvariant();
+            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"plantilla-cuentas-{safeCompanyName}.xlsx");
+        }
+
         // POST: Accounts/Preview
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Preview(IFormFile excelFile)
         {
             // Debug logging
@@ -123,14 +183,19 @@ namespace _2FA.Controllers
                             try
                             {
                                 var dataRow = dataTable.Rows[row];
-                                var accountNumber = dataRow[0]?.ToString()?.Trim();
-                                var description = dataRow[1]?.ToString()?.Trim();
+                                var accountNumber = GetCellValue(dataRow, 0);
+                                var description = GetCellValue(dataRow, 1);
+                                var clasificationText = GetCellValue(dataRow, 2);
+                                var clasification = TryParseClasification(clasificationText, out var parsedClasification)
+                                    ? parsedClasification
+                                    : null;
 
                                 var importItem = new AccountImportViewModel
                                 {
                                     RowNumber = row, // 1-based for display
                                     AccountNumber = accountNumber ?? "",
                                     Description = description ?? "",
+                                    Clasification = clasification,
                                     IsValid = true,
                                     ErrorMessage = ""
                                 };
@@ -140,6 +205,13 @@ namespace _2FA.Controllers
                                 {
                                     importItem.IsValid = false;
                                     importItem.ErrorMessage = "El número de cuenta es requerido.";
+                                }
+                                else if (!clasification.HasValue)
+                                {
+                                    importItem.IsValid = false;
+                                    importItem.ErrorMessage = string.IsNullOrWhiteSpace(clasificationText)
+                                        ? "La clasificación es requerida."
+                                        : $"La clasificación '{clasificationText}' no es válida.";
                                 }
                                 else
                                 {
@@ -162,8 +234,9 @@ namespace _2FA.Controllers
                                 previewData.Add(new AccountImportViewModel
                                 {
                                     RowNumber = row,
-                                    AccountNumber = dataRow[0]?.ToString()?.Trim() ?? "",
-                                    Description = dataRow[1]?.ToString()?.Trim() ?? "",
+                                    AccountNumber = GetCellValue(dataRow, 0) ?? "",
+                                    Description = GetCellValue(dataRow, 1) ?? "",
+                                    Clasification = TryParseClasification(GetCellValue(dataRow, 2), out var parsedClasification) ? parsedClasification : null,
                                     IsValid = false,
                                     ErrorMessage = $"Error procesando la fila: {ex.Message}"
                                 });
@@ -187,6 +260,7 @@ namespace _2FA.Controllers
         // POST: Accounts/SaveImported
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> SaveImported(List<AccountImportViewModel> accounts)
         {
             // Debug logging
@@ -214,12 +288,30 @@ namespace _2FA.Controllers
             var importedCount = 0;
             var errors = new List<string>();
 
+            if (accounts == null || !accounts.Any())
+            {
+                TempData["Error"] = "No se recibieron cuentas para importar.";
+                return RedirectToAction(nameof(Import));
+            }
+
             try
             {
-                foreach (var account in accounts.Where(a => a.IsValid))
+                foreach (var account in accounts)
                 {
                     try
                     {
+                        if (string.IsNullOrWhiteSpace(account.AccountNumber))
+                        {
+                            errors.Add($"Fila {account.RowNumber}: el número de cuenta es requerido.");
+                            continue;
+                        }
+
+                        if (!account.Clasification.HasValue)
+                        {
+                            errors.Add($"Fila {account.RowNumber}: la clasificación es requerida.");
+                            continue;
+                        }
+
                         // Double-check that account doesn't exist (in case of concurrent operations)
                         var existingAccount = await _context.Accounts
                             .FirstOrDefaultAsync(a => a.AccountNumber == account.AccountNumber && a.CompanyId == currentCompanyId.Value);
@@ -230,10 +322,11 @@ namespace _2FA.Controllers
                             {
                                 AccountNumber = account.AccountNumber,
                                 Description = account.Description,
+                                Clasification = account.Clasification,
                                 CompanyId = currentCompanyId.Value,
                                 IsActive = true,
                                 Created = DateTime.Now,
-                                CreatedBy = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                                CreatedBy = User.Identity?.Name ?? User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "system"
                             };
 
                             _context.Accounts.Add(newAccount);
@@ -241,12 +334,12 @@ namespace _2FA.Controllers
                         }
                         else
                         {
-                            errors.Add($"Cuenta '{account.AccountNumber}' ya existe.");
+                            errors.Add($"Fila {account.RowNumber}: la cuenta '{account.AccountNumber}' ya existe.");
                         }
                     }
                     catch (Exception ex)
                     {
-                        errors.Add($"Error guardando cuenta '{account.AccountNumber}': {ex.Message}");
+                        errors.Add($"Fila {account.RowNumber}: error guardando cuenta '{account.AccountNumber}': {ex.Message}");
                     }
                 }
 
@@ -321,6 +414,11 @@ namespace _2FA.Controllers
             ModelState.Remove("Created");
             ModelState.Remove("CreatedBy");
 
+            if (!accountEntity.Clasification.HasValue)
+            {
+                ModelState.AddModelError(nameof(AccountEntity.Clasification), "El campo Clasificación es requerido");
+            }
+
             if (ModelState.IsValid)
             {
                 accountEntity.Created = DateTime.UtcNow;
@@ -375,6 +473,11 @@ namespace _2FA.Controllers
 
             ModelState.Remove("Modified");
             ModelState.Remove("ModifiedBy");
+
+            if (!accountEntity.Clasification.HasValue)
+            {
+                ModelState.AddModelError(nameof(AccountEntity.Clasification), "El campo Clasificación es requerido");
+            }
 
             if (ModelState.IsValid)
             {
@@ -443,6 +546,40 @@ namespace _2FA.Controllers
         private bool AccountEntityExists(int id)
         {
             return _context.Accounts.Any(e => e.Id == id);
+        }
+
+        private static string? GetCellValue(DataRow dataRow, int index)
+        {
+            if (index < 0 || index >= dataRow.ItemArray.Length)
+            {
+                return null;
+            }
+
+            return dataRow[index]?.ToString()?.Trim();
+        }
+
+        private static bool TryParseClasification(string? value, out AccountClasificationType? clasification)
+        {
+            clasification = null;
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return false;
+            }
+
+            var normalized = value.Trim().ToUpperInvariant();
+            clasification = normalized switch
+            {
+                "ACTIVO" => AccountClasificationType.Activo,
+                "PASIVO" => AccountClasificationType.Pasivo,
+                "PATRIMONIO" => AccountClasificationType.Patrimonio,
+                "INGRESO" => AccountClasificationType.Ingreso,
+                "GASTO" => AccountClasificationType.Gasto,
+                "COSTO" => AccountClasificationType.Costo,
+                _ => null
+            };
+
+            return clasification.HasValue;
         }
     }
 }

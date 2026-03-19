@@ -1035,26 +1035,28 @@ namespace _2FA.Controllers
 
                 if (!hasOvertimeConcept && employee.PayrollTmpOvertime.Any())
                 {
-                    var overtimeGroups = employee.PayrollTmpOvertime
-                        .GroupBy(o => new { o.OvertimeDate, o.EntryTime, o.ExitTime });
-
-                    foreach (var group in overtimeGroups)
-                    {
-                        var firstOvertime = group.First();
-                        var totalHours = group.Sum(o => o.CalculatedHours);
-                        var totalAmount = group.Sum(o => o.TotalAmount);
-
-                        table.AddCell($"{firstOvertime.OvertimeDate:dd/MM/yyyy} {firstOvertime.EntryTime:hh\\:mm}-{firstOvertime.ExitTime:hh\\:mm}");
-                        table.AddCell(totalHours.ToString("N2"));
-                        table.AddCell(totalAmount.ToString("C"));
-
-                        // Add factor breakdown as additional rows
-                        foreach (var segment in group.OrderBy(s => s.FactorCode))
+                    var overtimeSummary = employee.PayrollTmpOvertime
+                        .GroupBy(o => new
                         {
-                            table.AddCell($"  └ {segment.FactorCode}");
-                            table.AddCell(segment.CalculatedHours.ToString("N2"));
-                            table.AddCell(segment.TotalAmount.ToString("C"));
-                        }
+                            o.FactorCode,
+                            PaidType = o.IsSunday ? "Domingo" : o.IsHoliday ? "Feriado" : "Regular"
+                        })
+                        .Select(g => new
+                        {
+                            g.Key.FactorCode,
+                            g.Key.PaidType,
+                            Hours = g.Sum(x => x.CalculatedHours),
+                            Amount = g.Sum(x => x.TotalAmount)
+                        })
+                        .OrderBy(x => x.FactorCode)
+                        .ThenBy(x => x.PaidType)
+                        .ToList();
+
+                    foreach (var summary in overtimeSummary)
+                    {
+                        table.AddCell($"Factor {summary.FactorCode} - {summary.PaidType}");
+                        table.AddCell(summary.Hours.ToString("N2"));
+                        table.AddCell(summary.Amount.ToString("C"));
                     }
                 }
 
